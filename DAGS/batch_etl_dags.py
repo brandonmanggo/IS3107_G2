@@ -35,12 +35,11 @@ with DAG(
         hotel_booking_file = open(hotel_booking_dir).read()
 
         # Airbnb Dataset
-        airbnb_dir = f'{ddir}/Hotel_Reservations.csv'
+        airbnb_dir = f'{ddir}/Airbnb_Lisbon.csv'
         airbnb_file = open(airbnb_dir).read()
 
         ti.xcom_push('hotel_booking_data', hotel_booking_file)
         ti.xcom_push('airbnb_data', airbnb_file)
-
 
 
     def transform_hotel(**kwargs):
@@ -64,25 +63,45 @@ with DAG(
     def transform_airbnb(**kwargs):
         ti = kwargs['ti']
         airbnb_file = ti.xcom_pull(task_ids = 'extract', key = 'airbnb_data')
-        hotel_booking_df = pd.read_csv(airbnb_file)
+        airbnb_lisbon_df = pd.read_csv(airbnb_file)
 
-        # Table X :
+        ## Cleaning, Extract columns, Merging
+        # Table
+        airbnb_lisbon_eda = airbnb_lisbon_df.copy()
 
-        # Table Y :
+        # Cleaning Data
+        airbnb_lisbon_eda.drop(['borough', 'neighborhood', 'reviews', 'last_modified'], axis = 1, inplace = True)
+        airbnb_lisbon_eda['room_type'] = airbnb_lisbon_eda['room_type'].astype('str') 
+        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 0 >= airbnb_lisbon_eda.loc[row, 'accommodates']], inplace = True)
+        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 0 >= airbnb_lisbon_eda.loc[row, 'price']], inplace = True)
+        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 0 >= airbnb_lisbon_eda.loc[row, 'minstay']], inplace = True)
 
-    def load(**kwargs):
+        # Further Cleaning Data for Accommodates
+        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 10 < airbnb_lisbon_eda.loc[row, 'accommodates']], inplace = True)
+
+        # Further Cleaning Data for Bedrooms
+        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 5 < airbnb_lisbon_eda.loc[row, 'bedrooms']], inplace = True)
+
+        # Further Cleaning Data for Minstay
+        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 9 < airbnb_lisbon_eda.loc[row, 'minstay']], inplace = True)
+
+        # Further Cleaning Data for Minstay
+        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 2000 < airbnb_lisbon_eda.loc[row, 'price']], inplace = True)
+
+        ti.xcom_push('airbnb_lisbon_eda', airbnb_lisbon_eda.to_csv())
+
+
+    def load_hotel(**kwargs):
         ti = kwargs['ti']
-
-        hotel_booking_eda_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
-        hotel_booking_cancel_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
 
         # Create a client object
         client = bigquery.Client()
 
+        hotel_booking_eda_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
+        hotel_booking_cancel_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
+
         table_id_h_eda = 'is3107-g2-381308.hotel_bookings.booking_city'
         table_id_h_cancel = 'is3107-g2-381308.hotel_bookings.booking_city'
-        table_id_a_eda = 'is3107-g2-381308.hotel_bookings.booking_city'
-
 
         new_schema = [
             bigquery.SchemaField('is_canceled', 'STRING', mode='NULLABLE'),
@@ -91,22 +110,66 @@ with DAG(
         ]
 
         table = client.get_table(table_id)
+        
         original_schema = table.schema
         new_schema = original_schema[:] 
-
-        new_schema.extend(neww_schema)
-
+        new_schema.extend(new_schema)
         table.schema = new_schema
 
         table = client.update_table(table, ['schema'])
 
         job_config = bigquery.LoadJobConfig(
-            source_format=bigquery.SourceFormat.CSV, skip_leading_rows=1, autodetect= True, write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
+            source_format=bigquery.SourceFormat.CSV, 
+            skip_leading_rows=1, 
+            autodetect= True, 
+            write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
         )
 
         job = client.load_table_from_dataframe(hotel_city_df, table_id, job_config=job_config)
         job.result()
 
+
+    def load_airbnb(**kwargs):
+        ti = kwargs['ti']
+
+        # Create a client object
+        client = bigquery.Client()
+        
+        airbnb_lisbon_eda_csv = ti.xcom_pull(task_ids = 'transform_airbnb', key = 'airbnb_lisbon_eda')
+
+        table_id_a_eda = 'is3107-g2-381308.airbnb.airbnb_lisbon'
+
+        updated_schema = [
+            bigquery.SchemaField('room_id', 'INTEGER', mode='NULLABLE'),
+            bigquery.SchemaField('host_id', 'INTEGER', mode='NULLABLE'),
+            bigquery.SchemaField('room_type', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('overall_satisfaction', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('accommodates', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('bedrooms', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('price', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('minstay', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('latitude', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('longitude', 'FLOAT', mode='NULLABLE'),
+        ]
+
+        table = client.get_table(table_id_a_eda)
+        
+        # original_schema = table.schema
+        # new_schema = original_schema[:] 
+        # new_schema.extend(new_schema)
+        table.schema = updated_schema
+
+        table = client.update_table(table, ['schema'])
+
+        job_config = bigquery.LoadJobConfig(
+            source_format=bigquery.SourceFormat.CSV, 
+            skip_leading_rows=1, 
+            autodetect= True, 
+            write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
+        )
+
+        job = client.load_table_from_dataframe(airbnb_lisbon_eda_csv, table_id_a_eda, job_config=job_config)
+        job.result()
 
 
     extract = PythonOperator(
@@ -127,11 +190,17 @@ with DAG(
         dag = dag,
     )
 
-    load = PythonOperator(
-        task_id = 'load',
-        python_callable = load,
+    load_hotel = PythonOperator(
+        task_id = 'load_hotel',
+        python_callable = load_hotel,
+        dag = dag,
+    )
+
+    load_airbnb = PythonOperator(
+        task_id = 'load_airbnb',
+        python_callable = load_airbnb,
         dag = dag,
     )
 
 
-    extract >> [ transform_hotel, transform_airbnb ] >> load
+    extract >> [ transform_hotel, transform_airbnb ] >> [ load_hotel, load_airbnb]
