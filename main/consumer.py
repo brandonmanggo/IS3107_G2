@@ -24,7 +24,7 @@ for message in consumer:
         csv_writer = csv.writer(cur_month_csv)
     # on 'END', trigger DAGS for streaming ETL
     elif (message_str == "END"):
-        client.trigger_dag('streaming_etl', run_id=None, conf={'data' : cur_month_csv})
+        client.trigger_dag('streaming_etl_dag', run_id=None, conf={'data' : cur_month_csv})
     # Write CSV row 
     else:
         csv.writer(message_str.split(','))

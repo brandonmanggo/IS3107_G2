@@ -15,7 +15,8 @@ ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project/IS3107_G2'
 streaming_data_dir = ddir + '/Dataset/hotel_streaming'
 
 # The simulated date when this python script is run 
-print('Date: 2017-7')
+year = 2017
+month = 7
 
 # Pushing our batch data to bigQuery
 client.trigger_dag('batch_etl', run_id=None)
@@ -31,6 +32,7 @@ jobs = ['2017-7.csv', '2017-8.csv', '2017-9.csv', 'Q32017','2017-10.csv', '2017-
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
 
 def sendData(period): 
+    print(f'Date: {year}-{month}')
     cur_month_data = open(streaming_data_dir + period , 'r' )
     reader = csv.reader(cur_month_data)
 
@@ -43,6 +45,11 @@ def sendData(period):
     
     # 'END' message to indicate the end of the current month data
     producer.send('hotel_bookings_listener', 'END'.encode('utf-8'))
+    if (month == 12):
+        year += 1
+        month = 1
+    else:
+        month += 1
 
 # Quarter Job
 # At the end of every quarter (3 months),
@@ -54,7 +61,7 @@ def quarterTrigger(quarterJob):
         'year' : int(quarter[-4:])
     }
 
-    client.trigger_dag('quarterlyDAG', run_id=None, conf=params)
+    client.trigger_dag('quarterly_dag', run_id=None, conf=params)
 
 for period in range(18):
     if (jobs[period][0] == "Q"):
