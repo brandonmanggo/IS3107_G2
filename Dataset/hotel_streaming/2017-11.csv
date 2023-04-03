@@ -1,648 +1,648 @@
-Booking_ID,no_of_adults,no_of_children,no_of_weekend_nights,no_of_week_nights,type_of_meal_plan,required_car_parking_space,room_type_reserved,lead_time,arrival_year,arrival_month,arrival_date,market_segment_type,repeated_guest,no_of_previous_cancellations,no_of_previous_bookings_not_canceled,avg_price_per_room,no_of_special_requests,booking_status,arr_date,booking_date
-INN01838,2,1,1,0,Meal Plan 1,0,Room_Type 1,0,2017,11,1,Online,0,0,0,90.4,0,Not_Canceled,2017-11-01,2017-11-01
-INN03257,2,0,2,3,Meal Plan 1,0,Room_Type 4,41,2017,11,1,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-01,2017-09-21
-INN03906,2,1,2,3,Meal Plan 1,0,Room_Type 4,41,2017,11,1,Offline,0,0,0,75.0,2,Not_Canceled,2017-11-01,2017-09-21
-INN05478,2,0,2,1,Meal Plan 1,0,Room_Type 4,34,2017,11,1,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-01,2017-09-28
-INN06053,1,0,1,0,Meal Plan 1,0,Room_Type 1,24,2017,11,1,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-01,2017-10-08
-INN06699,2,0,2,1,Meal Plan 1,0,Room_Type 1,11,2017,11,1,Online,0,0,0,87.0,1,Not_Canceled,2017-11-01,2017-10-21
-INN09945,1,0,1,0,Meal Plan 1,0,Room_Type 1,24,2017,11,1,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-01,2017-10-08
-INN10990,2,0,2,1,Meal Plan 1,0,Room_Type 1,11,2017,11,1,Online,0,0,0,87.0,1,Not_Canceled,2017-11-01,2017-10-21
-INN14340,1,0,2,1,Not Selected,0,Room_Type 1,9,2017,11,1,Online,0,0,0,75.0,1,Not_Canceled,2017-11-01,2017-10-23
-INN14864,2,0,2,2,Meal Plan 1,0,Room_Type 4,41,2017,11,1,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-01,2017-09-21
-INN16530,1,0,2,3,Meal Plan 1,0,Room_Type 4,2,2017,11,1,Online,0,0,0,90.09,0,Not_Canceled,2017-11-01,2017-10-30
-INN18440,2,1,2,3,Meal Plan 1,0,Room_Type 4,40,2017,11,1,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-01,2017-09-22
-INN19586,2,0,2,1,Meal Plan 1,0,Room_Type 1,67,2017,11,1,Offline,0,0,0,32.71,0,Not_Canceled,2017-11-01,2017-08-26
-INN20354,2,0,2,3,Meal Plan 1,0,Room_Type 2,26,2017,11,1,Online,0,0,0,85.0,0,Not_Canceled,2017-11-01,2017-10-06
-INN21044,2,0,2,1,Meal Plan 1,0,Room_Type 4,34,2017,11,1,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-01,2017-09-28
-INN21147,2,0,2,1,Meal Plan 1,0,Room_Type 4,34,2017,11,1,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-01,2017-09-28
-INN21613,2,0,2,2,Meal Plan 1,0,Room_Type 4,5,2017,11,1,Online,0,0,0,105.0,0,Not_Canceled,2017-11-01,2017-10-27
-INN21902,2,0,2,2,Meal Plan 1,0,Room_Type 4,62,2017,11,1,Offline,0,0,0,63.3,0,Not_Canceled,2017-11-01,2017-08-31
-INN22445,2,0,2,3,Meal Plan 1,0,Room_Type 2,26,2017,11,1,Online,0,0,0,85.0,0,Not_Canceled,2017-11-01,2017-10-06
-INN24471,2,0,2,3,Meal Plan 1,0,Room_Type 4,34,2017,11,1,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-01,2017-09-28
-INN26704,2,0,2,2,Meal Plan 1,0,Room_Type 4,5,2017,11,1,Online,0,0,0,105.0,0,Not_Canceled,2017-11-01,2017-10-27
-INN27041,2,0,2,2,Meal Plan 1,0,Room_Type 1,76,2017,11,1,Online,0,0,0,72.25,1,Not_Canceled,2017-11-01,2017-08-17
-INN31484,2,0,2,1,Meal Plan 1,0,Room_Type 4,37,2017,11,1,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-01,2017-09-25
-INN34091,2,0,2,1,Meal Plan 1,0,Room_Type 1,67,2017,11,1,Offline,0,0,0,32.71,0,Not_Canceled,2017-11-01,2017-08-26
-INN35546,2,0,2,1,Meal Plan 1,0,Room_Type 1,11,2017,11,1,Online,0,0,0,87.0,1,Not_Canceled,2017-11-01,2017-10-21
-INN00107,2,0,1,4,Meal Plan 1,1,Room_Type 1,10,2017,11,2,Online,0,0,0,82.95,0,Not_Canceled,2017-11-02,2017-10-23
-INN00586,1,0,1,2,Meal Plan 1,0,Room_Type 1,4,2017,11,2,Online,0,0,0,117.0,0,Not_Canceled,2017-11-02,2017-10-29
-INN01948,2,0,1,3,Meal Plan 1,0,Room_Type 4,35,2017,11,2,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-02,2017-09-28
-INN02904,2,0,1,1,Meal Plan 1,0,Room_Type 1,0,2017,11,2,Online,0,0,0,104.0,1,Not_Canceled,2017-11-02,2017-11-02
-INN11818,2,0,1,0,Not Selected,0,Room_Type 1,32,2017,11,2,Online,0,0,0,85.5,1,Not_Canceled,2017-11-02,2017-10-01
-INN11831,2,0,1,5,Meal Plan 1,0,Room_Type 1,12,2017,11,2,Offline,0,0,0,68.0,0,Not_Canceled,2017-11-02,2017-10-21
-INN12047,2,0,1,2,Meal Plan 1,0,Room_Type 1,156,2017,11,2,Offline,0,0,0,45.87,0,Not_Canceled,2017-11-02,2017-05-30
-INN12111,2,0,1,3,Meal Plan 1,0,Room_Type 1,82,2017,11,2,Online,0,0,0,72.25,1,Canceled,2017-11-02,2017-08-12
-INN12331,1,0,1,2,Meal Plan 1,0,Room_Type 1,3,2017,11,2,Corporate,0,0,0,79.0,1,Not_Canceled,2017-11-02,2017-10-30
-INN14380,1,0,1,0,Meal Plan 1,0,Room_Type 1,3,2017,11,2,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-02,2017-10-30
-INN14483,2,0,1,3,Meal Plan 1,0,Room_Type 4,40,2017,11,2,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-02,2017-09-23
-INN16370,2,0,1,2,Meal Plan 1,0,Room_Type 1,82,2017,11,2,Online,0,0,0,72.25,2,Not_Canceled,2017-11-02,2017-08-12
-INN17472,2,0,1,3,Meal Plan 1,0,Room_Type 6,21,2017,11,2,Online,0,0,0,150.45,0,Not_Canceled,2017-11-02,2017-10-12
-INN17497,2,0,1,4,Meal Plan 1,0,Room_Type 4,42,2017,11,2,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-02,2017-09-21
-INN20771,2,0,1,2,Meal Plan 1,0,Room_Type 4,5,2017,11,2,Online,1,1,0,105.0,1,Not_Canceled,2017-11-02,2017-10-28
-INN21353,2,0,1,4,Meal Plan 1,0,Room_Type 1,0,2017,11,2,Online,0,0,0,107.0,1,Not_Canceled,2017-11-02,2017-11-02
-INN22305,2,0,2,5,Meal Plan 1,0,Room_Type 1,28,2017,11,2,Offline,0,0,0,41.43,0,Not_Canceled,2017-11-02,2017-10-05
-INN24213,2,0,1,3,Meal Plan 1,0,Room_Type 1,7,2017,11,2,Online,0,0,0,95.0,1,Not_Canceled,2017-11-02,2017-10-26
-INN25916,2,0,1,3,Meal Plan 1,0,Room_Type 4,40,2017,11,2,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-02,2017-09-23
-INN28755,2,0,1,3,Meal Plan 1,1,Room_Type 4,14,2017,11,2,Online,0,0,0,108.45,1,Not_Canceled,2017-11-02,2017-10-19
-INN30411,1,0,1,2,Meal Plan 1,0,Room_Type 4,5,2017,11,2,Online,0,0,0,105.0,1,Not_Canceled,2017-11-02,2017-10-28
-INN31001,1,0,1,1,Meal Plan 1,0,Room_Type 1,3,2017,11,2,Online,0,0,0,77.77,0,Not_Canceled,2017-11-02,2017-10-30
-INN34064,2,0,1,4,Meal Plan 1,0,Room_Type 1,11,2017,11,2,Online,0,0,0,73.95,1,Not_Canceled,2017-11-02,2017-10-22
-INN00843,2,0,0,5,Meal Plan 1,0,Room_Type 1,17,2017,11,3,Online,0,0,0,90.95,1,Not_Canceled,2017-11-03,2017-10-17
-INN01665,2,0,0,3,Meal Plan 1,0,Room_Type 1,1,2017,11,3,Offline,0,0,0,80.0,0,Not_Canceled,2017-11-03,2017-11-02
-INN06157,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,3,Online,0,0,0,101.0,0,Not_Canceled,2017-11-03,2017-11-03
-INN08041,2,0,0,2,Meal Plan 1,0,Room_Type 4,46,2017,11,3,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-03,2017-09-18
-INN09655,2,0,0,1,Meal Plan 1,0,Room_Type 1,10,2017,11,3,Online,0,0,0,82.39,1,Not_Canceled,2017-11-03,2017-10-24
-INN09959,2,0,0,4,Meal Plan 1,1,Room_Type 4,12,2017,11,3,Online,0,0,0,91.45,0,Not_Canceled,2017-11-03,2017-10-22
-INN10225,2,0,0,1,Meal Plan 1,1,Room_Type 1,11,2017,11,3,Online,0,0,0,96.0,1,Not_Canceled,2017-11-03,2017-10-23
-INN14822,1,0,0,3,Meal Plan 1,0,Room_Type 1,0,2017,11,3,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-03,2017-11-03
-INN15108,2,0,0,4,Meal Plan 1,0,Room_Type 4,0,2017,11,3,Online,0,0,0,82.45,1,Not_Canceled,2017-11-03,2017-11-03
-INN16983,1,0,0,2,Meal Plan 1,0,Room_Type 1,7,2017,11,3,Online,0,0,0,89.0,1,Not_Canceled,2017-11-03,2017-10-27
-INN18400,2,0,0,2,Meal Plan 1,0,Room_Type 1,22,2017,11,3,Offline,0,0,0,75.0,1,Not_Canceled,2017-11-03,2017-10-12
-INN20789,2,0,0,3,Meal Plan 1,0,Room_Type 4,21,2017,11,3,Offline,0,0,0,46.67,0,Not_Canceled,2017-11-03,2017-10-13
-INN23972,3,0,0,4,Meal Plan 1,0,Room_Type 1,24,2017,11,3,Offline,0,0,0,60.75,1,Not_Canceled,2017-11-03,2017-10-10
-INN26120,1,0,0,3,Meal Plan 1,0,Room_Type 1,28,2017,11,3,Online,0,0,0,75.18,1,Not_Canceled,2017-11-03,2017-10-06
-INN26744,2,0,0,2,Meal Plan 1,0,Room_Type 4,6,2017,11,3,Online,0,0,0,105.0,0,Not_Canceled,2017-11-03,2017-10-28
-INN32303,2,0,1,5,Meal Plan 1,0,Room_Type 1,26,2017,11,3,Online,0,0,0,99.45,0,Not_Canceled,2017-11-03,2017-10-08
-INN34784,2,0,0,5,Meal Plan 1,0,Room_Type 4,36,2017,11,3,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-03,2017-09-28
-INN36200,2,0,0,2,Meal Plan 1,0,Room_Type 1,22,2017,11,3,Offline,0,0,0,75.0,1,Not_Canceled,2017-11-03,2017-10-12
-INN01869,2,0,0,3,Meal Plan 1,0,Room_Type 1,5,2017,11,4,Offline,0,0,0,70.0,0,Not_Canceled,2017-11-04,2017-10-30
-INN06982,1,0,0,2,Meal Plan 1,0,Room_Type 1,40,2017,11,4,Online,0,0,0,100.8,3,Not_Canceled,2017-11-04,2017-09-25
-INN08321,2,0,1,4,Meal Plan 1,0,Room_Type 4,51,2017,11,4,Online,0,0,0,102.6,1,Not_Canceled,2017-11-04,2017-09-14
-INN10171,2,0,0,3,Meal Plan 1,0,Room_Type 2,46,2017,11,4,Online,0,0,0,105.5,1,Not_Canceled,2017-11-04,2017-09-19
-INN10425,1,0,0,0,Meal Plan 1,0,Room_Type 1,0,2017,11,4,Complementary,1,1,5,0.0,0,Not_Canceled,2017-11-04,2017-11-04
-INN11317,2,0,0,4,Meal Plan 1,0,Room_Type 4,19,2017,11,4,Offline,0,0,0,52.5,2,Not_Canceled,2017-11-04,2017-10-16
-INN12370,2,2,0,4,Meal Plan 1,0,Room_Type 6,29,2017,11,4,Online,0,0,0,150.45,3,Not_Canceled,2017-11-04,2017-10-06
-INN14570,2,0,0,4,Meal Plan 1,0,Room_Type 4,28,2017,11,4,Online,0,0,0,85.59,1,Not_Canceled,2017-11-04,2017-10-07
-INN16123,2,0,0,1,Meal Plan 1,0,Room_Type 1,8,2017,11,4,Online,0,0,0,83.0,0,Not_Canceled,2017-11-04,2017-10-27
-INN16952,2,0,0,4,Meal Plan 1,0,Room_Type 1,23,2017,11,4,Online,0,0,0,90.95,1,Not_Canceled,2017-11-04,2017-10-12
-INN18662,1,0,0,4,Meal Plan 1,0,Room_Type 1,2,2017,11,4,Offline,0,0,0,63.75,0,Not_Canceled,2017-11-04,2017-11-02
-INN18792,1,0,0,4,Meal Plan 1,0,Room_Type 1,4,2017,11,4,Online,0,0,0,101.0,1,Not_Canceled,2017-11-04,2017-10-31
-INN20659,1,0,0,2,Meal Plan 1,0,Room_Type 1,40,2017,11,4,Online,0,0,0,100.8,3,Not_Canceled,2017-11-04,2017-09-25
-INN20699,2,0,0,1,Meal Plan 1,0,Room_Type 1,14,2017,11,4,Online,0,0,0,87.0,1,Canceled,2017-11-04,2017-10-21
-INN22702,2,0,0,3,Meal Plan 1,0,Room_Type 2,46,2017,11,4,Online,0,0,0,105.5,1,Not_Canceled,2017-11-04,2017-09-19
-INN22915,2,0,0,1,Meal Plan 1,0,Room_Type 4,5,2017,11,4,Online,0,0,0,117.0,0,Not_Canceled,2017-11-04,2017-10-30
-INN25578,2,0,0,2,Meal Plan 1,0,Room_Type 4,51,2017,11,4,Online,0,0,0,102.6,1,Not_Canceled,2017-11-04,2017-09-14
-INN25795,2,0,0,1,Not Selected,0,Room_Type 1,2,2017,11,4,Online,0,0,0,95.0,1,Not_Canceled,2017-11-04,2017-11-02
-INN27148,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,4,Corporate,1,0,2,65.0,0,Not_Canceled,2017-11-04,2017-11-03
-INN27689,2,0,0,1,Meal Plan 1,0,Room_Type 1,6,2017,11,4,Online,0,0,0,89.0,0,Not_Canceled,2017-11-04,2017-10-29
-INN31031,2,0,0,1,Meal Plan 1,0,Room_Type 1,8,2017,11,4,Online,0,0,0,83.0,0,Not_Canceled,2017-11-04,2017-10-27
-INN31166,1,0,0,1,Meal Plan 1,0,Room_Type 4,21,2017,11,4,Offline,0,0,0,92.0,0,Not_Canceled,2017-11-04,2017-10-14
-INN32414,2,0,0,3,Meal Plan 1,0,Room_Type 4,42,2017,11,4,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-04,2017-09-23
-INN32931,2,0,0,3,Meal Plan 1,0,Room_Type 4,43,2017,11,4,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-04,2017-09-22
-INN33160,2,0,0,3,Meal Plan 1,0,Room_Type 4,37,2017,11,4,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-04,2017-09-28
-INN35166,2,0,1,4,Meal Plan 1,0,Room_Type 4,6,2017,11,4,Offline,0,0,0,78.2,0,Not_Canceled,2017-11-04,2017-10-29
-INN01342,2,0,0,2,Meal Plan 1,0,Room_Type 2,47,2017,11,5,Online,0,0,0,105.5,1,Not_Canceled,2017-11-05,2017-09-19
-INN02377,2,0,0,2,Not Selected,0,Room_Type 1,1,2017,11,5,Online,0,0,0,95.0,1,Not_Canceled,2017-11-05,2017-11-04
-INN04243,1,0,0,1,Meal Plan 1,0,Room_Type 1,23,2017,11,5,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-05,2017-10-13
-INN04618,2,0,0,2,Meal Plan 1,0,Room_Type 1,21,2017,11,5,Online,0,0,0,76.0,0,Not_Canceled,2017-11-05,2017-10-15
-INN04746,2,0,0,2,Meal Plan 1,0,Room_Type 2,47,2017,11,5,Online,0,0,0,105.5,1,Not_Canceled,2017-11-05,2017-09-19
-INN04814,2,0,2,3,Meal Plan 1,0,Room_Type 4,44,2017,11,5,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-05,2017-09-22
-INN07065,2,0,0,2,Meal Plan 1,0,Room_Type 1,21,2017,11,5,Online,0,0,0,76.0,0,Not_Canceled,2017-11-05,2017-10-15
-INN07434,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,5,Corporate,1,0,2,65.0,0,Not_Canceled,2017-11-05,2017-11-04
-INN10767,2,0,0,1,Meal Plan 1,0,Room_Type 1,24,2017,11,5,Complementary,0,0,0,0.0,1,Not_Canceled,2017-11-05,2017-10-12
-INN11261,2,0,1,3,Meal Plan 1,0,Room_Type 4,38,2017,11,5,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-05,2017-09-28
-INN11619,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,5,Corporate,0,0,0,89.0,0,Not_Canceled,2017-11-05,2017-11-05
-INN11765,1,0,0,3,Meal Plan 1,0,Room_Type 1,14,2017,11,5,Online,0,0,0,101.0,1,Not_Canceled,2017-11-05,2017-10-22
-INN12417,2,0,1,3,Meal Plan 1,0,Room_Type 4,38,2017,11,5,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-05,2017-09-28
-INN13047,2,0,1,3,Meal Plan 1,0,Room_Type 1,14,2017,11,5,Offline,0,0,0,43.5,0,Not_Canceled,2017-11-05,2017-10-22
-INN13478,2,0,0,2,Not Selected,0,Room_Type 1,1,2017,11,5,Online,0,0,0,95.0,1,Not_Canceled,2017-11-05,2017-11-04
-INN13521,2,0,0,3,Meal Plan 1,1,Room_Type 2,3,2017,11,5,Online,0,0,0,105.5,1,Not_Canceled,2017-11-05,2017-11-02
-INN13763,1,0,0,1,Meal Plan 1,0,Room_Type 1,3,2017,11,5,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-05,2017-11-02
-INN13766,1,0,0,1,Meal Plan 1,0,Room_Type 1,23,2017,11,5,Corporate,0,0,0,65.0,0,Canceled,2017-11-05,2017-10-13
-INN19299,2,0,0,1,Meal Plan 1,0,Room_Type 1,3,2017,11,5,Online,0,0,0,107.0,1,Not_Canceled,2017-11-05,2017-11-02
-INN20466,2,0,0,2,Meal Plan 1,0,Room_Type 2,47,2017,11,5,Online,0,0,0,105.5,2,Not_Canceled,2017-11-05,2017-09-19
-INN21311,2,0,0,3,Meal Plan 1,0,Room_Type 2,3,2017,11,5,Online,0,0,0,96.5,1,Not_Canceled,2017-11-05,2017-11-02
-INN21586,1,0,0,2,Meal Plan 1,0,Room_Type 1,1,2017,11,5,Complementary,0,0,0,0.0,0,Not_Canceled,2017-11-05,2017-11-04
-INN24034,2,0,0,3,Meal Plan 1,0,Room_Type 4,42,2017,11,5,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-05,2017-09-24
-INN25934,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,5,Corporate,0,0,0,89.0,0,Not_Canceled,2017-11-05,2017-11-05
-INN27494,1,0,2,4,Meal Plan 1,0,Room_Type 1,8,2017,11,5,Corporate,1,2,9,65.0,0,Not_Canceled,2017-11-05,2017-10-28
-INN31044,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,5,Online,0,0,0,0.0,1,Not_Canceled,2017-11-05,2017-11-05
-INN31092,2,0,0,2,Meal Plan 1,0,Room_Type 2,47,2017,11,5,Online,0,0,0,105.5,2,Not_Canceled,2017-11-05,2017-09-19
-INN32076,2,0,0,3,Meal Plan 1,0,Room_Type 1,21,2017,11,5,Offline,0,0,0,37.07,1,Not_Canceled,2017-11-05,2017-10-15
-INN34992,2,0,0,1,Meal Plan 1,0,Room_Type 7,0,2017,11,5,Complementary,0,0,0,0.0,2,Not_Canceled,2017-11-05,2017-11-05
-INN00029,1,0,1,2,Meal Plan 1,0,Room_Type 1,37,2017,11,6,Online,0,0,0,37.33,0,Canceled,2017-11-06,2017-09-30
-INN00802,2,0,0,2,Meal Plan 1,1,Room_Type 1,6,2017,11,6,Online,0,0,0,116.0,0,Not_Canceled,2017-11-06,2017-10-31
-INN00880,2,0,2,2,Meal Plan 1,0,Room_Type 4,56,2017,11,6,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-06,2017-09-11
-INN01734,2,0,2,2,Meal Plan 1,0,Room_Type 1,11,2017,11,6,Online,0,0,0,90.95,1,Not_Canceled,2017-11-06,2017-10-26
-INN01766,2,0,2,2,Meal Plan 1,0,Room_Type 1,8,2017,11,6,Online,0,0,0,104.5,1,Not_Canceled,2017-11-06,2017-10-29
-INN03915,2,0,1,2,Meal Plan 1,0,Room_Type 4,56,2017,11,6,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-06,2017-09-11
-INN04446,2,0,1,2,Meal Plan 1,0,Room_Type 1,52,2017,11,6,Online,0,0,0,79.2,2,Not_Canceled,2017-11-06,2017-09-15
-INN04809,2,0,1,2,Meal Plan 1,0,Room_Type 4,4,2017,11,6,Offline,0,0,0,78.2,0,Not_Canceled,2017-11-06,2017-11-02
-INN05181,2,0,2,2,Meal Plan 1,0,Room_Type 1,22,2017,11,6,Offline,0,0,0,43.5,0,Not_Canceled,2017-11-06,2017-10-15
-INN05662,2,0,2,2,Meal Plan 1,0,Room_Type 1,4,2017,11,6,Offline,0,0,0,68.0,0,Not_Canceled,2017-11-06,2017-11-02
-INN07041,2,0,1,2,Meal Plan 1,0,Room_Type 4,56,2017,11,6,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-06,2017-09-11
-INN07966,2,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,6,Online,0,0,0,95.0,1,Not_Canceled,2017-11-06,2017-11-06
-INN08259,2,0,0,1,Meal Plan 1,0,Room_Type 1,2,2017,11,6,Online,0,0,0,107.0,1,Not_Canceled,2017-11-06,2017-11-04
-INN08803,2,0,0,2,Meal Plan 1,0,Room_Type 1,80,2017,11,6,Online,0,0,0,86.47,2,Not_Canceled,2017-11-06,2017-08-18
-INN09355,2,0,1,2,Meal Plan 1,0,Room_Type 4,49,2017,11,6,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-06,2017-09-18
-INN11237,1,0,0,1,Not Selected,1,Room_Type 1,17,2017,11,6,Online,0,0,0,104.0,1,Not_Canceled,2017-11-06,2017-10-20
-INN12172,2,0,1,2,Meal Plan 1,0,Room_Type 4,46,2017,11,6,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-06,2017-09-21
-INN13084,2,0,1,2,Meal Plan 1,0,Room_Type 1,29,2017,11,6,Offline,0,0,0,63.0,0,Not_Canceled,2017-11-06,2017-10-08
-INN19591,2,0,2,3,Meal Plan 1,0,Room_Type 1,86,2017,11,6,Online,0,0,0,72.25,1,Not_Canceled,2017-11-06,2017-08-12
-INN23713,2,0,0,2,Meal Plan 1,0,Room_Type 1,22,2017,11,6,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-06,2017-10-15
-INN24534,2,0,1,2,Meal Plan 1,0,Room_Type 1,29,2017,11,6,Offline,0,0,0,63.0,0,Not_Canceled,2017-11-06,2017-10-08
-INN25008,2,0,1,2,Meal Plan 1,0,Room_Type 4,46,2017,11,6,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-06,2017-09-21
-INN26875,2,0,1,2,Meal Plan 1,0,Room_Type 4,46,2017,11,6,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-06,2017-09-21
-INN26969,2,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,6,Online,0,0,0,107.0,1,Not_Canceled,2017-11-06,2017-11-06
-INN27927,2,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,6,Online,0,0,0,95.0,1,Not_Canceled,2017-11-06,2017-11-06
-INN28627,2,0,1,2,Meal Plan 1,0,Room_Type 1,29,2017,11,6,Online,0,0,0,96.3,2,Not_Canceled,2017-11-06,2017-10-08
-INN29133,1,0,0,2,Meal Plan 1,0,Room_Type 1,15,2017,11,6,Online,0,0,0,81.0,1,Not_Canceled,2017-11-06,2017-10-22
-INN29337,1,0,0,2,Meal Plan 1,0,Room_Type 1,3,2017,11,6,Online,0,0,0,101.0,2,Not_Canceled,2017-11-06,2017-11-03
-INN29371,2,0,2,7,Meal Plan 1,0,Room_Type 1,14,2017,11,6,Offline,0,0,0,47.78,0,Not_Canceled,2017-11-06,2017-10-23
-INN30560,2,0,1,2,Meal Plan 1,0,Room_Type 1,52,2017,11,6,Online,0,0,0,73.2,1,Not_Canceled,2017-11-06,2017-09-15
-INN30935,2,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,6,Online,0,0,0,95.0,1,Not_Canceled,2017-11-06,2017-11-06
-INN31641,1,0,0,2,Meal Plan 1,0,Room_Type 1,3,2017,11,6,Online,0,0,0,101.0,2,Not_Canceled,2017-11-06,2017-11-03
-INN31860,2,0,0,2,Not Selected,0,Room_Type 1,10,2017,11,6,Online,0,0,0,83.0,1,Not_Canceled,2017-11-06,2017-10-27
-INN32065,2,0,1,2,Meal Plan 1,0,Room_Type 1,3,2017,11,6,Offline,0,0,0,80.0,0,Not_Canceled,2017-11-06,2017-11-03
-INN32691,2,0,1,2,Meal Plan 1,0,Room_Type 4,46,2017,11,6,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-06,2017-09-21
-INN33861,1,0,0,2,Meal Plan 1,0,Room_Type 1,16,2017,11,6,Online,0,0,0,81.0,1,Not_Canceled,2017-11-06,2017-10-21
-INN34485,2,0,1,2,Not Selected,1,Room_Type 1,4,2017,11,6,Online,0,0,0,104.0,1,Not_Canceled,2017-11-06,2017-11-02
-INN34971,2,0,2,2,Meal Plan 1,0,Room_Type 1,25,2017,11,6,Online,0,0,0,90.95,1,Not_Canceled,2017-11-06,2017-10-12
-INN35092,2,0,1,2,Meal Plan 1,0,Room_Type 1,29,2017,11,6,Online,0,0,0,96.3,2,Not_Canceled,2017-11-06,2017-10-08
-INN36011,2,0,1,2,Meal Plan 1,0,Room_Type 4,45,2017,11,6,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-06,2017-09-22
-INN03075,2,0,0,1,Not Selected,0,Room_Type 1,9,2017,11,7,Online,0,0,0,76.0,1,Not_Canceled,2017-11-07,2017-10-29
-INN05178,2,0,2,5,Meal Plan 1,0,Room_Type 1,33,2017,11,7,Offline,0,0,0,41.43,0,Not_Canceled,2017-11-07,2017-10-05
-INN11230,2,0,2,1,Meal Plan 1,0,Room_Type 1,39,2017,11,7,Offline,0,0,0,63.0,0,Not_Canceled,2017-11-07,2017-09-29
-INN12123,2,0,2,1,Meal Plan 1,0,Room_Type 4,40,2017,11,7,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-07,2017-09-28
-INN17251,2,0,2,2,Meal Plan 1,0,Room_Type 4,46,2017,11,7,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-07,2017-09-22
-INN22239,2,0,0,1,Not Selected,0,Room_Type 1,9,2017,11,7,Online,0,0,0,76.0,1,Not_Canceled,2017-11-07,2017-10-29
-INN22955,2,0,2,1,Meal Plan 1,1,Room_Type 1,12,2017,11,7,Online,0,0,0,114.0,0,Not_Canceled,2017-11-07,2017-10-26
-INN25430,2,0,1,1,Meal Plan 1,0,Room_Type 1,8,2017,11,7,Online,0,0,0,82.39,1,Not_Canceled,2017-11-07,2017-10-30
-INN26562,1,0,1,1,Not Selected,0,Room_Type 1,0,2017,11,7,Online,0,0,0,73.15,0,Not_Canceled,2017-11-07,2017-11-07
-INN29499,2,0,2,1,Meal Plan 1,0,Room_Type 4,40,2017,11,7,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-07,2017-09-28
-INN32454,2,0,2,2,Meal Plan 1,0,Room_Type 4,47,2017,11,7,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-07,2017-09-21
-INN34599,2,0,2,2,Meal Plan 1,0,Room_Type 4,47,2017,11,7,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-07,2017-09-21
-INN01360,2,0,2,2,Meal Plan 1,0,Room_Type 1,41,2017,11,8,Online,0,0,0,81.77,1,Not_Canceled,2017-11-08,2017-09-28
-INN01392,2,0,2,2,Meal Plan 1,0,Room_Type 1,13,2017,11,8,Online,0,0,0,90.95,1,Not_Canceled,2017-11-08,2017-10-26
-INN02647,1,0,1,0,Meal Plan 1,0,Room_Type 1,5,2017,11,8,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-08,2017-11-03
-INN02730,2,0,2,2,Meal Plan 1,0,Room_Type 4,51,2017,11,8,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-08,2017-09-18
-INN04565,2,0,2,5,Meal Plan 1,0,Room_Type 1,13,2017,11,8,Online,0,0,0,90.95,1,Not_Canceled,2017-11-08,2017-10-26
-INN09097,2,0,2,1,Meal Plan 1,0,Room_Type 4,44,2017,11,8,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-08,2017-09-25
-INN09192,2,0,2,3,Meal Plan 1,0,Room_Type 2,3,2017,11,8,Online,0,0,0,87.7,0,Not_Canceled,2017-11-08,2017-11-05
-INN20115,2,0,2,3,Meal Plan 1,0,Room_Type 4,41,2017,11,8,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-08,2017-09-28
-INN22087,2,0,2,3,Meal Plan 1,0,Room_Type 2,3,2017,11,8,Online,0,0,0,87.7,0,Not_Canceled,2017-11-08,2017-11-05
-INN22724,2,0,2,2,Meal Plan 1,0,Room_Type 4,41,2017,11,8,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-08,2017-09-28
-INN23169,2,0,2,1,Meal Plan 1,0,Room_Type 1,76,2017,11,8,Offline,0,0,0,49.07,0,Not_Canceled,2017-11-08,2017-08-24
-INN23621,2,0,2,3,Meal Plan 1,0,Room_Type 4,41,2017,11,8,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-08,2017-09-28
-INN24947,1,0,1,0,Meal Plan 1,0,Room_Type 1,5,2017,11,8,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-08,2017-11-03
-INN25580,2,0,2,3,Meal Plan 1,0,Room_Type 4,41,2017,11,8,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-08,2017-09-28
-INN35803,1,0,2,0,Meal Plan 1,0,Room_Type 1,24,2017,11,8,Online,0,0,0,101.0,1,Not_Canceled,2017-11-08,2017-10-15
-INN00250,1,0,1,3,Meal Plan 1,0,Room_Type 1,0,2017,11,9,Online,0,0,0,91.0,1,Not_Canceled,2017-11-09,2017-11-09
-INN00510,2,0,1,2,Meal Plan 1,0,Room_Type 4,49,2017,11,9,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-09,2017-09-21
-INN04852,1,0,1,2,Meal Plan 1,1,Room_Type 1,0,2017,11,9,Online,0,0,0,100.0,1,Not_Canceled,2017-11-09,2017-11-09
-INN05455,2,0,1,3,Meal Plan 1,1,Room_Type 1,0,2017,11,9,Online,0,0,0,106.0,1,Not_Canceled,2017-11-09,2017-11-09
-INN09500,1,0,1,0,Meal Plan 1,0,Room_Type 1,0,2017,11,9,Online,0,0,0,91.0,1,Not_Canceled,2017-11-09,2017-11-09
-INN11621,1,0,1,0,Meal Plan 1,0,Room_Type 1,0,2017,11,9,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-09,2017-11-09
-INN11738,2,0,1,2,Meal Plan 1,0,Room_Type 4,49,2017,11,9,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-09,2017-09-21
-INN11881,2,0,1,4,Meal Plan 1,0,Room_Type 4,49,2017,11,9,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-09,2017-09-21
-INN12740,2,0,1,2,Meal Plan 1,0,Room_Type 1,3,2017,11,9,Offline,0,0,0,80.0,0,Not_Canceled,2017-11-09,2017-11-06
-INN13043,2,0,1,3,Meal Plan 1,0,Room_Type 4,52,2017,11,9,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-09,2017-09-18
-INN13560,2,0,1,3,Meal Plan 1,0,Room_Type 4,49,2017,11,9,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-09,2017-09-21
-INN14193,2,0,1,1,Meal Plan 1,0,Room_Type 1,5,2017,11,9,Online,0,0,0,94.0,1,Not_Canceled,2017-11-09,2017-11-04
-INN14245,2,0,1,3,Meal Plan 1,0,Room_Type 4,45,2017,11,9,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-09,2017-09-25
-INN15392,2,0,1,2,Meal Plan 1,0,Room_Type 1,6,2017,11,9,Offline,0,0,0,80.0,0,Not_Canceled,2017-11-09,2017-11-03
-INN20602,2,0,1,0,Not Selected,1,Room_Type 1,0,2017,11,9,Online,0,0,0,85.0,0,Not_Canceled,2017-11-09,2017-11-09
-INN21090,2,1,1,4,Meal Plan 1,0,Room_Type 1,63,2017,11,9,Online,0,0,0,91.63,2,Canceled,2017-11-09,2017-09-07
-INN23946,1,0,1,1,Meal Plan 1,0,Room_Type 1,0,2017,11,9,Corporate,1,0,2,65.0,0,Not_Canceled,2017-11-09,2017-11-09
-INN25526,2,0,1,5,Meal Plan 1,0,Room_Type 4,3,2017,11,9,Online,0,0,0,72.75,1,Not_Canceled,2017-11-09,2017-11-06
-INN29062,2,1,1,4,Meal Plan 1,0,Room_Type 1,55,2017,11,9,Online,0,0,0,79.2,2,Canceled,2017-11-09,2017-09-15
-INN33517,1,0,1,0,Meal Plan 1,0,Room_Type 1,4,2017,11,9,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-09,2017-11-05
-INN36166,1,0,1,2,Meal Plan 1,0,Room_Type 1,2,2017,11,9,Complementary,0,0,0,79.0,0,Not_Canceled,2017-11-09,2017-11-07
-INN00820,1,0,0,2,Meal Plan 1,0,Room_Type 1,1,2017,11,10,Corporate,1,0,1,40.0,1,Not_Canceled,2017-11-10,2017-11-09
-INN02017,2,0,0,2,Meal Plan 1,0,Room_Type 1,15,2017,11,10,Online,0,0,0,107.0,3,Not_Canceled,2017-11-10,2017-10-26
-INN05137,2,0,0,4,Meal Plan 1,0,Room_Type 1,15,2017,11,10,Online,0,0,0,90.95,0,Not_Canceled,2017-11-10,2017-10-26
-INN06193,2,0,0,4,Meal Plan 1,0,Room_Type 4,5,2017,11,10,Online,0,0,0,76.58,0,Not_Canceled,2017-11-10,2017-11-05
-INN07542,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,10,Complementary,0,0,0,0.0,0,Not_Canceled,2017-11-10,2017-11-09
-INN11538,2,0,0,4,Meal Plan 1,0,Room_Type 1,39,2017,11,10,Online,0,0,0,90.95,0,Not_Canceled,2017-11-10,2017-10-02
-INN13195,2,0,0,4,Meal Plan 1,0,Room_Type 4,5,2017,11,10,Online,0,0,0,76.58,1,Not_Canceled,2017-11-10,2017-11-05
-INN14490,2,0,0,4,Meal Plan 1,0,Room_Type 4,50,2017,11,10,Offline,0,0,0,69.0,0,Not_Canceled,2017-11-10,2017-09-21
-INN16357,2,0,0,2,Meal Plan 1,0,Room_Type 1,67,2017,11,10,Online,0,0,0,104.55,1,Canceled,2017-11-10,2017-09-04
-INN16747,2,0,0,4,Meal Plan 1,0,Room_Type 1,48,2017,11,10,Offline,0,0,0,43.5,0,Not_Canceled,2017-11-10,2017-09-23
-INN20895,2,0,0,3,Meal Plan 1,1,Room_Type 1,5,2017,11,10,Online,0,0,0,104.0,1,Not_Canceled,2017-11-10,2017-11-05
-INN22086,1,0,0,1,Meal Plan 1,0,Room_Type 1,55,2017,11,10,Online,0,0,0,73.8,2,Not_Canceled,2017-11-10,2017-09-16
-INN22274,2,0,0,4,Meal Plan 1,0,Room_Type 1,12,2017,11,10,Online,0,0,0,95.0,0,Not_Canceled,2017-11-10,2017-10-29
-INN23607,1,0,0,4,Meal Plan 1,0,Room_Type 1,33,2017,11,10,Offline,0,0,0,42.0,1,Not_Canceled,2017-11-10,2017-10-08
-INN24309,2,0,0,4,Meal Plan 1,0,Room_Type 1,1,2017,11,10,Online,0,0,0,83.2,0,Not_Canceled,2017-11-10,2017-11-09
-INN26838,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,10,Complementary,1,0,9,0.0,1,Not_Canceled,2017-11-10,2017-11-10
-INN27106,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,10,Complementary,0,0,0,0.0,0,Not_Canceled,2017-11-10,2017-11-09
-INN27942,2,0,0,4,Meal Plan 1,0,Room_Type 1,92,2017,11,10,Online,0,0,0,72.25,2,Canceled,2017-11-10,2017-08-10
-INN29148,2,0,2,5,Meal Plan 1,0,Room_Type 1,25,2017,11,10,Offline,0,0,0,68.0,1,Not_Canceled,2017-11-10,2017-10-16
-INN29412,1,0,0,3,Meal Plan 1,0,Room_Type 1,63,2017,11,10,Online,0,0,0,89.53,1,Canceled,2017-11-10,2017-09-08
-INN31328,1,0,0,1,Meal Plan 1,0,Room_Type 1,55,2017,11,10,Online,0,0,0,73.8,2,Not_Canceled,2017-11-10,2017-09-16
-INN33839,2,0,0,4,Meal Plan 1,0,Room_Type 1,1,2017,11,10,Online,0,0,0,97.0,1,Not_Canceled,2017-11-10,2017-11-09
-INN00054,2,0,0,4,Meal Plan 1,0,Room_Type 4,51,2017,11,11,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-11,2017-09-21
-INN01170,1,0,2,5,Meal Plan 1,0,Room_Type 1,20,2017,11,11,Online,0,0,0,68.85,1,Not_Canceled,2017-11-11,2017-10-22
-INN01219,1,0,0,2,Meal Plan 1,0,Room_Type 1,9,2017,11,11,Corporate,0,0,0,79.0,1,Not_Canceled,2017-11-11,2017-11-02
-INN02656,2,0,0,4,Meal Plan 1,0,Room_Type 4,51,2017,11,11,Offline,0,0,0,69.0,1,Not_Canceled,2017-11-11,2017-09-21
-INN02759,2,0,0,3,Meal Plan 1,0,Room_Type 4,8,2017,11,11,Online,0,0,0,107.0,1,Not_Canceled,2017-11-11,2017-11-03
-INN03993,1,0,0,1,Meal Plan 1,0,Room_Type 1,18,2017,11,11,Online,0,0,0,101.0,2,Not_Canceled,2017-11-11,2017-10-24
-INN05681,2,0,0,4,Meal Plan 1,0,Room_Type 1,28,2017,11,11,Offline,0,0,0,85.6,0,Not_Canceled,2017-11-11,2017-10-14
-INN06318,2,0,0,3,Meal Plan 1,0,Room_Type 1,92,2017,11,11,Online,0,0,0,72.25,0,Not_Canceled,2017-11-11,2017-08-11
-INN08506,2,0,0,4,Meal Plan 1,0,Room_Type 4,19,2017,11,11,Online,0,0,0,99.45,1,Not_Canceled,2017-11-11,2017-10-23
-INN10247,2,0,0,4,Meal Plan 1,0,Room_Type 1,37,2017,11,11,Online,0,0,0,90.95,1,Not_Canceled,2017-11-11,2017-10-05
-INN10758,2,0,0,3,Meal Plan 1,0,Room_Type 4,44,2017,11,11,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-11,2017-09-28
-INN11816,1,0,0,1,Meal Plan 1,0,Room_Type 1,47,2017,11,11,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-11,2017-09-25
-INN13283,2,0,0,0,Meal Plan 1,0,Room_Type 1,6,2017,11,11,Online,0,0,0,0.0,1,Not_Canceled,2017-11-11,2017-11-05
-INN16223,1,0,0,1,Meal Plan 1,0,Room_Type 1,9,2017,11,11,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-11,2017-11-02
-INN18422,2,0,0,3,Meal Plan 1,0,Room_Type 4,47,2017,11,11,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-11,2017-09-25
-INN19101,2,0,0,2,Not Selected,0,Room_Type 1,8,2017,11,11,Online,0,0,0,76.5,0,Canceled,2017-11-11,2017-11-03
-INN19957,1,0,2,5,Meal Plan 1,0,Room_Type 1,20,2017,11,11,Online,0,0,0,68.85,1,Not_Canceled,2017-11-11,2017-10-22
-INN24071,1,0,0,2,Meal Plan 1,0,Room_Type 1,47,2017,11,11,Corporate,0,0,0,65.0,1,Not_Canceled,2017-11-11,2017-09-25
-INN25758,1,0,0,2,Meal Plan 1,0,Room_Type 1,5,2017,11,11,Corporate,1,0,2,65.0,0,Not_Canceled,2017-11-11,2017-11-06
-INN27311,1,0,0,1,Meal Plan 1,0,Room_Type 5,2,2017,11,11,Offline,0,0,0,90.0,0,Not_Canceled,2017-11-11,2017-11-09
-INN31967,1,0,0,1,Meal Plan 1,0,Room_Type 1,9,2017,11,11,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-11,2017-11-02
-INN34213,2,0,0,3,Meal Plan 1,0,Room_Type 4,50,2017,11,11,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-11,2017-09-22
-INN34477,1,0,0,1,Meal Plan 1,0,Room_Type 1,47,2017,11,11,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-11,2017-09-25
-INN35147,2,2,0,1,Meal Plan 1,0,Room_Type 6,2,2017,11,11,Corporate,0,0,0,95.0,1,Not_Canceled,2017-11-11,2017-11-09
-INN35778,2,0,0,3,Meal Plan 1,0,Room_Type 4,44,2017,11,11,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-11,2017-09-28
-INN02544,2,0,1,3,Meal Plan 1,0,Room_Type 1,63,2017,11,12,Online,0,0,0,85.0,1,Not_Canceled,2017-11-12,2017-09-10
-INN04944,2,0,2,3,Meal Plan 1,0,Room_Type 4,49,2017,11,12,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-12,2017-09-24
-INN05229,2,0,1,3,Meal Plan 1,0,Room_Type 4,61,2017,11,12,Online,0,0,0,81.9,1,Not_Canceled,2017-11-12,2017-09-12
-INN05485,2,0,0,2,Meal Plan 1,0,Room_Type 1,0,2017,11,12,Online,0,0,0,85.0,0,Not_Canceled,2017-11-12,2017-11-12
-INN06024,2,0,2,3,Meal Plan 1,0,Room_Type 4,51,2017,11,12,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-12,2017-09-22
-INN07922,2,0,1,3,Meal Plan 1,0,Room_Type 4,9,2017,11,12,Online,0,0,0,107.0,1,Not_Canceled,2017-11-12,2017-11-03
-INN08245,2,0,2,3,Meal Plan 1,0,Room_Type 4,50,2017,11,12,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-12,2017-09-23
-INN14456,1,0,2,8,Meal Plan 1,0,Room_Type 1,66,2017,11,12,Online,0,0,0,46.63,0,Not_Canceled,2017-11-12,2017-09-07
-INN15590,2,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,12,Corporate,0,0,0,84.0,0,Not_Canceled,2017-11-12,2017-11-12
-INN18836,2,0,0,3,Meal Plan 1,0,Room_Type 1,77,2017,11,12,Online,0,0,0,72.25,1,Not_Canceled,2017-11-12,2017-08-27
-INN24301,2,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,12,Complementary,1,1,6,0.0,1,Not_Canceled,2017-11-12,2017-11-11
-INN26185,1,0,0,1,Meal Plan 1,0,Room_Type 1,17,2017,11,12,Corporate,0,0,0,65.0,0,Canceled,2017-11-12,2017-10-26
-INN31928,1,0,0,1,Meal Plan 1,1,Room_Type 1,0,2017,11,12,Online,0,0,0,79.0,1,Not_Canceled,2017-11-12,2017-11-12
-INN31973,2,0,2,3,Meal Plan 1,0,Room_Type 4,52,2017,11,12,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-12,2017-09-21
-INN32232,2,0,1,3,Meal Plan 1,0,Room_Type 1,23,2017,11,12,Online,0,0,0,90.95,1,Not_Canceled,2017-11-12,2017-10-20
-INN35560,1,0,0,1,Meal Plan 1,1,Room_Type 1,2,2017,11,12,Online,0,0,0,100.0,1,Not_Canceled,2017-11-12,2017-11-10
-INN01896,2,0,1,2,Meal Plan 1,0,Room_Type 1,58,2017,11,13,Online,0,0,0,79.2,1,Not_Canceled,2017-11-13,2017-09-16
-INN02796,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN03745,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN04493,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN04803,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN04946,2,0,0,2,Meal Plan 1,0,Room_Type 1,28,2017,11,13,Offline,0,0,0,85.6,1,Not_Canceled,2017-11-13,2017-10-16
-INN05421,2,0,0,1,Meal Plan 1,0,Room_Type 1,67,2017,11,13,Online,0,0,0,72.25,2,Not_Canceled,2017-11-13,2017-09-07
-INN09218,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN09224,2,0,1,2,Meal Plan 1,0,Room_Type 4,46,2017,11,13,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-13,2017-09-28
-INN09757,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN12115,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN14322,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN14534,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN14585,2,0,0,2,Meal Plan 1,0,Room_Type 1,36,2017,11,13,Online,0,0,0,96.3,1,Not_Canceled,2017-11-13,2017-10-08
-INN15571,2,0,1,2,Meal Plan 1,0,Room_Type 1,3,2017,11,13,Offline,0,0,0,64.0,0,Not_Canceled,2017-11-13,2017-11-10
-INN16092,2,0,1,2,Meal Plan 1,0,Room_Type 1,39,2017,11,13,Online,0,0,0,96.3,2,Not_Canceled,2017-11-13,2017-10-05
-INN16438,2,0,1,2,Meal Plan 1,0,Room_Type 4,50,2017,11,13,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-13,2017-09-24
-INN17147,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN19346,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN20407,2,0,0,2,Meal Plan 1,0,Room_Type 1,72,2017,11,13,Online,0,0,0,72.25,1,Canceled,2017-11-13,2017-09-02
-INN20945,2,0,1,2,Meal Plan 1,0,Room_Type 4,50,2017,11,13,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-13,2017-09-24
-INN21319,3,0,1,2,Meal Plan 1,0,Room_Type 4,50,2017,11,13,Offline,0,0,0,90.0,1,Not_Canceled,2017-11-13,2017-09-24
-INN24923,1,0,1,2,Meal Plan 1,0,Room_Type 1,2,2017,11,13,Online,0,0,0,91.0,0,Not_Canceled,2017-11-13,2017-11-11
-INN25612,1,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,70.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN26371,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN26483,2,0,0,1,Meal Plan 1,0,Room_Type 1,67,2017,11,13,Online,0,0,0,72.25,2,Not_Canceled,2017-11-13,2017-09-07
-INN28503,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN28837,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN30734,2,0,0,2,Meal Plan 1,0,Room_Type 1,10,2017,11,13,Online,0,0,0,12.0,0,Not_Canceled,2017-11-13,2017-11-03
-INN30944,2,0,1,2,Meal Plan 1,0,Room_Type 1,17,2017,11,13,Offline,0,0,0,38.67,0,Not_Canceled,2017-11-13,2017-10-27
-INN32511,1,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,70.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN33661,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN34147,1,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,70.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN34991,2,0,0,2,Meal Plan 1,0,Room_Type 1,79,2017,11,13,Offline,0,0,0,75.0,0,Not_Canceled,2017-11-13,2017-08-26
-INN00120,2,0,2,3,Meal Plan 1,0,Room_Type 1,2,2017,11,14,Online,0,0,0,103.0,1,Not_Canceled,2017-11-14,2017-11-12
-INN01521,2,0,2,2,Meal Plan 1,0,Room_Type 1,10,2017,11,14,Offline,0,0,0,43.5,0,Not_Canceled,2017-11-14,2017-11-04
-INN02844,2,0,0,1,Meal Plan 1,0,Room_Type 1,32,2017,11,14,Online,0,0,0,96.3,3,Not_Canceled,2017-11-14,2017-10-13
-INN04225,2,0,2,2,Meal Plan 1,0,Room_Type 4,53,2017,11,14,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-14,2017-09-22
-INN04846,3,0,0,1,Meal Plan 1,0,Room_Type 4,0,2017,11,14,Online,0,0,0,107.0,2,Not_Canceled,2017-11-14,2017-11-14
-INN05403,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,14,Corporate,0,0,0,79.0,0,Not_Canceled,2017-11-14,2017-11-13
-INN06798,2,0,2,1,Meal Plan 1,0,Room_Type 4,29,2017,11,14,Offline,0,0,0,46.67,0,Not_Canceled,2017-11-14,2017-10-16
-INN09041,2,0,2,1,Meal Plan 1,0,Room_Type 4,80,2017,11,14,Online,0,0,0,65.45,1,Not_Canceled,2017-11-14,2017-08-26
-INN11551,2,0,2,1,Meal Plan 1,0,Room_Type 1,22,2017,11,14,Online,0,0,0,87.0,1,Not_Canceled,2017-11-14,2017-10-23
-INN12457,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,14,Corporate,0,0,0,79.0,0,Not_Canceled,2017-11-14,2017-11-13
-INN15284,2,0,0,1,Not Selected,0,Room_Type 1,0,2017,11,14,Online,0,0,0,85.0,2,Not_Canceled,2017-11-14,2017-11-14
-INN23127,2,0,2,1,Meal Plan 1,0,Room_Type 4,51,2017,11,14,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-14,2017-09-24
-INN23693,2,0,1,1,Meal Plan 1,0,Room_Type 1,22,2017,11,14,Online,0,0,0,87.0,1,Not_Canceled,2017-11-14,2017-10-23
-INN23860,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,14,Corporate,0,0,0,79.0,0,Not_Canceled,2017-11-14,2017-11-13
-INN24308,2,0,0,0,Meal Plan 1,0,Room_Type 1,0,2017,11,14,Online,0,0,0,0.0,2,Not_Canceled,2017-11-14,2017-11-14
-INN25829,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,14,Corporate,0,0,0,79.0,0,Not_Canceled,2017-11-14,2017-11-13
-INN31070,2,0,2,1,Meal Plan 1,0,Room_Type 4,47,2017,11,14,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-14,2017-09-28
-INN34038,2,0,2,1,Meal Plan 1,0,Room_Type 4,61,2017,11,14,Online,0,0,0,81.9,2,Not_Canceled,2017-11-14,2017-09-14
-INN00256,2,0,2,4,Not Selected,0,Room_Type 1,60,2017,11,15,Online,0,0,0,76.0,1,Not_Canceled,2017-11-15,2017-09-16
-INN04459,2,0,1,0,Meal Plan 1,0,Room_Type 1,69,2017,11,15,Online,0,0,0,72.25,2,Not_Canceled,2017-11-15,2017-09-07
-INN06877,2,0,1,0,Meal Plan 1,0,Room_Type 1,75,2017,11,15,Online,0,0,0,72.25,2,Not_Canceled,2017-11-15,2017-09-01
-INN12894,1,0,1,0,Meal Plan 1,0,Room_Type 1,13,2017,11,15,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-15,2017-11-02
-INN12933,1,0,2,2,Meal Plan 1,0,Room_Type 1,5,2017,11,15,Online,0,0,0,93.5,1,Not_Canceled,2017-11-15,2017-11-10
-INN13970,1,0,2,3,Meal Plan 1,0,Room_Type 1,3,2017,11,15,Offline,0,0,0,44.8,0,Not_Canceled,2017-11-15,2017-11-12
-INN14612,2,0,2,3,Meal Plan 1,0,Room_Type 4,55,2017,11,15,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-15,2017-09-21
-INN21870,2,0,2,2,Meal Plan 1,0,Room_Type 4,62,2017,11,15,Online,0,0,0,81.9,1,Not_Canceled,2017-11-15,2017-09-14
-INN27761,1,0,1,0,Meal Plan 1,0,Room_Type 1,0,2017,11,15,Online,0,0,0,74.69,0,Not_Canceled,2017-11-15,2017-11-15
-INN30184,1,0,1,0,Meal Plan 1,0,Room_Type 1,13,2017,11,15,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-15,2017-11-02
-INN30828,1,0,1,0,Not Selected,0,Room_Type 1,5,2017,11,15,Online,0,0,0,73.15,0,Not_Canceled,2017-11-15,2017-11-10
-INN32305,1,0,2,3,Not Selected,0,Room_Type 1,5,2017,11,15,Online,0,0,0,73.15,0,Not_Canceled,2017-11-15,2017-11-10
-INN34388,2,0,2,1,Not Selected,0,Room_Type 1,13,2017,11,15,Online,0,0,0,85.0,1,Not_Canceled,2017-11-15,2017-11-02
-INN02321,1,0,1,0,Meal Plan 1,0,Room_Type 1,7,2017,11,16,Online,0,0,0,91.0,2,Not_Canceled,2017-11-16,2017-11-09
-INN05480,1,0,1,1,Meal Plan 1,0,Room_Type 1,3,2017,11,16,Complementary,0,0,0,0.0,0,Not_Canceled,2017-11-16,2017-11-13
-INN05962,1,0,1,0,Meal Plan 1,0,Room_Type 1,4,2017,11,16,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-16,2017-11-12
-INN09641,2,0,1,2,Meal Plan 1,0,Room_Type 1,75,2017,11,16,Online,0,0,0,52.85,1,Not_Canceled,2017-11-16,2017-09-02
-INN11812,1,0,1,0,Meal Plan 1,0,Room_Type 1,7,2017,11,16,Online,0,0,0,91.0,2,Not_Canceled,2017-11-16,2017-11-09
-INN12854,1,0,1,3,Not Selected,0,Room_Type 1,6,2017,11,16,Online,0,0,0,73.15,0,Not_Canceled,2017-11-16,2017-11-10
-INN15015,2,0,1,2,Meal Plan 1,0,Room_Type 4,49,2017,11,16,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-16,2017-09-28
-INN19909,2,0,1,4,Meal Plan 1,0,Room_Type 1,77,2017,11,16,Online,0,0,0,72.25,2,Canceled,2017-11-16,2017-08-31
-INN21779,1,0,1,0,Meal Plan 1,0,Room_Type 1,7,2017,11,16,Online,0,0,0,91.0,2,Not_Canceled,2017-11-16,2017-11-09
-INN26598,1,0,1,0,Meal Plan 1,0,Room_Type 1,25,2017,11,16,Online,0,0,0,77.77,0,Not_Canceled,2017-11-16,2017-10-22
-INN29091,2,0,1,2,Meal Plan 1,0,Room_Type 1,0,2017,11,16,Corporate,0,0,0,75.0,0,Not_Canceled,2017-11-16,2017-11-16
-INN32981,2,0,1,0,Meal Plan 1,1,Room_Type 1,18,2017,11,16,Online,0,0,0,104.0,0,Not_Canceled,2017-11-16,2017-10-29
-INN33459,2,0,1,0,Meal Plan 1,0,Room_Type 5,0,2017,11,16,Complementary,0,0,0,0.0,0,Not_Canceled,2017-11-16,2017-11-16
-INN35301,1,0,1,0,Meal Plan 1,0,Room_Type 1,7,2017,11,16,Corporate,0,0,0,79.0,0,Not_Canceled,2017-11-16,2017-11-09
-INN35414,1,0,1,1,Meal Plan 1,0,Room_Type 1,3,2017,11,16,Complementary,0,0,0,0.0,0,Not_Canceled,2017-11-16,2017-11-13
-INN35461,2,0,1,2,Meal Plan 1,0,Room_Type 4,54,2017,11,16,Offline,0,0,0,69.0,0,Not_Canceled,2017-11-16,2017-09-23
-INN35998,2,0,1,4,Meal Plan 1,0,Room_Type 1,42,2017,11,16,Online,0,0,0,104.42,1,Not_Canceled,2017-11-16,2017-10-05
-INN02687,2,0,0,3,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Online,0,0,0,90.95,1,Not_Canceled,2017-11-17,2017-10-26
-INN05479,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN06389,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN06708,1,0,0,1,Meal Plan 1,0,Room_Type 1,4,2017,11,17,Online,0,0,0,91.0,2,Not_Canceled,2017-11-17,2017-11-13
-INN08212,1,0,0,2,Meal Plan 1,0,Room_Type 1,6,2017,11,17,Corporate,1,2,10,65.0,0,Not_Canceled,2017-11-17,2017-11-11
-INN08895,1,0,0,3,Meal Plan 1,0,Room_Type 1,89,2017,11,17,Online,0,0,0,63.75,1,Not_Canceled,2017-11-17,2017-08-20
-INN10235,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,1,Not_Canceled,2017-11-17,2017-10-26
-INN11990,2,0,0,1,Meal Plan 1,0,Room_Type 1,94,2017,11,17,Online,0,0,0,72.25,0,Canceled,2017-11-17,2017-08-15
-INN13002,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Canceled,2017-11-17,2017-10-26
-INN13468,2,0,0,1,Not Selected,0,Room_Type 1,11,2017,11,17,Online,0,0,0,85.0,1,Not_Canceled,2017-11-17,2017-11-06
-INN13538,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,71.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN13943,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN15032,1,0,0,3,Meal Plan 1,0,Room_Type 1,4,2017,11,17,Corporate,1,0,3,65.0,0,Not_Canceled,2017-11-17,2017-11-13
-INN15347,2,0,0,2,Meal Plan 1,0,Room_Type 1,5,2017,11,17,Offline,0,0,0,86.6,1,Not_Canceled,2017-11-17,2017-11-12
-INN15379,2,0,0,3,Meal Plan 1,0,Room_Type 4,57,2017,11,17,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-17,2017-09-21
-INN15723,1,0,0,1,Meal Plan 1,1,Room_Type 1,4,2017,11,17,Online,0,0,0,100.0,2,Not_Canceled,2017-11-17,2017-11-13
-INN17493,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN17875,1,0,0,3,Meal Plan 1,0,Room_Type 1,74,2017,11,17,Online,0,0,0,63.75,1,Canceled,2017-11-17,2017-09-04
-INN20314,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN20880,2,1,0,4,Meal Plan 1,0,Room_Type 4,66,2017,11,17,Online,0,0,0,81.9,3,Not_Canceled,2017-11-17,2017-09-12
-INN21666,1,0,0,3,Meal Plan 1,0,Room_Type 1,89,2017,11,17,Online,0,0,0,63.75,1,Canceled,2017-11-17,2017-08-20
-INN22117,2,0,0,4,Meal Plan 1,0,Room_Type 4,55,2017,11,17,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-17,2017-09-23
-INN24142,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,1,Not_Canceled,2017-11-17,2017-10-26
-INN24773,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,17,Online,0,0,0,91.0,0,Not_Canceled,2017-11-17,2017-11-16
-INN26428,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN26472,1,0,0,3,Meal Plan 1,0,Room_Type 1,89,2017,11,17,Online,0,0,0,63.75,1,Not_Canceled,2017-11-17,2017-08-20
-INN28143,1,0,0,2,Meal Plan 1,0,Room_Type 1,25,2017,11,17,Online,0,0,0,101.0,1,Not_Canceled,2017-11-17,2017-10-23
-INN29827,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,1,Not_Canceled,2017-11-17,2017-10-26
-INN29835,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN31733,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,1,Not_Canceled,2017-11-17,2017-10-26
-INN32371,1,0,0,1,Meal Plan 1,0,Room_Type 1,22,2017,11,17,Corporate,0,0,0,62.0,0,Not_Canceled,2017-11-17,2017-10-26
-INN34008,3,0,0,3,Meal Plan 1,0,Room_Type 1,28,2017,11,17,Offline,0,0,0,51.6,1,Not_Canceled,2017-11-17,2017-10-20
-INN35702,2,0,0,3,Meal Plan 1,0,Room_Type 4,50,2017,11,17,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-17,2017-09-28
-INN00045,2,0,0,4,Meal Plan 1,0,Room_Type 4,55,2017,11,18,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-18,2017-09-24
-INN03720,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,18,Corporate,1,0,3,65.0,0,Not_Canceled,2017-11-18,2017-11-18
-INN04885,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,18,Complementary,1,1,7,0.0,0,Not_Canceled,2017-11-18,2017-11-18
-INN11308,2,0,0,2,Meal Plan 1,0,Room_Type 1,9,2017,11,18,Corporate,0,0,0,75.0,0,Not_Canceled,2017-11-18,2017-11-09
-INN15420,2,0,0,4,Meal Plan 1,0,Room_Type 4,58,2017,11,18,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-18,2017-09-21
-INN15776,2,0,0,4,Meal Plan 1,0,Room_Type 4,54,2017,11,18,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-18,2017-09-25
-INN18253,1,0,0,1,Meal Plan 1,0,Room_Type 1,54,2017,11,18,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-18,2017-09-25
-INN19253,2,0,0,1,Meal Plan 1,0,Room_Type 1,35,2017,11,18,Online,0,0,0,113.4,1,Not_Canceled,2017-11-18,2017-10-14
-INN21850,2,0,0,4,Meal Plan 1,0,Room_Type 1,79,2017,11,18,Online,0,0,0,52.85,2,Not_Canceled,2017-11-18,2017-08-31
-INN23532,2,0,0,4,Meal Plan 1,0,Room_Type 4,55,2017,11,18,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-18,2017-09-24
-INN26218,1,0,0,1,Meal Plan 1,0,Room_Type 1,54,2017,11,18,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-18,2017-09-25
-INN27581,1,0,0,1,Meal Plan 1,0,Room_Type 1,54,2017,11,18,Corporate,0,0,0,65.0,1,Not_Canceled,2017-11-18,2017-09-25
-INN28226,1,0,0,1,Meal Plan 1,0,Room_Type 4,65,2017,11,18,Online,0,0,0,81.9,2,Not_Canceled,2017-11-18,2017-09-14
-INN29040,2,0,0,3,Meal Plan 1,0,Room_Type 1,30,2017,11,18,Online,0,0,0,113.4,1,Not_Canceled,2017-11-18,2017-10-19
-INN32815,2,0,0,2,Meal Plan 1,0,Room_Type 1,2,2017,11,18,Online,0,0,0,107.0,0,Not_Canceled,2017-11-18,2017-11-16
-INN34046,1,0,0,2,Meal Plan 1,0,Room_Type 1,5,2017,11,18,Corporate,1,0,3,65.0,0,Not_Canceled,2017-11-18,2017-11-13
-INN35718,2,0,0,4,Meal Plan 1,0,Room_Type 1,79,2017,11,18,Online,0,0,0,52.85,2,Not_Canceled,2017-11-18,2017-08-31
-INN00365,2,0,0,1,Meal Plan 1,0,Room_Type 4,66,2017,11,19,Online,0,0,0,81.9,2,Not_Canceled,2017-11-19,2017-09-14
-INN02173,2,0,0,3,Meal Plan 1,0,Room_Type 4,59,2017,11,19,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-19,2017-09-21
-INN03169,2,0,0,3,Meal Plan 1,0,Room_Type 1,22,2017,11,19,Online,0,0,0,95.0,1,Not_Canceled,2017-11-19,2017-10-28
-INN04508,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,19,Corporate,0,0,0,65.0,0,Canceled,2017-11-19,2017-11-18
-INN05294,2,0,0,3,Meal Plan 1,0,Room_Type 4,52,2017,11,19,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-19,2017-09-28
-INN06804,2,2,0,3,Meal Plan 1,0,Room_Type 6,66,2017,11,19,Online,0,0,0,135.0,3,Not_Canceled,2017-11-19,2017-09-14
-INN07157,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,19,Corporate,0,0,0,65.0,0,Canceled,2017-11-19,2017-11-18
-INN07710,2,0,0,3,Meal Plan 1,0,Room_Type 4,62,2017,11,19,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-19,2017-09-18
-INN08949,2,0,0,2,Meal Plan 2,0,Room_Type 1,28,2017,11,19,Offline,0,0,0,99.0,1,Not_Canceled,2017-11-19,2017-10-22
-INN12902,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,19,Corporate,1,1,0,65.0,0,Not_Canceled,2017-11-19,2017-11-18
-INN15081,2,0,0,3,Meal Plan 1,0,Room_Type 4,52,2017,11,19,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-19,2017-09-28
-INN15990,2,0,0,3,Meal Plan 1,0,Room_Type 1,76,2017,11,19,Online,0,0,0,72.25,2,Not_Canceled,2017-11-19,2017-09-04
-INN19036,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,19,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-19,2017-11-18
-INN20093,2,0,0,3,Meal Plan 1,0,Room_Type 4,56,2017,11,19,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-19,2017-09-24
-INN21372,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,19,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-19,2017-11-18
-INN22542,2,0,0,3,Meal Plan 1,0,Room_Type 4,52,2017,11,19,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-19,2017-09-28
-INN26306,2,0,0,3,Meal Plan 1,0,Room_Type 4,56,2017,11,19,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-19,2017-09-24
-INN26335,2,0,0,2,Meal Plan 1,0,Room_Type 1,72,2017,11,19,Online,0,0,0,85.0,2,Not_Canceled,2017-11-19,2017-09-08
-INN27537,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,19,Corporate,1,1,1,65.0,0,Not_Canceled,2017-11-19,2017-11-18
-INN36076,2,0,0,3,Meal Plan 1,0,Room_Type 1,76,2017,11,19,Online,0,0,0,72.25,2,Not_Canceled,2017-11-19,2017-09-04
-INN00047,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN00483,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN01127,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN01141,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN01252,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN02401,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN02677,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN02745,2,0,1,2,Meal Plan 1,0,Room_Type 1,87,2017,11,20,Offline,0,0,0,49.07,0,Not_Canceled,2017-11-20,2017-08-25
-INN03105,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Online,0,0,0,0.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN03579,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN03663,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN04118,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN04637,2,0,0,2,Meal Plan 1,0,Room_Type 1,64,2017,11,20,Online,0,0,0,79.2,2,Not_Canceled,2017-11-20,2017-09-17
-INN04954,2,0,0,2,Meal Plan 1,0,Room_Type 1,42,2017,11,20,Offline,0,0,0,63.0,2,Not_Canceled,2017-11-20,2017-10-09
-INN05472,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN05947,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN06520,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN06829,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN07337,2,0,0,2,Meal Plan 1,0,Room_Type 1,64,2017,11,20,Online,0,0,0,79.2,2,Not_Canceled,2017-11-20,2017-09-17
-INN08055,2,0,0,2,Meal Plan 1,0,Room_Type 1,90,2017,11,20,Online,0,0,0,72.25,1,Canceled,2017-11-20,2017-08-22
-INN08397,2,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,85.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN08452,2,0,0,2,Meal Plan 1,0,Room_Type 1,80,2017,11,20,Online,0,0,0,72.25,2,Not_Canceled,2017-11-20,2017-09-01
-INN09615,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN10144,2,0,0,1,Meal Plan 1,1,Room_Type 7,4,2017,11,20,Complementary,0,0,0,0.0,2,Not_Canceled,2017-11-20,2017-11-16
-INN10376,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,1,Not_Canceled,2017-11-20,2017-10-19
-INN11348,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN12754,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN12968,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN13279,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN14057,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN14073,2,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,85.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN14574,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN14708,2,0,0,2,Meal Plan 1,0,Room_Type 1,42,2017,11,20,Offline,0,0,0,63.0,2,Not_Canceled,2017-11-20,2017-10-09
-INN15171,2,0,1,2,Meal Plan 1,0,Room_Type 1,86,2017,11,20,Offline,0,0,0,49.07,0,Not_Canceled,2017-11-20,2017-08-26
-INN15260,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN15680,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN16213,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN16279,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN16496,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN17376,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN17851,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN17913,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN19323,2,0,0,2,Meal Plan 1,0,Room_Type 4,67,2017,11,20,Online,0,0,0,81.9,2,Not_Canceled,2017-11-20,2017-09-14
-INN20244,1,0,2,5,Meal Plan 1,0,Room_Type 1,0,2017,11,20,Corporate,0,0,0,95.67,1,Not_Canceled,2017-11-20,2017-11-20
-INN20585,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN21091,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,1,Not_Canceled,2017-11-20,2017-10-19
-INN21203,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN21595,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN21643,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN22226,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN23073,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN23407,2,0,0,2,Meal Plan 1,0,Room_Type 1,3,2017,11,20,Online,0,0,0,122.0,1,Not_Canceled,2017-11-20,2017-11-17
-INN23477,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN23514,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN23892,2,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,85.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN25049,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN25978,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN26235,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN28947,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN29240,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN30196,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN30339,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN30349,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN30473,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN31028,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN31283,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN31319,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Online,0,0,0,0.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN31669,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN32460,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN32598,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN32748,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN33289,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN34125,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN34949,2,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,85.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN35007,1,0,0,2,Meal Plan 1,0,Room_Type 1,1,2017,11,20,Online,0,0,0,0.0,0,Not_Canceled,2017-11-20,2017-11-19
-INN35048,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN35324,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN35993,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN36042,2,0,1,2,Meal Plan 1,0,Room_Type 4,57,2017,11,20,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-20,2017-09-24
-INN36188,1,0,0,2,Meal Plan 1,0,Room_Type 1,32,2017,11,20,Offline,0,0,0,73.0,0,Not_Canceled,2017-11-20,2017-10-19
-INN03934,2,0,0,1,Meal Plan 1,0,Room_Type 1,82,2017,11,21,Online,0,0,0,72.25,0,Not_Canceled,2017-11-21,2017-08-31
-INN04432,1,0,2,5,Meal Plan 1,0,Room_Type 4,8,2017,11,21,Offline,0,0,0,62.57,0,Not_Canceled,2017-11-21,2017-11-13
-INN11917,2,0,1,1,Meal Plan 1,0,Room_Type 1,67,2017,11,21,Online,0,0,0,79.2,1,Not_Canceled,2017-11-21,2017-09-15
-INN20572,3,0,2,1,Meal Plan 1,0,Room_Type 4,61,2017,11,21,Offline,0,0,0,90.0,0,Not_Canceled,2017-11-21,2017-09-21
-INN32148,2,0,2,1,Meal Plan 1,0,Room_Type 1,22,2017,11,21,Online,0,0,0,88.33,1,Not_Canceled,2017-11-21,2017-10-30
-INN33888,2,0,2,2,Meal Plan 1,0,Room_Type 4,61,2017,11,21,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-21,2017-09-21
-INN04532,2,0,2,1,Meal Plan 1,0,Room_Type 1,6,2017,11,22,Online,0,0,0,111.67,0,Not_Canceled,2017-11-22,2017-11-16
-INN05001,2,0,2,3,Meal Plan 1,0,Room_Type 1,25,2017,11,22,Offline,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-10-28
-INN05519,2,0,2,3,Meal Plan 1,0,Room_Type 1,25,2017,11,22,Offline,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-10-28
-INN06043,1,0,2,1,Meal Plan 1,0,Room_Type 1,6,2017,11,22,Offline,0,0,0,37.33,0,Not_Canceled,2017-11-22,2017-11-16
-INN08925,2,0,2,3,Meal Plan 1,0,Room_Type 1,25,2017,11,22,Offline,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-10-28
-INN15629,2,0,2,3,Meal Plan 1,0,Room_Type 1,25,2017,11,22,Offline,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-10-28
-INN18187,1,0,2,1,Meal Plan 1,0,Room_Type 1,27,2017,11,22,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-10-26
-INN21808,2,0,2,2,Meal Plan 1,0,Room_Type 1,242,2017,11,22,Online,0,0,0,72.25,1,Not_Canceled,2017-11-22,2017-03-25
-INN22451,2,0,2,3,Meal Plan 1,0,Room_Type 1,25,2017,11,22,Offline,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-10-28
-INN24353,1,0,2,1,Meal Plan 1,0,Room_Type 1,2,2017,11,22,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-11-20
-INN24700,1,0,2,1,Meal Plan 1,0,Room_Type 1,11,2017,11,22,Corporate,1,2,11,65.0,0,Not_Canceled,2017-11-22,2017-11-11
-INN24963,2,0,1,0,Meal Plan 1,0,Room_Type 4,13,2017,11,22,Online,0,0,0,101.0,1,Not_Canceled,2017-11-22,2017-11-09
-INN25272,2,0,2,0,Meal Plan 1,0,Room_Type 1,13,2017,11,22,Offline,0,0,0,90.6,1,Not_Canceled,2017-11-22,2017-11-09
-INN26655,1,0,2,3,Meal Plan 1,0,Room_Type 1,25,2017,11,22,Offline,0,0,0,57.5,0,Not_Canceled,2017-11-22,2017-10-28
-INN30519,2,0,2,3,Meal Plan 1,0,Room_Type 1,25,2017,11,22,Offline,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-10-28
-INN30942,2,0,2,3,Meal Plan 1,0,Room_Type 1,25,2017,11,22,Offline,0,0,0,65.0,0,Not_Canceled,2017-11-22,2017-10-28
-INN31821,2,0,2,1,Meal Plan 1,0,Room_Type 4,55,2017,11,22,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-22,2017-09-28
-INN32069,1,0,2,1,Meal Plan 1,0,Room_Type 1,9,2017,11,22,Corporate,1,0,4,65.0,0,Not_Canceled,2017-11-22,2017-11-13
-INN00660,2,0,1,2,Meal Plan 1,0,Room_Type 1,89,2017,11,23,Online,0,0,0,72.25,2,Not_Canceled,2017-11-23,2017-08-26
-INN06710,2,0,1,2,Meal Plan 1,0,Room_Type 4,63,2017,11,23,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-23,2017-09-21
-INN09474,2,0,1,2,Meal Plan 1,0,Room_Type 4,94,2017,11,23,Online,0,0,0,65.45,2,Not_Canceled,2017-11-23,2017-08-21
-INN10207,2,0,1,3,Meal Plan 1,0,Room_Type 1,26,2017,11,23,Offline,0,0,0,65.0,1,Not_Canceled,2017-11-23,2017-10-28
-INN11623,2,0,1,2,Meal Plan 1,0,Room_Type 1,89,2017,11,23,Online,0,0,0,72.25,2,Not_Canceled,2017-11-23,2017-08-26
-INN13723,2,0,1,3,Not Selected,0,Room_Type 1,10,2017,11,23,Online,0,0,0,78.63,1,Not_Canceled,2017-11-23,2017-11-13
-INN14412,1,0,1,0,Meal Plan 1,0,Room_Type 1,5,2017,11,23,Corporate,1,0,2,65.0,0,Not_Canceled,2017-11-23,2017-11-18
-INN14935,2,0,1,2,Meal Plan 1,0,Room_Type 4,94,2017,11,23,Online,0,0,0,65.45,2,Not_Canceled,2017-11-23,2017-08-21
-INN17882,1,0,1,1,Meal Plan 1,0,Room_Type 1,3,2017,11,23,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-23,2017-11-20
-INN18667,2,0,1,2,Meal Plan 1,0,Room_Type 1,89,2017,11,23,Online,0,0,0,72.25,2,Not_Canceled,2017-11-23,2017-08-26
-INN19720,2,0,1,2,Meal Plan 1,0,Room_Type 1,89,2017,11,23,Online,0,0,0,72.25,2,Not_Canceled,2017-11-23,2017-08-26
-INN19946,1,0,1,4,Meal Plan 1,0,Room_Type 4,41,2017,11,23,Online,0,0,0,110.31,0,Not_Canceled,2017-11-23,2017-10-13
-INN21142,2,0,1,2,Meal Plan 1,0,Room_Type 1,89,2017,11,23,Online,0,0,0,72.25,2,Not_Canceled,2017-11-23,2017-08-26
-INN22165,2,0,1,2,Meal Plan 1,0,Room_Type 1,89,2017,11,23,Online,0,0,0,72.25,2,Not_Canceled,2017-11-23,2017-08-26
-INN22344,1,0,1,0,Meal Plan 1,0,Room_Type 1,0,2017,11,23,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-23,2017-11-23
-INN22384,2,0,1,2,Meal Plan 1,0,Room_Type 1,89,2017,11,23,Online,0,0,0,72.25,2,Not_Canceled,2017-11-23,2017-08-26
-INN26773,2,0,1,2,Meal Plan 1,0,Room_Type 1,89,2017,11,23,Online,0,0,0,72.25,2,Not_Canceled,2017-11-23,2017-08-26
-INN29576,2,0,1,2,Meal Plan 1,0,Room_Type 4,94,2017,11,23,Online,0,0,0,65.45,2,Not_Canceled,2017-11-23,2017-08-21
-INN04006,2,0,2,5,Meal Plan 1,0,Room_Type 1,90,2017,11,24,Online,0,0,0,72.25,2,Not_Canceled,2017-11-24,2017-08-26
-INN05927,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,67.83,0,Not_Canceled,2017-11-24,2017-09-12
-INN06757,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,67.83,0,Not_Canceled,2017-11-24,2017-09-12
-INN09826,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN12003,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Online,0,0,0,0.0,0,Not_Canceled,2017-11-24,2017-09-12
-INN13972,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN15330,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,67.83,0,Not_Canceled,2017-11-24,2017-09-12
-INN16259,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,67.83,0,Not_Canceled,2017-11-24,2017-09-12
-INN17205,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,67.83,0,Not_Canceled,2017-11-24,2017-09-12
-INN17906,1,0,0,1,Meal Plan 1,0,Room_Type 1,6,2017,11,24,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-24,2017-11-18
-INN18176,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN21576,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,67.83,0,Not_Canceled,2017-11-24,2017-09-12
-INN22890,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN24740,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,67.83,0,Not_Canceled,2017-11-24,2017-09-12
-INN25336,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN27414,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN27978,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN28493,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN30119,1,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,67.83,0,Not_Canceled,2017-11-24,2017-09-12
-INN30208,2,0,0,4,Meal Plan 1,0,Room_Type 1,124,2017,11,24,Online,0,0,0,72.25,1,Not_Canceled,2017-11-24,2017-07-23
-INN31274,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN33713,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN34407,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN35266,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,24,Offline,0,0,0,85.67,0,Not_Canceled,2017-11-24,2017-09-12
-INN02458,1,0,0,1,Meal Plan 1,0,Room_Type 1,12,2017,11,25,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-25,2017-11-13
-INN05541,2,0,0,4,Meal Plan 1,0,Room_Type 4,62,2017,11,25,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-25,2017-09-24
-INN06230,1,0,0,4,Meal Plan 1,0,Room_Type 1,36,2017,11,25,Online,0,0,0,89.89,2,Not_Canceled,2017-11-25,2017-10-20
-INN07308,2,0,0,4,Meal Plan 1,0,Room_Type 1,36,2017,11,25,Online,0,0,0,94.99,2,Not_Canceled,2017-11-25,2017-10-20
-INN08233,2,0,1,4,Meal Plan 1,0,Room_Type 4,62,2017,11,25,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-25,2017-09-24
-INN09259,2,0,1,4,Meal Plan 1,0,Room_Type 1,37,2017,11,25,Online,0,0,0,94.18,2,Not_Canceled,2017-11-25,2017-10-19
-INN13469,1,0,0,1,Meal Plan 1,0,Room_Type 1,12,2017,11,25,Corporate,1,0,1,65.0,1,Not_Canceled,2017-11-25,2017-11-13
-INN14815,2,0,0,4,Meal Plan 1,0,Room_Type 1,36,2017,11,25,Online,0,0,0,94.99,2,Not_Canceled,2017-11-25,2017-10-20
-INN18714,1,0,0,1,Meal Plan 1,0,Room_Type 1,12,2017,11,25,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-25,2017-11-13
-INN33207,1,0,0,1,Meal Plan 1,0,Room_Type 1,2,2017,11,25,Corporate,1,0,1,65.0,0,Not_Canceled,2017-11-25,2017-11-23
-INN36230,3,0,0,3,Meal Plan 1,0,Room_Type 1,42,2017,11,25,Online,0,0,0,106.8,1,Not_Canceled,2017-11-25,2017-10-14
-INN03538,2,0,0,3,Meal Plan 1,0,Room_Type 1,6,2017,11,26,Offline,0,0,0,55.0,0,Not_Canceled,2017-11-26,2017-11-20
-INN05147,2,0,0,3,Meal Plan 1,0,Room_Type 1,92,2017,11,26,Online,0,0,0,72.25,1,Canceled,2017-11-26,2017-08-26
-INN10085,2,0,0,2,Meal Plan 1,0,Room_Type 1,22,2017,11,26,Online,0,0,0,97.0,0,Canceled,2017-11-26,2017-11-04
-INN10281,1,0,0,3,Meal Plan 1,0,Room_Type 1,70,2017,11,26,Offline,0,0,0,46.33,0,Not_Canceled,2017-11-26,2017-09-17
-INN10879,1,0,0,3,Meal Plan 1,0,Room_Type 1,8,2017,11,26,Online,0,0,0,66.98,0,Not_Canceled,2017-11-26,2017-11-18
-INN14565,2,0,0,3,Meal Plan 1,0,Room_Type 1,92,2017,11,26,Offline,0,0,0,49.07,1,Not_Canceled,2017-11-26,2017-08-26
-INN17680,1,0,0,1,Meal Plan 1,0,Room_Type 1,1,2017,11,26,Corporate,0,0,0,79.0,0,Not_Canceled,2017-11-26,2017-11-25
-INN20135,2,0,0,3,Meal Plan 1,0,Room_Type 1,31,2017,11,26,Online,0,0,0,96.3,1,Not_Canceled,2017-11-26,2017-10-26
-INN22911,1,0,0,3,Not Selected,1,Room_Type 1,35,2017,11,26,Online,0,0,0,103.5,2,Not_Canceled,2017-11-26,2017-10-22
-INN24734,2,0,0,3,Meal Plan 1,0,Room_Type 1,105,2017,11,26,Online,0,0,0,72.25,3,Not_Canceled,2017-11-26,2017-08-13
-INN24762,2,0,0,3,Meal Plan 1,0,Room_Type 1,92,2017,11,26,Offline,0,0,0,49.07,1,Not_Canceled,2017-11-26,2017-08-26
-INN26093,1,0,0,1,Meal Plan 1,0,Room_Type 1,3,2017,11,26,Corporate,0,0,0,79.0,1,Not_Canceled,2017-11-26,2017-11-23
-INN27242,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,26,Corporate,0,0,0,88.0,0,Not_Canceled,2017-11-26,2017-11-26
-INN27980,1,0,0,1,Meal Plan 1,0,Room_Type 1,8,2017,11,26,Online,0,0,0,62.37,0,Not_Canceled,2017-11-26,2017-11-18
-INN28083,1,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,26,Complementary,1,0,10,0.0,1,Not_Canceled,2017-11-26,2017-11-26
-INN29909,2,0,0,3,Meal Plan 1,0,Room_Type 1,105,2017,11,26,Online,0,0,0,72.25,3,Not_Canceled,2017-11-26,2017-08-13
-INN30338,2,0,0,3,Meal Plan 1,0,Room_Type 1,8,2017,11,26,Online,0,0,0,67.5,1,Not_Canceled,2017-11-26,2017-11-18
-INN31756,2,0,0,3,Meal Plan 1,0,Room_Type 1,73,2017,11,26,Offline,0,0,0,38.67,0,Not_Canceled,2017-11-26,2017-09-14
-INN32007,1,0,0,1,Meal Plan 1,0,Room_Type 1,3,2017,11,26,Corporate,0,0,0,79.0,1,Not_Canceled,2017-11-26,2017-11-23
-INN33531,3,0,2,3,Meal Plan 1,0,Room_Type 4,66,2017,11,26,Offline,0,0,0,90.0,1,Not_Canceled,2017-11-26,2017-09-21
-INN33771,1,0,0,3,Not Selected,0,Room_Type 1,35,2017,11,26,Online,0,0,0,85.5,2,Not_Canceled,2017-11-26,2017-10-22
-INN35336,2,0,0,2,Meal Plan 1,0,Room_Type 4,15,2017,11,26,Online,0,0,0,72.07,0,Not_Canceled,2017-11-26,2017-11-11
-INN02263,2,0,1,2,Meal Plan 1,0,Room_Type 1,1,2017,11,27,Offline,0,0,0,80.0,0,Not_Canceled,2017-11-27,2017-11-26
-INN02720,2,0,1,2,Meal Plan 1,0,Room_Type 1,73,2017,11,27,Online,0,0,0,79.2,2,Not_Canceled,2017-11-27,2017-09-15
-INN09768,2,0,1,2,Meal Plan 1,0,Room_Type 1,39,2017,11,27,Online,0,0,0,96.3,2,Not_Canceled,2017-11-27,2017-10-19
-INN10196,2,0,0,2,Meal Plan 1,0,Room_Type 1,16,2017,11,27,Offline,0,0,0,55.0,0,Not_Canceled,2017-11-27,2017-11-11
-INN11100,2,0,1,2,Meal Plan 1,0,Room_Type 1,73,2017,11,27,Online,0,0,0,79.2,2,Not_Canceled,2017-11-27,2017-09-15
-INN11248,2,0,0,1,Meal Plan 1,0,Room_Type 1,3,2017,11,27,Online,0,0,0,87.0,1,Canceled,2017-11-27,2017-11-24
-INN12237,2,0,1,2,Meal Plan 1,0,Room_Type 1,4,2017,11,27,Online,0,0,0,87.0,1,Not_Canceled,2017-11-27,2017-11-23
-INN18160,1,0,0,2,Not Selected,0,Room_Type 1,0,2017,11,27,Online,0,0,0,51.3,0,Not_Canceled,2017-11-27,2017-11-27
-INN18315,2,0,1,2,Meal Plan 1,0,Room_Type 1,4,2017,11,27,Offline,0,0,0,55.0,0,Not_Canceled,2017-11-27,2017-11-23
-INN22206,2,0,1,2,Meal Plan 1,0,Room_Type 4,2,2017,11,27,Online,0,0,0,59.75,1,Not_Canceled,2017-11-27,2017-11-25
-INN22578,2,1,0,2,Meal Plan 1,0,Room_Type 1,7,2017,11,27,Online,0,0,0,86.12,2,Not_Canceled,2017-11-27,2017-11-20
-INN24874,2,0,1,2,Meal Plan 1,0,Room_Type 1,105,2017,11,27,Online,0,0,0,72.25,2,Not_Canceled,2017-11-27,2017-08-14
-INN29213,2,0,2,3,Meal Plan 1,0,Room_Type 1,24,2017,11,27,Offline,0,0,0,46.4,0,Not_Canceled,2017-11-27,2017-11-03
-INN30587,1,0,0,2,Meal Plan 1,0,Room_Type 1,39,2017,11,27,Online,0,0,0,90.9,2,Not_Canceled,2017-11-27,2017-10-19
-INN32315,2,0,0,2,Meal Plan 1,0,Room_Type 1,95,2017,11,27,Online,0,0,0,72.25,1,Canceled,2017-11-27,2017-08-24
-INN33854,2,0,1,2,Meal Plan 1,0,Room_Type 1,11,2017,11,27,Offline,0,0,0,55.0,0,Not_Canceled,2017-11-27,2017-11-16
-INN01416,2,0,2,1,Meal Plan 1,0,Room_Type 4,68,2017,11,28,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-28,2017-09-21
-INN05905,2,0,0,1,Meal Plan 1,0,Room_Type 2,0,2017,11,28,Online,0,0,0,77.25,2,Not_Canceled,2017-11-28,2017-11-28
-INN07980,2,0,2,1,Meal Plan 1,0,Room_Type 1,208,2017,11,28,Online,0,0,0,72.25,1,Canceled,2017-11-28,2017-05-04
-INN11865,2,0,0,1,Meal Plan 1,0,Room_Type 1,96,2017,11,28,Online,0,0,0,72.25,1,Canceled,2017-11-28,2017-08-24
-INN19154,2,0,0,1,Meal Plan 1,0,Room_Type 1,0,2017,11,28,Online,0,0,0,54.31,0,Not_Canceled,2017-11-28,2017-11-28
-INN19450,2,1,0,1,Meal Plan 1,0,Room_Type 4,3,2017,11,28,Offline,0,0,0,77.6,0,Not_Canceled,2017-11-28,2017-11-25
-INN20788,2,0,0,1,Meal Plan 1,0,Room_Type 2,0,2017,11,28,Online,0,0,0,77.25,2,Not_Canceled,2017-11-28,2017-11-28
-INN25089,2,0,2,4,Meal Plan 1,0,Room_Type 1,59,2017,11,28,Online,0,0,0,106.2,1,Not_Canceled,2017-11-28,2017-09-30
-INN27834,2,0,2,1,Meal Plan 1,0,Room_Type 1,89,2017,11,28,Online,0,0,0,55.63,2,Not_Canceled,2017-11-28,2017-08-31
-INN28070,2,0,2,1,Meal Plan 1,0,Room_Type 4,61,2017,11,28,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-28,2017-09-28
-INN30578,2,0,2,1,Meal Plan 1,0,Room_Type 1,89,2017,11,28,Online,0,0,0,55.63,2,Not_Canceled,2017-11-28,2017-08-31
-INN03457,1,0,1,0,Meal Plan 1,0,Room_Type 1,27,2017,11,29,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-29,2017-11-02
-INN15587,2,0,1,0,Meal Plan 1,0,Room_Type 1,81,2017,11,29,Online,0,0,0,85.0,1,Canceled,2017-11-29,2017-09-09
-INN17698,1,0,1,0,Meal Plan 1,0,Room_Type 1,27,2017,11,29,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-29,2017-11-02
-INN22185,2,0,2,0,Not Selected,1,Room_Type 1,4,2017,11,29,Online,0,0,0,72.75,1,Not_Canceled,2017-11-29,2017-11-25
-INN28757,1,0,2,2,Meal Plan 1,0,Room_Type 1,3,2017,11,29,Corporate,1,2,12,65.0,0,Not_Canceled,2017-11-29,2017-11-26
-INN34565,2,0,2,2,Meal Plan 1,0,Room_Type 4,68,2017,11,29,Offline,0,0,0,60.0,0,Not_Canceled,2017-11-29,2017-09-22
-INN01709,2,0,1,0,Meal Plan 1,0,Room_Type 4,3,2017,11,30,Complementary,0,0,0,0.0,2,Not_Canceled,2017-11-30,2017-11-27
-INN04487,2,0,1,3,Meal Plan 1,0,Room_Type 4,68,2017,11,30,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-30,2017-09-23
-INN05222,1,0,3,7,Meal Plan 1,0,Room_Type 1,0,2017,11,30,Online,1,0,1,69.0,1,Not_Canceled,2017-11-30,2017-11-30
-INN10880,1,0,1,3,Meal Plan 1,0,Room_Type 4,68,2017,11,30,Offline,0,0,0,60.0,1,Not_Canceled,2017-11-30,2017-09-23
-INN14455,1,0,1,0,Meal Plan 1,0,Room_Type 1,4,2017,11,30,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-30,2017-11-26
-INN16855,1,0,1,0,Meal Plan 1,0,Room_Type 1,2,2017,11,30,Offline,0,0,0,64.8,0,Not_Canceled,2017-11-30,2017-11-28
-INN18661,2,0,2,5,Meal Plan 1,0,Room_Type 1,114,2017,11,30,Offline,0,0,0,41.43,0,Not_Canceled,2017-11-30,2017-08-08
-INN21375,1,0,1,2,Meal Plan 1,0,Room_Type 1,11,2017,11,30,Offline,0,0,0,55.0,0,Not_Canceled,2017-11-30,2017-11-19
-INN25338,2,0,1,4,Meal Plan 1,0,Room_Type 1,89,2017,11,30,Online,0,0,0,52.85,2,Not_Canceled,2017-11-30,2017-09-02
-INN31766,2,0,1,0,Meal Plan 1,0,Room_Type 1,0,2017,11,30,Online,0,0,0,75.0,0,Not_Canceled,2017-11-30,2017-11-30
-INN36056,1,0,1,2,Meal Plan 1,0,Room_Type 1,4,2017,11,30,Corporate,0,0,0,65.0,0,Not_Canceled,2017-11-30,2017-11-26
+Booking_ID,adults,children,stays_in_weekend_nights,stays_in_week_nights,meal,required_car_parking_spaces,reserved_room_type,lead_time,arrival_date_year,arrival_date_month,arrival_date_day_of_month,market_segment,is_repeated_guest,previous_cancellations,previous_bookings_not_canceled,adr,total_of_special_requests,is_canceled
+INN00029,1,0,1,2,BB,0,A,37,2017,November,6,Online TA,0,0,0,37.33,0,1
+INN00045,2,0,0,4,BB,0,D,55,2017,November,18,Offline TA/TO,0,0,0,60.0,1,0
+INN00047,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN00054,2,0,0,4,BB,0,D,51,2017,November,11,Offline TA/TO,0,0,0,60.0,1,0
+INN00107,2,0,1,4,BB,1,A,10,2017,November,2,Online TA,0,0,0,82.95,0,0
+INN00120,2,0,2,3,BB,0,A,2,2017,November,14,Online TA,0,0,0,103.0,1,0
+INN00250,1,0,1,3,BB,0,A,0,2017,November,9,Online TA,0,0,0,91.0,1,0
+INN00256,2,0,2,4,SC,0,A,60,2017,November,15,Online TA,0,0,0,76.0,1,0
+INN00365,2,0,0,1,BB,0,D,66,2017,November,19,Online TA,0,0,0,81.9,2,0
+INN00483,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN00510,2,0,1,2,BB,0,D,49,2017,November,9,Offline TA/TO,0,0,0,60.0,0,0
+INN00586,1,0,1,2,BB,0,A,4,2017,November,2,Online TA,0,0,0,117.0,0,0
+INN00660,2,0,1,2,BB,0,A,89,2017,November,23,Online TA,0,0,0,72.25,2,0
+INN00802,2,0,0,2,BB,1,A,6,2017,November,6,Online TA,0,0,0,116.0,0,0
+INN00820,1,0,0,2,BB,0,A,1,2017,November,10,Corporate,1,0,1,40.0,1,0
+INN00843,2,0,0,5,BB,0,A,17,2017,November,3,Online TA,0,0,0,90.95,1,0
+INN00880,2,0,2,2,BB,0,D,56,2017,November,6,Offline TA/TO,0,0,0,60.0,0,0
+INN01127,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN01141,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN01170,1,0,2,5,BB,0,A,20,2017,November,11,Online TA,0,0,0,68.85,1,0
+INN01219,1,0,0,2,BB,0,A,9,2017,November,11,Corporate,0,0,0,79.0,1,0
+INN01252,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN01342,2,0,0,2,BB,0,E,47,2017,November,5,Online TA,0,0,0,105.5,1,0
+INN01360,2,0,2,2,BB,0,A,41,2017,November,8,Online TA,0,0,0,81.77,1,0
+INN01392,2,0,2,2,BB,0,A,13,2017,November,8,Online TA,0,0,0,90.95,1,0
+INN01416,2,0,2,1,BB,0,D,68,2017,November,28,Offline TA/TO,0,0,0,60.0,0,0
+INN01521,2,0,2,2,BB,0,A,10,2017,November,14,Offline TA/TO,0,0,0,43.5,0,0
+INN01665,2,0,0,3,BB,0,A,1,2017,November,3,Offline TA/TO,0,0,0,80.0,0,0
+INN01709,2,0,1,0,BB,0,D,3,2017,November,30,Complementary,0,0,0,0.0,2,0
+INN01734,2,0,2,2,BB,0,A,11,2017,November,6,Online TA,0,0,0,90.95,1,0
+INN01766,2,0,2,2,BB,0,A,8,2017,November,6,Online TA,0,0,0,104.5,1,0
+INN01838,2,1,1,0,BB,0,A,0,2017,November,1,Online TA,0,0,0,90.4,0,0
+INN01869,2,0,0,3,BB,0,A,5,2017,November,4,Offline TA/TO,0,0,0,70.0,0,0
+INN01896,2,0,1,2,BB,0,A,58,2017,November,13,Online TA,0,0,0,79.2,1,0
+INN01948,2,0,1,3,BB,0,D,35,2017,November,2,Offline TA/TO,0,0,0,60.0,0,0
+INN02017,2,0,0,2,BB,0,A,15,2017,November,10,Online TA,0,0,0,107.0,3,0
+INN02173,2,0,0,3,BB,0,D,59,2017,November,19,Offline TA/TO,0,0,0,60.0,0,0
+INN02263,2,0,1,2,BB,0,A,1,2017,November,27,Offline TA/TO,0,0,0,80.0,0,0
+INN02321,1,0,1,0,BB,0,A,7,2017,November,16,Online TA,0,0,0,91.0,2,0
+INN02377,2,0,0,2,SC,0,A,1,2017,November,5,Online TA,0,0,0,95.0,1,0
+INN02401,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN02458,1,0,0,1,BB,0,A,12,2017,November,25,Corporate,1,0,1,65.0,0,0
+INN02544,2,0,1,3,BB,0,A,63,2017,November,12,Online TA,0,0,0,85.0,1,0
+INN02647,1,0,1,0,BB,0,A,5,2017,November,8,Corporate,1,0,1,65.0,0,0
+INN02656,2,0,0,4,BB,0,D,51,2017,November,11,Offline TA/TO,0,0,0,69.0,1,0
+INN02677,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN02687,2,0,0,3,BB,0,A,22,2017,November,17,Online TA,0,0,0,90.95,1,0
+INN02720,2,0,1,2,BB,0,A,73,2017,November,27,Online TA,0,0,0,79.2,2,0
+INN02730,2,0,2,2,BB,0,D,51,2017,November,8,Offline TA/TO,0,0,0,60.0,0,0
+INN02745,2,0,1,2,BB,0,A,87,2017,November,20,Offline TA/TO,0,0,0,49.07,0,0
+INN02759,2,0,0,3,BB,0,D,8,2017,November,11,Online TA,0,0,0,107.0,1,0
+INN02796,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN02844,2,0,0,1,BB,0,A,32,2017,November,14,Online TA,0,0,0,96.3,3,0
+INN02904,2,0,1,1,BB,0,A,0,2017,November,2,Online TA,0,0,0,104.0,1,0
+INN03075,2,0,0,1,SC,0,A,9,2017,November,7,Online TA,0,0,0,76.0,1,0
+INN03105,1,0,0,2,BB,0,A,32,2017,November,20,Online TA,0,0,0,0.0,0,0
+INN03169,2,0,0,3,BB,0,A,22,2017,November,19,Online TA,0,0,0,95.0,1,0
+INN03257,2,0,2,3,BB,0,D,41,2017,November,1,Offline TA/TO,0,0,0,60.0,1,0
+INN03457,1,0,1,0,BB,0,A,27,2017,November,29,Corporate,0,0,0,65.0,0,0
+INN03538,2,0,0,3,BB,0,A,6,2017,November,26,Offline TA/TO,0,0,0,55.0,0,0
+INN03579,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN03663,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN03720,1,0,0,1,BB,0,A,0,2017,November,18,Corporate,1,0,3,65.0,0,0
+INN03745,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN03906,2,1,2,3,BB,0,D,41,2017,November,1,Offline TA/TO,0,0,0,75.0,2,0
+INN03915,2,0,1,2,BB,0,D,56,2017,November,6,Offline TA/TO,0,0,0,60.0,1,0
+INN03934,2,0,0,1,BB,0,A,82,2017,November,21,Online TA,0,0,0,72.25,0,0
+INN03993,1,0,0,1,BB,0,A,18,2017,November,11,Online TA,0,0,0,101.0,2,0
+INN04006,2,0,2,5,BB,0,A,90,2017,November,24,Online TA,0,0,0,72.25,2,0
+INN04118,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN04225,2,0,2,2,BB,0,D,53,2017,November,14,Offline TA/TO,0,0,0,60.0,0,0
+INN04243,1,0,0,1,BB,0,A,23,2017,November,5,Corporate,0,0,0,65.0,0,0
+INN04432,1,0,2,5,BB,0,D,8,2017,November,21,Offline TA/TO,0,0,0,62.57,0,0
+INN04446,2,0,1,2,BB,0,A,52,2017,November,6,Online TA,0,0,0,79.2,2,0
+INN04459,2,0,1,0,BB,0,A,69,2017,November,15,Online TA,0,0,0,72.25,2,0
+INN04487,2,0,1,3,BB,0,D,68,2017,November,30,Offline TA/TO,0,0,0,60.0,1,0
+INN04493,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN04508,1,0,0,1,BB,0,A,1,2017,November,19,Corporate,0,0,0,65.0,0,1
+INN04532,2,0,2,1,BB,0,A,6,2017,November,22,Online TA,0,0,0,111.67,0,0
+INN04565,2,0,2,5,BB,0,A,13,2017,November,8,Online TA,0,0,0,90.95,1,0
+INN04618,2,0,0,2,BB,0,A,21,2017,November,5,Online TA,0,0,0,76.0,0,0
+INN04637,2,0,0,2,BB,0,A,64,2017,November,20,Online TA,0,0,0,79.2,2,0
+INN04746,2,0,0,2,BB,0,E,47,2017,November,5,Online TA,0,0,0,105.5,1,0
+INN04803,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN04809,2,0,1,2,BB,0,D,4,2017,November,6,Offline TA/TO,0,0,0,78.2,0,0
+INN04814,2,0,2,3,BB,0,D,44,2017,November,5,Offline TA/TO,0,0,0,60.0,0,0
+INN04846,3,0,0,1,BB,0,D,0,2017,November,14,Online TA,0,0,0,107.0,2,0
+INN04852,1,0,1,2,BB,1,A,0,2017,November,9,Online TA,0,0,0,100.0,1,0
+INN04885,1,0,0,1,BB,0,A,0,2017,November,18,Complementary,1,1,7,0.0,0,0
+INN04944,2,0,2,3,BB,0,D,49,2017,November,12,Offline TA/TO,0,0,0,60.0,0,0
+INN04946,2,0,0,2,BB,0,A,28,2017,November,13,Offline TA/TO,0,0,0,85.6,1,0
+INN04954,2,0,0,2,BB,0,A,42,2017,November,20,Offline TA/TO,0,0,0,63.0,2,0
+INN05001,2,0,2,3,BB,0,A,25,2017,November,22,Offline TA/TO,0,0,0,65.0,0,0
+INN05137,2,0,0,4,BB,0,A,15,2017,November,10,Online TA,0,0,0,90.95,0,0
+INN05147,2,0,0,3,BB,0,A,92,2017,November,26,Online TA,0,0,0,72.25,1,1
+INN05178,2,0,2,5,BB,0,A,33,2017,November,7,Offline TA/TO,0,0,0,41.43,0,0
+INN05181,2,0,2,2,BB,0,A,22,2017,November,6,Offline TA/TO,0,0,0,43.5,0,0
+INN05222,1,0,3,7,BB,0,A,0,2017,November,30,Online TA,1,0,1,69.0,1,0
+INN05229,2,0,1,3,BB,0,D,61,2017,November,12,Online TA,0,0,0,81.9,1,0
+INN05294,2,0,0,3,BB,0,D,52,2017,November,19,Offline TA/TO,0,0,0,60.0,0,0
+INN05403,1,0,0,1,BB,0,A,1,2017,November,14,Corporate,0,0,0,79.0,0,0
+INN05421,2,0,0,1,BB,0,A,67,2017,November,13,Online TA,0,0,0,72.25,2,0
+INN05455,2,0,1,3,BB,1,A,0,2017,November,9,Online TA,0,0,0,106.0,1,0
+INN05472,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN05478,2,0,2,1,BB,0,D,34,2017,November,1,Offline TA/TO,0,0,0,60.0,0,0
+INN05479,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,0
+INN05480,1,0,1,1,BB,0,A,3,2017,November,16,Complementary,0,0,0,0.0,0,0
+INN05485,2,0,0,2,BB,0,A,0,2017,November,12,Online TA,0,0,0,85.0,0,0
+INN05519,2,0,2,3,BB,0,A,25,2017,November,22,Offline TA/TO,0,0,0,65.0,0,0
+INN05541,2,0,0,4,BB,0,D,62,2017,November,25,Offline TA/TO,0,0,0,60.0,0,0
+INN05662,2,0,2,2,BB,0,A,4,2017,November,6,Offline TA/TO,0,0,0,68.0,0,0
+INN05681,2,0,0,4,BB,0,A,28,2017,November,11,Offline TA/TO,0,0,0,85.6,0,0
+INN05905,2,0,0,1,BB,0,E,0,2017,November,28,Online TA,0,0,0,77.25,2,0
+INN05927,1,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,67.83,0,0
+INN05947,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN05962,1,0,1,0,BB,0,A,4,2017,November,16,Corporate,1,0,1,65.0,0,0
+INN06024,2,0,2,3,BB,0,D,51,2017,November,12,Offline TA/TO,0,0,0,60.0,0,0
+INN06043,1,0,2,1,BB,0,A,6,2017,November,22,Offline TA/TO,0,0,0,37.33,0,0
+INN06053,1,0,1,0,BB,0,A,24,2017,November,1,Corporate,0,0,0,65.0,0,0
+INN06157,1,0,0,1,BB,0,A,0,2017,November,3,Online TA,0,0,0,101.0,0,0
+INN06193,2,0,0,4,BB,0,D,5,2017,November,10,Online TA,0,0,0,76.58,0,0
+INN06230,1,0,0,4,BB,0,A,36,2017,November,25,Online TA,0,0,0,89.89,2,0
+INN06318,2,0,0,3,BB,0,A,92,2017,November,11,Online TA,0,0,0,72.25,0,0
+INN06389,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,0
+INN06520,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN06699,2,0,2,1,BB,0,A,11,2017,November,1,Online TA,0,0,0,87.0,1,0
+INN06708,1,0,0,1,BB,0,A,4,2017,November,17,Online TA,0,0,0,91.0,2,0
+INN06710,2,0,1,2,BB,0,D,63,2017,November,23,Offline TA/TO,0,0,0,60.0,0,0
+INN06757,1,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,67.83,0,0
+INN06798,2,0,2,1,BB,0,D,29,2017,November,14,Offline TA/TO,0,0,0,46.67,0,0
+INN06804,2,2,0,3,BB,0,F,66,2017,November,19,Online TA,0,0,0,135.0,3,0
+INN06829,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN06877,2,0,1,0,BB,0,A,75,2017,November,15,Online TA,0,0,0,72.25,2,0
+INN06982,1,0,0,2,BB,0,A,40,2017,November,4,Online TA,0,0,0,100.8,3,0
+INN07041,2,0,1,2,BB,0,D,56,2017,November,6,Offline TA/TO,0,0,0,60.0,1,0
+INN07065,2,0,0,2,BB,0,A,21,2017,November,5,Online TA,0,0,0,76.0,0,0
+INN07157,1,0,0,1,BB,0,A,1,2017,November,19,Corporate,0,0,0,65.0,0,1
+INN07308,2,0,0,4,BB,0,A,36,2017,November,25,Online TA,0,0,0,94.99,2,0
+INN07337,2,0,0,2,BB,0,A,64,2017,November,20,Online TA,0,0,0,79.2,2,0
+INN07434,1,0,0,1,BB,0,A,1,2017,November,5,Corporate,1,0,2,65.0,0,0
+INN07542,1,0,0,1,BB,0,A,1,2017,November,10,Complementary,0,0,0,0.0,0,0
+INN07710,2,0,0,3,BB,0,D,62,2017,November,19,Offline TA/TO,0,0,0,60.0,0,0
+INN07922,2,0,1,3,BB,0,D,9,2017,November,12,Online TA,0,0,0,107.0,1,0
+INN07966,2,0,0,1,BB,0,A,0,2017,November,6,Online TA,0,0,0,95.0,1,0
+INN07980,2,0,2,1,BB,0,A,208,2017,November,28,Online TA,0,0,0,72.25,1,1
+INN08041,2,0,0,2,BB,0,D,46,2017,November,3,Offline TA/TO,0,0,0,60.0,0,0
+INN08055,2,0,0,2,BB,0,A,90,2017,November,20,Online TA,0,0,0,72.25,1,1
+INN08212,1,0,0,2,BB,0,A,6,2017,November,17,Corporate,1,2,10,65.0,0,0
+INN08233,2,0,1,4,BB,0,D,62,2017,November,25,Offline TA/TO,0,0,0,60.0,0,0
+INN08245,2,0,2,3,BB,0,D,50,2017,November,12,Offline TA/TO,0,0,0,60.0,0,0
+INN08259,2,0,0,1,BB,0,A,2,2017,November,6,Online TA,0,0,0,107.0,1,0
+INN08321,2,0,1,4,BB,0,D,51,2017,November,4,Online TA,0,0,0,102.6,1,0
+INN08397,2,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,85.0,0,0
+INN08452,2,0,0,2,BB,0,A,80,2017,November,20,Online TA,0,0,0,72.25,2,0
+INN08506,2,0,0,4,BB,0,D,19,2017,November,11,Online TA,0,0,0,99.45,1,0
+INN08803,2,0,0,2,BB,0,A,80,2017,November,6,Online TA,0,0,0,86.47,2,0
+INN08895,1,0,0,3,BB,0,A,89,2017,November,17,Online TA,0,0,0,63.75,1,0
+INN08925,2,0,2,3,BB,0,A,25,2017,November,22,Offline TA/TO,0,0,0,65.0,0,0
+INN08949,2,0,0,2,HB,0,A,28,2017,November,19,Offline TA/TO,0,0,0,99.0,1,0
+INN09041,2,0,2,1,BB,0,D,80,2017,November,14,Online TA,0,0,0,65.45,1,0
+INN09097,2,0,2,1,BB,0,D,44,2017,November,8,Offline TA/TO,0,0,0,60.0,0,0
+INN09192,2,0,2,3,BB,0,E,3,2017,November,8,Online TA,0,0,0,87.7,0,0
+INN09218,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN09224,2,0,1,2,BB,0,D,46,2017,November,13,Offline TA/TO,0,0,0,60.0,0,0
+INN09259,2,0,1,4,BB,0,A,37,2017,November,25,Online TA,0,0,0,94.18,2,0
+INN09355,2,0,1,2,BB,0,D,49,2017,November,6,Offline TA/TO,0,0,0,60.0,0,0
+INN09474,2,0,1,2,BB,0,D,94,2017,November,23,Online TA,0,0,0,65.45,2,0
+INN09500,1,0,1,0,BB,0,A,0,2017,November,9,Online TA,0,0,0,91.0,1,0
+INN09615,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN09641,2,0,1,2,BB,0,A,75,2017,November,16,Online TA,0,0,0,52.85,1,0
+INN09655,2,0,0,1,BB,0,A,10,2017,November,3,Online TA,0,0,0,82.39,1,0
+INN09757,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN09768,2,0,1,2,BB,0,A,39,2017,November,27,Online TA,0,0,0,96.3,2,0
+INN09826,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN09945,1,0,1,0,BB,0,A,24,2017,November,1,Corporate,0,0,0,65.0,0,0
+INN09959,2,0,0,4,BB,1,D,12,2017,November,3,Online TA,0,0,0,91.45,0,0
+INN10085,2,0,0,2,BB,0,A,22,2017,November,26,Online TA,0,0,0,97.0,0,1
+INN10144,2,0,0,1,BB,1,G,4,2017,November,20,Complementary,0,0,0,0.0,2,0
+INN10171,2,0,0,3,BB,0,E,46,2017,November,4,Online TA,0,0,0,105.5,1,0
+INN10196,2,0,0,2,BB,0,A,16,2017,November,27,Offline TA/TO,0,0,0,55.0,0,0
+INN10207,2,0,1,3,BB,0,A,26,2017,November,23,Offline TA/TO,0,0,0,65.0,1,0
+INN10225,2,0,0,1,BB,1,A,11,2017,November,3,Online TA,0,0,0,96.0,1,0
+INN10235,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,1,0
+INN10247,2,0,0,4,BB,0,A,37,2017,November,11,Online TA,0,0,0,90.95,1,0
+INN10281,1,0,0,3,BB,0,A,70,2017,November,26,Offline TA/TO,0,0,0,46.33,0,0
+INN10376,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,1,0
+INN10425,1,0,0,0,BB,0,A,0,2017,November,4,Complementary,1,1,5,0.0,0,0
+INN10758,2,0,0,3,BB,0,D,44,2017,November,11,Offline TA/TO,0,0,0,60.0,1,0
+INN10767,2,0,0,1,BB,0,A,24,2017,November,5,Complementary,0,0,0,0.0,1,0
+INN10879,1,0,0,3,BB,0,A,8,2017,November,26,Online TA,0,0,0,66.98,0,0
+INN10880,1,0,1,3,BB,0,D,68,2017,November,30,Offline TA/TO,0,0,0,60.0,1,0
+INN10990,2,0,2,1,BB,0,A,11,2017,November,1,Online TA,0,0,0,87.0,1,0
+INN11100,2,0,1,2,BB,0,A,73,2017,November,27,Online TA,0,0,0,79.2,2,0
+INN11230,2,0,2,1,BB,0,A,39,2017,November,7,Offline TA/TO,0,0,0,63.0,0,0
+INN11237,1,0,0,1,SC,1,A,17,2017,November,6,Online TA,0,0,0,104.0,1,0
+INN11248,2,0,0,1,BB,0,A,3,2017,November,27,Online TA,0,0,0,87.0,1,1
+INN11261,2,0,1,3,BB,0,D,38,2017,November,5,Offline TA/TO,0,0,0,60.0,0,0
+INN11308,2,0,0,2,BB,0,A,9,2017,November,18,Corporate,0,0,0,75.0,0,0
+INN11317,2,0,0,4,BB,0,D,19,2017,November,4,Offline TA/TO,0,0,0,52.5,2,0
+INN11348,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN11538,2,0,0,4,BB,0,A,39,2017,November,10,Online TA,0,0,0,90.95,0,0
+INN11551,2,0,2,1,BB,0,A,22,2017,November,14,Online TA,0,0,0,87.0,1,0
+INN11619,1,0,0,1,BB,0,A,0,2017,November,5,Corporate,0,0,0,89.0,0,0
+INN11621,1,0,1,0,BB,0,A,0,2017,November,9,Corporate,0,0,0,65.0,0,0
+INN11623,2,0,1,2,BB,0,A,89,2017,November,23,Online TA,0,0,0,72.25,2,0
+INN11738,2,0,1,2,BB,0,D,49,2017,November,9,Offline TA/TO,0,0,0,60.0,0,0
+INN11765,1,0,0,3,BB,0,A,14,2017,November,5,Online TA,0,0,0,101.0,1,0
+INN11812,1,0,1,0,BB,0,A,7,2017,November,16,Online TA,0,0,0,91.0,2,0
+INN11816,1,0,0,1,BB,0,A,47,2017,November,11,Corporate,0,0,0,65.0,0,0
+INN11818,2,0,1,0,SC,0,A,32,2017,November,2,Online TA,0,0,0,85.5,1,0
+INN11831,2,0,1,5,BB,0,A,12,2017,November,2,Offline TA/TO,0,0,0,68.0,0,0
+INN11865,2,0,0,1,BB,0,A,96,2017,November,28,Online TA,0,0,0,72.25,1,1
+INN11881,2,0,1,4,BB,0,D,49,2017,November,9,Offline TA/TO,0,0,0,60.0,0,0
+INN11917,2,0,1,1,BB,0,A,67,2017,November,21,Online TA,0,0,0,79.2,1,0
+INN11990,2,0,0,1,BB,0,A,94,2017,November,17,Online TA,0,0,0,72.25,0,1
+INN12003,1,0,0,3,BB,0,A,73,2017,November,24,Online TA,0,0,0,0.0,0,0
+INN12047,2,0,1,2,BB,0,A,156,2017,November,2,Offline TA/TO,0,0,0,45.87,0,0
+INN12111,2,0,1,3,BB,0,A,82,2017,November,2,Online TA,0,0,0,72.25,1,1
+INN12115,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN12123,2,0,2,1,BB,0,D,40,2017,November,7,Offline TA/TO,0,0,0,60.0,0,0
+INN12172,2,0,1,2,BB,0,D,46,2017,November,6,Offline TA/TO,0,0,0,60.0,1,0
+INN12237,2,0,1,2,BB,0,A,4,2017,November,27,Online TA,0,0,0,87.0,1,0
+INN12331,1,0,1,2,BB,0,A,3,2017,November,2,Corporate,0,0,0,79.0,1,0
+INN12370,2,2,0,4,BB,0,F,29,2017,November,4,Online TA,0,0,0,150.45,3,0
+INN12417,2,0,1,3,BB,0,D,38,2017,November,5,Offline TA/TO,0,0,0,60.0,0,0
+INN12457,1,0,0,1,BB,0,A,1,2017,November,14,Corporate,0,0,0,79.0,0,0
+INN12740,2,0,1,2,BB,0,A,3,2017,November,9,Offline TA/TO,0,0,0,80.0,0,0
+INN12754,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN12854,1,0,1,3,SC,0,A,6,2017,November,16,Online TA,0,0,0,73.15,0,0
+INN12894,1,0,1,0,BB,0,A,13,2017,November,15,Corporate,0,0,0,65.0,0,0
+INN12902,1,0,0,1,BB,0,A,1,2017,November,19,Corporate,1,1,0,65.0,0,0
+INN12933,1,0,2,2,BB,0,A,5,2017,November,15,Online TA,0,0,0,93.5,1,0
+INN12968,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN13002,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,1
+INN13043,2,0,1,3,BB,0,D,52,2017,November,9,Offline TA/TO,0,0,0,60.0,0,0
+INN13047,2,0,1,3,BB,0,A,14,2017,November,5,Offline TA/TO,0,0,0,43.5,0,0
+INN13084,2,0,1,2,BB,0,A,29,2017,November,6,Offline TA/TO,0,0,0,63.0,0,0
+INN13195,2,0,0,4,BB,0,D,5,2017,November,10,Online TA,0,0,0,76.58,1,0
+INN13279,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN13283,2,0,0,0,BB,0,A,6,2017,November,11,Online TA,0,0,0,0.0,1,0
+INN13468,2,0,0,1,SC,0,A,11,2017,November,17,Online TA,0,0,0,85.0,1,0
+INN13469,1,0,0,1,BB,0,A,12,2017,November,25,Corporate,1,0,1,65.0,1,0
+INN13478,2,0,0,2,SC,0,A,1,2017,November,5,Online TA,0,0,0,95.0,1,0
+INN13521,2,0,0,3,BB,1,E,3,2017,November,5,Online TA,0,0,0,105.5,1,0
+INN13538,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,71.0,0,0
+INN13560,2,0,1,3,BB,0,D,49,2017,November,9,Offline TA/TO,0,0,0,60.0,0,0
+INN13723,2,0,1,3,SC,0,A,10,2017,November,23,Online TA,0,0,0,78.63,1,0
+INN13763,1,0,0,1,BB,0,A,3,2017,November,5,Corporate,1,0,1,65.0,0,0
+INN13766,1,0,0,1,BB,0,A,23,2017,November,5,Corporate,0,0,0,65.0,0,1
+INN13943,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,0
+INN13970,1,0,2,3,BB,0,A,3,2017,November,15,Offline TA/TO,0,0,0,44.8,0,0
+INN13972,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN14057,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN14073,2,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,85.0,0,0
+INN14193,2,0,1,1,BB,0,A,5,2017,November,9,Online TA,0,0,0,94.0,1,0
+INN14245,2,0,1,3,BB,0,D,45,2017,November,9,Offline TA/TO,0,0,0,60.0,0,0
+INN14322,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN14340,1,0,2,1,SC,0,A,9,2017,November,1,Online TA,0,0,0,75.0,1,0
+INN14380,1,0,1,0,BB,0,A,3,2017,November,2,Corporate,0,0,0,65.0,0,0
+INN14412,1,0,1,0,BB,0,A,5,2017,November,23,Corporate,1,0,2,65.0,0,0
+INN14455,1,0,1,0,BB,0,A,4,2017,November,30,Corporate,0,0,0,65.0,0,0
+INN14456,1,0,2,8,BB,0,A,66,2017,November,12,Online TA,0,0,0,46.63,0,0
+INN14483,2,0,1,3,BB,0,D,40,2017,November,2,Offline TA/TO,0,0,0,60.0,0,0
+INN14490,2,0,0,4,BB,0,D,50,2017,November,10,Offline TA/TO,0,0,0,69.0,0,0
+INN14534,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN14565,2,0,0,3,BB,0,A,92,2017,November,26,Offline TA/TO,0,0,0,49.07,1,0
+INN14570,2,0,0,4,BB,0,D,28,2017,November,4,Online TA,0,0,0,85.59,1,0
+INN14574,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN14585,2,0,0,2,BB,0,A,36,2017,November,13,Online TA,0,0,0,96.3,1,0
+INN14612,2,0,2,3,BB,0,D,55,2017,November,15,Offline TA/TO,0,0,0,60.0,0,0
+INN14708,2,0,0,2,BB,0,A,42,2017,November,20,Offline TA/TO,0,0,0,63.0,2,0
+INN14815,2,0,0,4,BB,0,A,36,2017,November,25,Online TA,0,0,0,94.99,2,0
+INN14822,1,0,0,3,BB,0,A,0,2017,November,3,Corporate,1,0,1,65.0,0,0
+INN14864,2,0,2,2,BB,0,D,41,2017,November,1,Offline TA/TO,0,0,0,60.0,0,0
+INN14935,2,0,1,2,BB,0,D,94,2017,November,23,Online TA,0,0,0,65.45,2,0
+INN15015,2,0,1,2,BB,0,D,49,2017,November,16,Offline TA/TO,0,0,0,60.0,0,0
+INN15032,1,0,0,3,BB,0,A,4,2017,November,17,Corporate,1,0,3,65.0,0,0
+INN15081,2,0,0,3,BB,0,D,52,2017,November,19,Offline TA/TO,0,0,0,60.0,1,0
+INN15108,2,0,0,4,BB,0,D,0,2017,November,3,Online TA,0,0,0,82.45,1,0
+INN15171,2,0,1,2,BB,0,A,86,2017,November,20,Offline TA/TO,0,0,0,49.07,0,0
+INN15260,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN15284,2,0,0,1,SC,0,A,0,2017,November,14,Online TA,0,0,0,85.0,2,0
+INN15330,1,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,67.83,0,0
+INN15347,2,0,0,2,BB,0,A,5,2017,November,17,Offline TA/TO,0,0,0,86.6,1,0
+INN15379,2,0,0,3,BB,0,D,57,2017,November,17,Offline TA/TO,0,0,0,60.0,0,0
+INN15392,2,0,1,2,BB,0,A,6,2017,November,9,Offline TA/TO,0,0,0,80.0,0,0
+INN15420,2,0,0,4,BB,0,D,58,2017,November,18,Offline TA/TO,0,0,0,60.0,0,0
+INN15571,2,0,1,2,BB,0,A,3,2017,November,13,Offline TA/TO,0,0,0,64.0,0,0
+INN15587,2,0,1,0,BB,0,A,81,2017,November,29,Online TA,0,0,0,85.0,1,1
+INN15590,2,0,0,1,BB,0,A,0,2017,November,12,Corporate,0,0,0,84.0,0,0
+INN15629,2,0,2,3,BB,0,A,25,2017,November,22,Offline TA/TO,0,0,0,65.0,0,0
+INN15680,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN15723,1,0,0,1,BB,1,A,4,2017,November,17,Online TA,0,0,0,100.0,2,0
+INN15776,2,0,0,4,BB,0,D,54,2017,November,18,Offline TA/TO,0,0,0,60.0,0,0
+INN15990,2,0,0,3,BB,0,A,76,2017,November,19,Online TA,0,0,0,72.25,2,0
+INN16092,2,0,1,2,BB,0,A,39,2017,November,13,Online TA,0,0,0,96.3,2,0
+INN16123,2,0,0,1,BB,0,A,8,2017,November,4,Online TA,0,0,0,83.0,0,0
+INN16213,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN16223,1,0,0,1,BB,0,A,9,2017,November,11,Corporate,0,0,0,65.0,0,0
+INN16259,1,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,67.83,0,0
+INN16279,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN16357,2,0,0,2,BB,0,A,67,2017,November,10,Online TA,0,0,0,104.55,1,1
+INN16370,2,0,1,2,BB,0,A,82,2017,November,2,Online TA,0,0,0,72.25,2,0
+INN16438,2,0,1,2,BB,0,D,50,2017,November,13,Offline TA/TO,0,0,0,60.0,0,0
+INN16496,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN16530,1,0,2,3,BB,0,D,2,2017,November,1,Online TA,0,0,0,90.09,0,0
+INN16747,2,0,0,4,BB,0,A,48,2017,November,10,Offline TA/TO,0,0,0,43.5,0,0
+INN16855,1,0,1,0,BB,0,A,2,2017,November,30,Offline TA/TO,0,0,0,64.8,0,0
+INN16952,2,0,0,4,BB,0,A,23,2017,November,4,Online TA,0,0,0,90.95,1,0
+INN16983,1,0,0,2,BB,0,A,7,2017,November,3,Online TA,0,0,0,89.0,1,0
+INN17147,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN17205,1,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,67.83,0,0
+INN17251,2,0,2,2,BB,0,D,46,2017,November,7,Offline TA/TO,0,0,0,60.0,0,0
+INN17376,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN17472,2,0,1,3,BB,0,F,21,2017,November,2,Online TA,0,0,0,150.45,0,0
+INN17493,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,0
+INN17497,2,0,1,4,BB,0,D,42,2017,November,2,Offline TA/TO,0,0,0,60.0,0,0
+INN17680,1,0,0,1,BB,0,A,1,2017,November,26,Corporate,0,0,0,79.0,0,0
+INN17698,1,0,1,0,BB,0,A,27,2017,November,29,Corporate,0,0,0,65.0,0,0
+INN17851,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN17875,1,0,0,3,BB,0,A,74,2017,November,17,Online TA,0,0,0,63.75,1,1
+INN17882,1,0,1,1,BB,0,A,3,2017,November,23,Corporate,1,0,1,65.0,0,0
+INN17906,1,0,0,1,BB,0,A,6,2017,November,24,Corporate,0,0,0,65.0,0,0
+INN17913,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN18160,1,0,0,2,SC,0,A,0,2017,November,27,Online TA,0,0,0,51.3,0,0
+INN18176,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN18187,1,0,2,1,BB,0,A,27,2017,November,22,Corporate,0,0,0,65.0,0,0
+INN18253,1,0,0,1,BB,0,A,54,2017,November,18,Corporate,0,0,0,65.0,0,0
+INN18315,2,0,1,2,BB,0,A,4,2017,November,27,Offline TA/TO,0,0,0,55.0,0,0
+INN18400,2,0,0,2,BB,0,A,22,2017,November,3,Offline TA/TO,0,0,0,75.0,1,0
+INN18422,2,0,0,3,BB,0,D,47,2017,November,11,Offline TA/TO,0,0,0,60.0,0,0
+INN18440,2,1,2,3,BB,0,D,40,2017,November,1,Offline TA/TO,0,0,0,60.0,1,0
+INN18661,2,0,2,5,BB,0,A,114,2017,November,30,Offline TA/TO,0,0,0,41.43,0,0
+INN18662,1,0,0,4,BB,0,A,2,2017,November,4,Offline TA/TO,0,0,0,63.75,0,0
+INN18667,2,0,1,2,BB,0,A,89,2017,November,23,Online TA,0,0,0,72.25,2,0
+INN18714,1,0,0,1,BB,0,A,12,2017,November,25,Corporate,1,0,1,65.0,0,0
+INN18792,1,0,0,4,BB,0,A,4,2017,November,4,Online TA,0,0,0,101.0,1,0
+INN18836,2,0,0,3,BB,0,A,77,2017,November,12,Online TA,0,0,0,72.25,1,0
+INN19036,1,0,0,1,BB,0,A,1,2017,November,19,Corporate,0,0,0,65.0,0,0
+INN19101,2,0,0,2,SC,0,A,8,2017,November,11,Online TA,0,0,0,76.5,0,1
+INN19154,2,0,0,1,BB,0,A,0,2017,November,28,Online TA,0,0,0,54.31,0,0
+INN19253,2,0,0,1,BB,0,A,35,2017,November,18,Online TA,0,0,0,113.4,1,0
+INN19299,2,0,0,1,BB,0,A,3,2017,November,5,Online TA,0,0,0,107.0,1,0
+INN19323,2,0,0,2,BB,0,D,67,2017,November,20,Online TA,0,0,0,81.9,2,0
+INN19346,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN19450,2,1,0,1,BB,0,D,3,2017,November,28,Offline TA/TO,0,0,0,77.6,0,0
+INN19586,2,0,2,1,BB,0,A,67,2017,November,1,Offline TA/TO,0,0,0,32.71,0,0
+INN19591,2,0,2,3,BB,0,A,86,2017,November,6,Online TA,0,0,0,72.25,1,0
+INN19720,2,0,1,2,BB,0,A,89,2017,November,23,Online TA,0,0,0,72.25,2,0
+INN19909,2,0,1,4,BB,0,A,77,2017,November,16,Online TA,0,0,0,72.25,2,1
+INN19946,1,0,1,4,BB,0,D,41,2017,November,23,Online TA,0,0,0,110.31,0,0
+INN19957,1,0,2,5,BB,0,A,20,2017,November,11,Online TA,0,0,0,68.85,1,0
+INN20093,2,0,0,3,BB,0,D,56,2017,November,19,Offline TA/TO,0,0,0,60.0,1,0
+INN20115,2,0,2,3,BB,0,D,41,2017,November,8,Offline TA/TO,0,0,0,60.0,1,0
+INN20135,2,0,0,3,BB,0,A,31,2017,November,26,Online TA,0,0,0,96.3,1,0
+INN20244,1,0,2,5,BB,0,A,0,2017,November,20,Corporate,0,0,0,95.67,1,0
+INN20314,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,0
+INN20354,2,0,2,3,BB,0,E,26,2017,November,1,Online TA,0,0,0,85.0,0,0
+INN20407,2,0,0,2,BB,0,A,72,2017,November,13,Online TA,0,0,0,72.25,1,1
+INN20466,2,0,0,2,BB,0,E,47,2017,November,5,Online TA,0,0,0,105.5,2,0
+INN20572,3,0,2,1,BB,0,D,61,2017,November,21,Offline TA/TO,0,0,0,90.0,0,0
+INN20585,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN20602,2,0,1,0,SC,1,A,0,2017,November,9,Online TA,0,0,0,85.0,0,0
+INN20659,1,0,0,2,BB,0,A,40,2017,November,4,Online TA,0,0,0,100.8,3,0
+INN20699,2,0,0,1,BB,0,A,14,2017,November,4,Online TA,0,0,0,87.0,1,1
+INN20771,2,0,1,2,BB,0,D,5,2017,November,2,Online TA,1,1,0,105.0,1,0
+INN20788,2,0,0,1,BB,0,E,0,2017,November,28,Online TA,0,0,0,77.25,2,0
+INN20789,2,0,0,3,BB,0,D,21,2017,November,3,Offline TA/TO,0,0,0,46.67,0,0
+INN20880,2,1,0,4,BB,0,D,66,2017,November,17,Online TA,0,0,0,81.9,3,0
+INN20895,2,0,0,3,BB,1,A,5,2017,November,10,Online TA,0,0,0,104.0,1,0
+INN20945,2,0,1,2,BB,0,D,50,2017,November,13,Offline TA/TO,0,0,0,60.0,0,0
+INN21044,2,0,2,1,BB,0,D,34,2017,November,1,Offline TA/TO,0,0,0,60.0,0,0
+INN21090,2,1,1,4,BB,0,A,63,2017,November,9,Online TA,0,0,0,91.63,2,1
+INN21091,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,1,0
+INN21142,2,0,1,2,BB,0,A,89,2017,November,23,Online TA,0,0,0,72.25,2,0
+INN21147,2,0,2,1,BB,0,D,34,2017,November,1,Offline TA/TO,0,0,0,60.0,0,0
+INN21203,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN21311,2,0,0,3,BB,0,E,3,2017,November,5,Online TA,0,0,0,96.5,1,0
+INN21319,3,0,1,2,BB,0,D,50,2017,November,13,Offline TA/TO,0,0,0,90.0,1,0
+INN21353,2,0,1,4,BB,0,A,0,2017,November,2,Online TA,0,0,0,107.0,1,0
+INN21372,1,0,0,1,BB,0,A,1,2017,November,19,Corporate,0,0,0,65.0,0,0
+INN21375,1,0,1,2,BB,0,A,11,2017,November,30,Offline TA/TO,0,0,0,55.0,0,0
+INN21576,1,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,67.83,0,0
+INN21586,1,0,0,2,BB,0,A,1,2017,November,5,Complementary,0,0,0,0.0,0,0
+INN21595,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN21613,2,0,2,2,BB,0,D,5,2017,November,1,Online TA,0,0,0,105.0,0,0
+INN21643,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN21666,1,0,0,3,BB,0,A,89,2017,November,17,Online TA,0,0,0,63.75,1,1
+INN21779,1,0,1,0,BB,0,A,7,2017,November,16,Online TA,0,0,0,91.0,2,0
+INN21808,2,0,2,2,BB,0,A,242,2017,November,22,Online TA,0,0,0,72.25,1,0
+INN21850,2,0,0,4,BB,0,A,79,2017,November,18,Online TA,0,0,0,52.85,2,0
+INN21870,2,0,2,2,BB,0,D,62,2017,November,15,Online TA,0,0,0,81.9,1,0
+INN21902,2,0,2,2,BB,0,D,62,2017,November,1,Offline TA/TO,0,0,0,63.3,0,0
+INN22086,1,0,0,1,BB,0,A,55,2017,November,10,Online TA,0,0,0,73.8,2,0
+INN22087,2,0,2,3,BB,0,E,3,2017,November,8,Online TA,0,0,0,87.7,0,0
+INN22117,2,0,0,4,BB,0,D,55,2017,November,17,Offline TA/TO,0,0,0,60.0,0,0
+INN22165,2,0,1,2,BB,0,A,89,2017,November,23,Online TA,0,0,0,72.25,2,0
+INN22185,2,0,2,0,SC,1,A,4,2017,November,29,Online TA,0,0,0,72.75,1,0
+INN22206,2,0,1,2,BB,0,D,2,2017,November,27,Online TA,0,0,0,59.75,1,0
+INN22226,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN22239,2,0,0,1,SC,0,A,9,2017,November,7,Online TA,0,0,0,76.0,1,0
+INN22274,2,0,0,4,BB,0,A,12,2017,November,10,Online TA,0,0,0,95.0,0,0
+INN22305,2,0,2,5,BB,0,A,28,2017,November,2,Offline TA/TO,0,0,0,41.43,0,0
+INN22344,1,0,1,0,BB,0,A,0,2017,November,23,Corporate,0,0,0,65.0,0,0
+INN22384,2,0,1,2,BB,0,A,89,2017,November,23,Online TA,0,0,0,72.25,2,0
+INN22445,2,0,2,3,BB,0,E,26,2017,November,1,Online TA,0,0,0,85.0,0,0
+INN22451,2,0,2,3,BB,0,A,25,2017,November,22,Offline TA/TO,0,0,0,65.0,0,0
+INN22542,2,0,0,3,BB,0,D,52,2017,November,19,Offline TA/TO,0,0,0,60.0,1,0
+INN22578,2,1,0,2,BB,0,A,7,2017,November,27,Online TA,0,0,0,86.12,2,0
+INN22702,2,0,0,3,BB,0,E,46,2017,November,4,Online TA,0,0,0,105.5,1,0
+INN22724,2,0,2,2,BB,0,D,41,2017,November,8,Offline TA/TO,0,0,0,60.0,0,0
+INN22890,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN22911,1,0,0,3,SC,1,A,35,2017,November,26,Online TA,0,0,0,103.5,2,0
+INN22915,2,0,0,1,BB,0,D,5,2017,November,4,Online TA,0,0,0,117.0,0,0
+INN22955,2,0,2,1,BB,1,A,12,2017,November,7,Online TA,0,0,0,114.0,0,0
+INN23073,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN23127,2,0,2,1,BB,0,D,51,2017,November,14,Offline TA/TO,0,0,0,60.0,0,0
+INN23169,2,0,2,1,BB,0,A,76,2017,November,8,Offline TA/TO,0,0,0,49.07,0,0
+INN23407,2,0,0,2,BB,0,A,3,2017,November,20,Online TA,0,0,0,122.0,1,0
+INN23477,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN23514,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN23532,2,0,0,4,BB,0,D,55,2017,November,18,Offline TA/TO,0,0,0,60.0,1,0
+INN23607,1,0,0,4,BB,0,A,33,2017,November,10,Offline TA/TO,0,0,0,42.0,1,0
+INN23621,2,0,2,3,BB,0,D,41,2017,November,8,Offline TA/TO,0,0,0,60.0,1,0
+INN23693,2,0,1,1,BB,0,A,22,2017,November,14,Online TA,0,0,0,87.0,1,0
+INN23713,2,0,0,2,BB,0,A,22,2017,November,6,Offline TA/TO,0,0,0,75.0,0,0
+INN23860,1,0,0,1,BB,0,A,1,2017,November,14,Corporate,0,0,0,79.0,0,0
+INN23892,2,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,85.0,0,0
+INN23946,1,0,1,1,BB,0,A,0,2017,November,9,Corporate,1,0,2,65.0,0,0
+INN23972,3,0,0,4,BB,0,A,24,2017,November,3,Offline TA/TO,0,0,0,60.75,1,0
+INN24034,2,0,0,3,BB,0,D,42,2017,November,5,Offline TA/TO,0,0,0,60.0,0,0
+INN24071,1,0,0,2,BB,0,A,47,2017,November,11,Corporate,0,0,0,65.0,1,0
+INN24142,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,1,0
+INN24213,2,0,1,3,BB,0,A,7,2017,November,2,Online TA,0,0,0,95.0,1,0
+INN24301,2,0,0,1,BB,0,A,1,2017,November,12,Complementary,1,1,6,0.0,1,0
+INN24308,2,0,0,0,BB,0,A,0,2017,November,14,Online TA,0,0,0,0.0,2,0
+INN24309,2,0,0,4,BB,0,A,1,2017,November,10,Online TA,0,0,0,83.2,0,0
+INN24353,1,0,2,1,BB,0,A,2,2017,November,22,Corporate,0,0,0,65.0,0,0
+INN24471,2,0,2,3,BB,0,D,34,2017,November,1,Offline TA/TO,0,0,0,60.0,0,0
+INN24534,2,0,1,2,BB,0,A,29,2017,November,6,Offline TA/TO,0,0,0,63.0,0,0
+INN24700,1,0,2,1,BB,0,A,11,2017,November,22,Corporate,1,2,11,65.0,0,0
+INN24734,2,0,0,3,BB,0,A,105,2017,November,26,Online TA,0,0,0,72.25,3,0
+INN24740,1,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,67.83,0,0
+INN24762,2,0,0,3,BB,0,A,92,2017,November,26,Offline TA/TO,0,0,0,49.07,1,0
+INN24773,1,0,0,1,BB,0,A,1,2017,November,17,Online TA,0,0,0,91.0,0,0
+INN24874,2,0,1,2,BB,0,A,105,2017,November,27,Online TA,0,0,0,72.25,2,0
+INN24923,1,0,1,2,BB,0,A,2,2017,November,13,Online TA,0,0,0,91.0,0,0
+INN24947,1,0,1,0,BB,0,A,5,2017,November,8,Corporate,1,0,1,65.0,0,0
+INN24963,2,0,1,0,BB,0,D,13,2017,November,22,Online TA,0,0,0,101.0,1,0
+INN25008,2,0,1,2,BB,0,D,46,2017,November,6,Offline TA/TO,0,0,0,60.0,0,0
+INN25049,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN25089,2,0,2,4,BB,0,A,59,2017,November,28,Online TA,0,0,0,106.2,1,0
+INN25272,2,0,2,0,BB,0,A,13,2017,November,22,Offline TA/TO,0,0,0,90.6,1,0
+INN25336,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN25338,2,0,1,4,BB,0,A,89,2017,November,30,Online TA,0,0,0,52.85,2,0
+INN25430,2,0,1,1,BB,0,A,8,2017,November,7,Online TA,0,0,0,82.39,1,0
+INN25526,2,0,1,5,BB,0,D,3,2017,November,9,Online TA,0,0,0,72.75,1,0
+INN25578,2,0,0,2,BB,0,D,51,2017,November,4,Online TA,0,0,0,102.6,1,0
+INN25580,2,0,2,3,BB,0,D,41,2017,November,8,Offline TA/TO,0,0,0,60.0,1,0
+INN25612,1,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,70.0,0,0
+INN25758,1,0,0,2,BB,0,A,5,2017,November,11,Corporate,1,0,2,65.0,0,0
+INN25795,2,0,0,1,SC,0,A,2,2017,November,4,Online TA,0,0,0,95.0,1,0
+INN25829,1,0,0,1,BB,0,A,1,2017,November,14,Corporate,0,0,0,79.0,0,0
+INN25916,2,0,1,3,BB,0,D,40,2017,November,2,Offline TA/TO,0,0,0,60.0,0,0
+INN25934,1,0,0,1,BB,0,A,0,2017,November,5,Corporate,0,0,0,89.0,0,0
+INN25978,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN26093,1,0,0,1,BB,0,A,3,2017,November,26,Corporate,0,0,0,79.0,1,0
+INN26120,1,0,0,3,BB,0,A,28,2017,November,3,Online TA,0,0,0,75.18,1,0
+INN26185,1,0,0,1,BB,0,A,17,2017,November,12,Corporate,0,0,0,65.0,0,1
+INN26218,1,0,0,1,BB,0,A,54,2017,November,18,Corporate,0,0,0,65.0,0,0
+INN26235,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN26306,2,0,0,3,BB,0,D,56,2017,November,19,Offline TA/TO,0,0,0,60.0,1,0
+INN26335,2,0,0,2,BB,0,A,72,2017,November,19,Online TA,0,0,0,85.0,2,0
+INN26371,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN26428,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,0
+INN26472,1,0,0,3,BB,0,A,89,2017,November,17,Online TA,0,0,0,63.75,1,0
+INN26483,2,0,0,1,BB,0,A,67,2017,November,13,Online TA,0,0,0,72.25,2,0
+INN26562,1,0,1,1,SC,0,A,0,2017,November,7,Online TA,0,0,0,73.15,0,0
+INN26598,1,0,1,0,BB,0,A,25,2017,November,16,Online TA,0,0,0,77.77,0,0
+INN26655,1,0,2,3,BB,0,A,25,2017,November,22,Offline TA/TO,0,0,0,57.5,0,0
+INN26704,2,0,2,2,BB,0,D,5,2017,November,1,Online TA,0,0,0,105.0,0,0
+INN26744,2,0,0,2,BB,0,D,6,2017,November,3,Online TA,0,0,0,105.0,0,0
+INN26773,2,0,1,2,BB,0,A,89,2017,November,23,Online TA,0,0,0,72.25,2,0
+INN26838,1,0,0,1,BB,0,A,0,2017,November,10,Complementary,1,0,9,0.0,1,0
+INN26875,2,0,1,2,BB,0,D,46,2017,November,6,Offline TA/TO,0,0,0,60.0,1,0
+INN26969,2,0,0,1,BB,0,A,0,2017,November,6,Online TA,0,0,0,107.0,1,0
+INN27041,2,0,2,2,BB,0,A,76,2017,November,1,Online TA,0,0,0,72.25,1,0
+INN27106,1,0,0,1,BB,0,A,1,2017,November,10,Complementary,0,0,0,0.0,0,0
+INN27148,1,0,0,1,BB,0,A,1,2017,November,4,Corporate,1,0,2,65.0,0,0
+INN27242,1,0,0,1,BB,0,A,0,2017,November,26,Corporate,0,0,0,88.0,0,0
+INN27311,1,0,0,1,BB,0,B,2,2017,November,11,Offline TA/TO,0,0,0,90.0,0,0
+INN27414,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN27494,1,0,2,4,BB,0,A,8,2017,November,5,Corporate,1,2,9,65.0,0,0
+INN27537,1,0,0,1,BB,0,A,1,2017,November,19,Corporate,1,1,1,65.0,0,0
+INN27581,1,0,0,1,BB,0,A,54,2017,November,18,Corporate,0,0,0,65.0,1,0
+INN27689,2,0,0,1,BB,0,A,6,2017,November,4,Online TA,0,0,0,89.0,0,0
+INN27761,1,0,1,0,BB,0,A,0,2017,November,15,Online TA,0,0,0,74.69,0,0
+INN27834,2,0,2,1,BB,0,A,89,2017,November,28,Online TA,0,0,0,55.63,2,0
+INN27927,2,0,0,1,BB,0,A,0,2017,November,6,Online TA,0,0,0,95.0,1,0
+INN27942,2,0,0,4,BB,0,A,92,2017,November,10,Online TA,0,0,0,72.25,2,1
+INN27978,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN27980,1,0,0,1,BB,0,A,8,2017,November,26,Online TA,0,0,0,62.37,0,0
+INN28070,2,0,2,1,BB,0,D,61,2017,November,28,Offline TA/TO,0,0,0,60.0,0,0
+INN28083,1,0,0,1,BB,0,A,0,2017,November,26,Complementary,1,0,10,0.0,1,0
+INN28143,1,0,0,2,BB,0,A,25,2017,November,17,Online TA,0,0,0,101.0,1,0
+INN28226,1,0,0,1,BB,0,D,65,2017,November,18,Online TA,0,0,0,81.9,2,0
+INN28493,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN28503,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN28627,2,0,1,2,BB,0,A,29,2017,November,6,Online TA,0,0,0,96.3,2,0
+INN28755,2,0,1,3,BB,1,D,14,2017,November,2,Online TA,0,0,0,108.45,1,0
+INN28757,1,0,2,2,BB,0,A,3,2017,November,29,Corporate,1,2,12,65.0,0,0
+INN28837,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN28947,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN29040,2,0,0,3,BB,0,A,30,2017,November,18,Online TA,0,0,0,113.4,1,0
+INN29062,2,1,1,4,BB,0,A,55,2017,November,9,Online TA,0,0,0,79.2,2,1
+INN29091,2,0,1,2,BB,0,A,0,2017,November,16,Corporate,0,0,0,75.0,0,0
+INN29133,1,0,0,2,BB,0,A,15,2017,November,6,Online TA,0,0,0,81.0,1,0
+INN29148,2,0,2,5,BB,0,A,25,2017,November,10,Offline TA/TO,0,0,0,68.0,1,0
+INN29213,2,0,2,3,BB,0,A,24,2017,November,27,Offline TA/TO,0,0,0,46.4,0,0
+INN29240,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN29337,1,0,0,2,BB,0,A,3,2017,November,6,Online TA,0,0,0,101.0,2,0
+INN29371,2,0,2,7,BB,0,A,14,2017,November,6,Offline TA/TO,0,0,0,47.78,0,0
+INN29412,1,0,0,3,BB,0,A,63,2017,November,10,Online TA,0,0,0,89.53,1,1
+INN29499,2,0,2,1,BB,0,D,40,2017,November,7,Offline TA/TO,0,0,0,60.0,0,0
+INN29576,2,0,1,2,BB,0,D,94,2017,November,23,Online TA,0,0,0,65.45,2,0
+INN29827,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,1,0
+INN29835,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,0
+INN29909,2,0,0,3,BB,0,A,105,2017,November,26,Online TA,0,0,0,72.25,3,0
+INN30119,1,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,67.83,0,0
+INN30184,1,0,1,0,BB,0,A,13,2017,November,15,Corporate,0,0,0,65.0,0,0
+INN30196,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN30208,2,0,0,4,BB,0,A,124,2017,November,24,Online TA,0,0,0,72.25,1,0
+INN30338,2,0,0,3,BB,0,A,8,2017,November,26,Online TA,0,0,0,67.5,1,0
+INN30339,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN30349,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN30411,1,0,1,2,BB,0,D,5,2017,November,2,Online TA,0,0,0,105.0,1,0
+INN30473,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN30519,2,0,2,3,BB,0,A,25,2017,November,22,Offline TA/TO,0,0,0,65.0,0,0
+INN30560,2,0,1,2,BB,0,A,52,2017,November,6,Online TA,0,0,0,73.2,1,0
+INN30578,2,0,2,1,BB,0,A,89,2017,November,28,Online TA,0,0,0,55.63,2,0
+INN30587,1,0,0,2,BB,0,A,39,2017,November,27,Online TA,0,0,0,90.9,2,0
+INN30734,2,0,0,2,BB,0,A,10,2017,November,13,Online TA,0,0,0,12.0,0,0
+INN30828,1,0,1,0,SC,0,A,5,2017,November,15,Online TA,0,0,0,73.15,0,0
+INN30935,2,0,0,1,BB,0,A,0,2017,November,6,Online TA,0,0,0,95.0,1,0
+INN30942,2,0,2,3,BB,0,A,25,2017,November,22,Offline TA/TO,0,0,0,65.0,0,0
+INN30944,2,0,1,2,BB,0,A,17,2017,November,13,Offline TA/TO,0,0,0,38.67,0,0
+INN31001,1,0,1,1,BB,0,A,3,2017,November,2,Online TA,0,0,0,77.77,0,0
+INN31028,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN31031,2,0,0,1,BB,0,A,8,2017,November,4,Online TA,0,0,0,83.0,0,0
+INN31044,1,0,0,1,BB,0,A,0,2017,November,5,Online TA,0,0,0,0.0,1,0
+INN31070,2,0,2,1,BB,0,D,47,2017,November,14,Offline TA/TO,0,0,0,60.0,0,0
+INN31092,2,0,0,2,BB,0,E,47,2017,November,5,Online TA,0,0,0,105.5,2,0
+INN31166,1,0,0,1,BB,0,D,21,2017,November,4,Offline TA/TO,0,0,0,92.0,0,0
+INN31274,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN31283,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN31319,1,0,0,2,BB,0,A,32,2017,November,20,Online TA,0,0,0,0.0,0,0
+INN31328,1,0,0,1,BB,0,A,55,2017,November,10,Online TA,0,0,0,73.8,2,0
+INN31484,2,0,2,1,BB,0,D,37,2017,November,1,Offline TA/TO,0,0,0,60.0,0,0
+INN31641,1,0,0,2,BB,0,A,3,2017,November,6,Online TA,0,0,0,101.0,2,0
+INN31669,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN31733,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,1,0
+INN31756,2,0,0,3,BB,0,A,73,2017,November,26,Offline TA/TO,0,0,0,38.67,0,0
+INN31766,2,0,1,0,BB,0,A,0,2017,November,30,Online TA,0,0,0,75.0,0,0
+INN31821,2,0,2,1,BB,0,D,55,2017,November,22,Offline TA/TO,0,0,0,60.0,0,0
+INN31860,2,0,0,2,SC,0,A,10,2017,November,6,Online TA,0,0,0,83.0,1,0
+INN31928,1,0,0,1,BB,1,A,0,2017,November,12,Online TA,0,0,0,79.0,1,0
+INN31967,1,0,0,1,BB,0,A,9,2017,November,11,Corporate,0,0,0,65.0,0,0
+INN31973,2,0,2,3,BB,0,D,52,2017,November,12,Offline TA/TO,0,0,0,60.0,0,0
+INN32007,1,0,0,1,BB,0,A,3,2017,November,26,Corporate,0,0,0,79.0,1,0
+INN32065,2,0,1,2,BB,0,A,3,2017,November,6,Offline TA/TO,0,0,0,80.0,0,0
+INN32069,1,0,2,1,BB,0,A,9,2017,November,22,Corporate,1,0,4,65.0,0,0
+INN32076,2,0,0,3,BB,0,A,21,2017,November,5,Offline TA/TO,0,0,0,37.07,1,0
+INN32148,2,0,2,1,BB,0,A,22,2017,November,21,Online TA,0,0,0,88.33,1,0
+INN32232,2,0,1,3,BB,0,A,23,2017,November,12,Online TA,0,0,0,90.95,1,0
+INN32303,2,0,1,5,BB,0,A,26,2017,November,3,Online TA,0,0,0,99.45,0,0
+INN32305,1,0,2,3,SC,0,A,5,2017,November,15,Online TA,0,0,0,73.15,0,0
+INN32315,2,0,0,2,BB,0,A,95,2017,November,27,Online TA,0,0,0,72.25,1,1
+INN32371,1,0,0,1,BB,0,A,22,2017,November,17,Corporate,0,0,0,62.0,0,0
+INN32414,2,0,0,3,BB,0,D,42,2017,November,4,Offline TA/TO,0,0,0,60.0,0,0
+INN32454,2,0,2,2,BB,0,D,47,2017,November,7,Offline TA/TO,0,0,0,60.0,1,0
+INN32460,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN32511,1,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,70.0,0,0
+INN32598,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN32691,2,0,1,2,BB,0,D,46,2017,November,6,Offline TA/TO,0,0,0,60.0,0,0
+INN32748,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN32815,2,0,0,2,BB,0,A,2,2017,November,18,Online TA,0,0,0,107.0,0,0
+INN32931,2,0,0,3,BB,0,D,43,2017,November,4,Offline TA/TO,0,0,0,60.0,0,0
+INN32981,2,0,1,0,BB,1,A,18,2017,November,16,Online TA,0,0,0,104.0,0,0
+INN33160,2,0,0,3,BB,0,D,37,2017,November,4,Offline TA/TO,0,0,0,60.0,0,0
+INN33207,1,0,0,1,BB,0,A,2,2017,November,25,Corporate,1,0,1,65.0,0,0
+INN33289,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN33459,2,0,1,0,BB,0,B,0,2017,November,16,Complementary,0,0,0,0.0,0,0
+INN33517,1,0,1,0,BB,0,A,4,2017,November,9,Corporate,1,0,1,65.0,0,0
+INN33531,3,0,2,3,BB,0,D,66,2017,November,26,Offline TA/TO,0,0,0,90.0,1,0
+INN33661,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN33713,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN33771,1,0,0,3,SC,0,A,35,2017,November,26,Online TA,0,0,0,85.5,2,0
+INN33839,2,0,0,4,BB,0,A,1,2017,November,10,Online TA,0,0,0,97.0,1,0
+INN33854,2,0,1,2,BB,0,A,11,2017,November,27,Offline TA/TO,0,0,0,55.0,0,0
+INN33861,1,0,0,2,BB,0,A,16,2017,November,6,Online TA,0,0,0,81.0,1,0
+INN33888,2,0,2,2,BB,0,D,61,2017,November,21,Offline TA/TO,0,0,0,60.0,0,0
+INN34008,3,0,0,3,BB,0,A,28,2017,November,17,Offline TA/TO,0,0,0,51.6,1,0
+INN34038,2,0,2,1,BB,0,D,61,2017,November,14,Online TA,0,0,0,81.9,2,0
+INN34046,1,0,0,2,BB,0,A,5,2017,November,18,Corporate,1,0,3,65.0,0,0
+INN34064,2,0,1,4,BB,0,A,11,2017,November,2,Online TA,0,0,0,73.95,1,0
+INN34091,2,0,2,1,BB,0,A,67,2017,November,1,Offline TA/TO,0,0,0,32.71,0,0
+INN34125,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN34147,1,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,70.0,0,0
+INN34213,2,0,0,3,BB,0,D,50,2017,November,11,Offline TA/TO,0,0,0,60.0,0,0
+INN34388,2,0,2,1,SC,0,A,13,2017,November,15,Online TA,0,0,0,85.0,1,0
+INN34407,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN34477,1,0,0,1,BB,0,A,47,2017,November,11,Corporate,0,0,0,65.0,0,0
+INN34485,2,0,1,2,SC,1,A,4,2017,November,6,Online TA,0,0,0,104.0,1,0
+INN34565,2,0,2,2,BB,0,D,68,2017,November,29,Offline TA/TO,0,0,0,60.0,0,0
+INN34599,2,0,2,2,BB,0,D,47,2017,November,7,Offline TA/TO,0,0,0,60.0,1,0
+INN34784,2,0,0,5,BB,0,D,36,2017,November,3,Offline TA/TO,0,0,0,60.0,0,0
+INN34949,2,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,85.0,0,0
+INN34971,2,0,2,2,BB,0,A,25,2017,November,6,Online TA,0,0,0,90.95,1,0
+INN34991,2,0,0,2,BB,0,A,79,2017,November,13,Offline TA/TO,0,0,0,75.0,0,0
+INN34992,2,0,0,1,BB,0,G,0,2017,November,5,Complementary,0,0,0,0.0,2,0
+INN35007,1,0,0,2,BB,0,A,1,2017,November,20,Online TA,0,0,0,0.0,0,0
+INN35048,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN35092,2,0,1,2,BB,0,A,29,2017,November,6,Online TA,0,0,0,96.3,2,0
+INN35147,2,2,0,1,BB,0,F,2,2017,November,11,Corporate,0,0,0,95.0,1,0
+INN35166,2,0,1,4,BB,0,D,6,2017,November,4,Offline TA/TO,0,0,0,78.2,0,0
+INN35266,2,0,0,3,BB,0,A,73,2017,November,24,Offline TA/TO,0,0,0,85.67,0,0
+INN35301,1,0,1,0,BB,0,A,7,2017,November,16,Corporate,0,0,0,79.0,0,0
+INN35324,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN35336,2,0,0,2,BB,0,D,15,2017,November,26,Online TA,0,0,0,72.07,0,0
+INN35414,1,0,1,1,BB,0,A,3,2017,November,16,Complementary,0,0,0,0.0,0,0
+INN35461,2,0,1,2,BB,0,D,54,2017,November,16,Offline TA/TO,0,0,0,69.0,0,0
+INN35546,2,0,2,1,BB,0,A,11,2017,November,1,Online TA,0,0,0,87.0,1,0
+INN35560,1,0,0,1,BB,1,A,2,2017,November,12,Online TA,0,0,0,100.0,1,0
+INN35702,2,0,0,3,BB,0,D,50,2017,November,17,Offline TA/TO,0,0,0,60.0,0,0
+INN35718,2,0,0,4,BB,0,A,79,2017,November,18,Online TA,0,0,0,52.85,2,0
+INN35778,2,0,0,3,BB,0,D,44,2017,November,11,Offline TA/TO,0,0,0,60.0,1,0
+INN35803,1,0,2,0,BB,0,A,24,2017,November,8,Online TA,0,0,0,101.0,1,0
+INN35993,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN35998,2,0,1,4,BB,0,A,42,2017,November,16,Online TA,0,0,0,104.42,1,0
+INN36011,2,0,1,2,BB,0,D,45,2017,November,6,Offline TA/TO,0,0,0,60.0,0,0
+INN36042,2,0,1,2,BB,0,D,57,2017,November,20,Offline TA/TO,0,0,0,60.0,0,0
+INN36056,1,0,1,2,BB,0,A,4,2017,November,30,Corporate,0,0,0,65.0,0,0
+INN36076,2,0,0,3,BB,0,A,76,2017,November,19,Online TA,0,0,0,72.25,2,0
+INN36166,1,0,1,2,BB,0,A,2,2017,November,9,Complementary,0,0,0,79.0,0,0
+INN36188,1,0,0,2,BB,0,A,32,2017,November,20,Offline TA/TO,0,0,0,73.0,0,0
+INN36200,2,0,0,2,BB,0,A,22,2017,November,3,Offline TA/TO,0,0,0,75.0,1,0
+INN36230,3,0,0,3,BB,0,A,42,2017,November,25,Online TA,0,0,0,106.8,1,0
