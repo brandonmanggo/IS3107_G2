@@ -98,9 +98,9 @@ def predict_price(**kwargs):
     hotel_booking_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_df')
 
     ## Load Pretrained price_model using pickle
-    price_model = pickle.load(open('model_price.pkl', 'rb'))
-    # with open(price_model_dir, 'wb') as f:
-    #    price_model = pickle.load(f)
+    with open(price_model_dir, 'wb') as f:
+        price_model = pickle.load(f)
+    # price_model = pickle.load(open('model_price.pkl', 'rb'))
 
     # variables
     predictors = booking_price_df.iloc[:,:-1]
