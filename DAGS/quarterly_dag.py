@@ -6,6 +6,14 @@ import pandas as pd
 import numpy as np
 import pickle
 
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import RandomForestRegressor
+import lightgbm as ltb
+import xgboost as xgb
+import catboost as cb
+
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
 ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
@@ -86,11 +94,11 @@ def extract(**kwargs):
     with open(output_dir_cancel, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([field.name for field in results.schema])
-        for row in result_price:
+        for row in result_cancel:
             writer.writerow(row)
     
     query_job_price_all = client.query(query_price_all)
-    qury_job_cancel_all = client.query(query_cancel_all)
+    query_job_cancel_all = client.query(query_cancel_all)
 
     result_price_all = query_job_price_all.result()
     result_cancel_all = query_job_cancel_all.result()
@@ -106,13 +114,60 @@ def update_price_model(**kwargs):
 
     hotel_price_df = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
 
-    # train model 
-    #KM
+    # Splitting Data (80:20) Regression
+    x = hotel_price_df.drop(columns = 'adr')
+    y = hotel_price_df.adr 
+    x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
 
-    # Save updated model
+    # Train Models
+    rfr = RandomForestRegressor()
+    rfr_model = rfr.fit(x_train, y_train)
+    rfr_y_pred = rfr_model.predict(x_test)
+    rfr_r2 = r2_score(y_test, rfr_y_pred)
+
+    new_price_model = rfr_model
+    new_r2 = rfr_r2
+
+    gbr = GradientBoostingRegressor()
+    gbr_model = gbr.fit(x_train, y_train)
+    gbr_y_pred = gbr_model.predict(x_test)
+    gbr_r2 = r2_score(y_test, gbr_y_pred)
+
+    if (gbr_r2 > new_r2):
+        new_r2 = gbr_r2
+        new_price_model = gbr_model
+    
+    lgbmr = ltb.LGBMRegressor()
+    lgbmr_model = lgbmr.fit(x_train, y_train)
+    lgbmr_y_pred = lgbmr_model.predict(x_test)
+    lgbmr_r2 = r2_score(y_test, lgbmr_y_pred)
+
+    if (lgbmr_r2 > new_r2):
+        new_r2 = lgbmr_r2
+        new_price_model = lgbmr_model
+    
+    xgbr = xgb.XGBRegressor()
+    xgbr_model = xgbr.fit(x_train, y_train)
+    xgbr_y_pred = xgbr_model.predict(x_test)
+    xgbr_r2 = r2_score(y_test, xgbr_y_pred)
+
+    if (xgbr_r2 > new_r2):
+        new_r2 = xgbr_r2
+        new_price_model = xgbr_model
+
+    cbr = cb.CatBoostRegressor()
+    cbr_model = cbr.fit(x_train, y_train)
+    cbr_y_pred = cbr_model.predict(x_test)
+    cbr_r2 = r2_score(y_test, cbr_y_pred)
+
+    if (cbr_r2 > new_r2):
+        new_r2 = cbr_r2
+        new_price_model = cbr_model
+
+    # Save Updated Model
     price_model_dir = f'{ddir}/models/price_model.pkl'
     with open(price_model_dir, "wb") as f:
-        pickle.dump(model, f)
+        pickle.dump(new_price_model, f)
 
 
 def update_cancel_model(**kwargs):
