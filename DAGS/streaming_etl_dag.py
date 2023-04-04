@@ -34,7 +34,51 @@ def transform(**kwargs):
     df = pd.read_csv(data)
     
     # Data Preprocessing for Price Prediction
-    #KM
+    
+    processed_booking_price_df = df.copy()
+    
+    ## Pre-Processing
+
+    # Filling Missing Data for Children
+    processed_booking_price_df.children.fillna(0, inplace = True)
+    processed_booking_price_df['children'] = processed_booking_price_df['children'].astype('int') 
+
+    ## Adjust to suit Streaming Data - Hotel Reservation
+    # processed_booking_price_df.loc[(processed_booking_price_df['meal'] == 'Undefined'), 'meal']= 'SC'
+    # processed_booking_price_df.loc[(processed_booking_price_df['required_car_parking_spaces'] > 1), 'required_car_parking_spaces']= 1
+
+    # Cleaning Data for adr
+    processed_booking_price_df.drop(index = [row for row in processed_booking_price_df.index 
+                                            if 400 < processed_booking_price_df.loc[row, 'adr']], 
+                                    inplace = True)
+    processed_booking_price_df.drop(index = [row for row in processed_booking_price_df.index 
+                                            if 0 >= processed_booking_price_df.loc[row, 'adr']], 
+                                    inplace = True)
+    processed_booking_price_df.adr = processed_booking_price_df.adr.round()
+    processed_booking_price_df.adr = processed_booking_price_df.adr.astype('int')
+
+    ## One-Hot Encoding
+    # For market_segment Column
+    market_segment_one_hot = pd.get_dummies(processed_booking_price_df['market_segment'], prefix='market_segment')
+    processed_booking_price_df = pd.concat([processed_booking_price_df, market_segment_one_hot], axis=1)
+    processed_booking_price_df.drop('market_segment', axis=1, inplace=True)
+
+    # For arrival_date_month Column
+    arrival_date_month_one_hot = pd.get_dummies(processed_booking_price_df['arrival_date_month'], prefix='arrival_date_month')
+    processed_booking_price_df = pd.concat([processed_booking_price_df, arrival_date_month_one_hot], axis=1)
+    processed_booking_price_df.drop('arrival_date_month', axis=1, inplace=True)
+
+    # For meal Column
+    meal_one_hot = pd.get_dummies(processed_booking_price_df['meal'], prefix='meal')
+    processed_booking_price_df = pd.concat([processed_booking_price_df, meal_one_hot], axis=1)
+    processed_booking_price_df.drop('meal', axis=1, inplace=True)
+
+    # For reserved_room_type Column
+    reserved_room_type_one_hot = pd.get_dummies(processed_booking_price_df['reserved_room_type'], prefix='reserved_room_type')
+    processed_booking_price_df = pd.concat([processed_booking_price_df, reserved_room_type_one_hot], axis=1)
+    processed_booking_price_df.drop('reserved_room_type', axis=1, inplace=True)
+
+
     ti.xcom_push('hotel_booking_price_df', processed_booking_price_df)
     
 
@@ -53,9 +97,10 @@ def predict_price(**kwargs):
     booking_price_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_price_df')
     hotel_booking_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_df')
 
-    # Load Pretrained price_model using pickle
-    with open(price_model_dir, 'wb') as f:
-        price_model = pickle.load(f)
+    ## Load Pretrained price_model using pickle
+    price_model = pickle.load(open('model_price.pkl', 'rb'))
+    # with open(price_model_dir, 'wb') as f:
+    #    price_model = pickle.load(f)
 
     # variables
     predictors = booking_price_df.iloc[:,:-1]
@@ -93,6 +138,8 @@ def predict_cancel(**kwargs):
 
     ti.xcom_push('hotel_booking_cancel_csv', hotel_booking_df.to_csv())
     
+
+
 def load_price(**kwargs):
     ti = kwargs['ti']
     hotel_booking_price_csv = ti.xcom_pull(task_ids = 'predict_price', key = 'hotel_booking_price_csv')
