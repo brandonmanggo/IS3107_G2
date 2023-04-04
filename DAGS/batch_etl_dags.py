@@ -9,18 +9,17 @@ import numpy as np
 
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
-ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/is3107-g2-381308-b948b933d07a.json'
-
+ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/IS3107_G2'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
 default_args = {
     'owner': 'airflow', 
 }
 
 with DAG(
-    "batch_processing_hotel",
+    "batch_etl",
     default_args=default_args,
-    description='ETL Hotel Booking Datasets',
+    description='Batch Data ETL for Hotel and Airbnb Datasets',
     schedule_interval=None,
     # start_date=datetime(2023, 3, 13),
     catchup=False,
@@ -31,34 +30,65 @@ with DAG(
         ti = kwargs['ti']
 
         # Hotel Booking Dataset
-        hotel_booking_dir = f'{ddir}/Hotel_Reservations.csv'
-        hotel_booking_file = open(hotel_booking_dir).read()
+        hotel_booking_dir = f'{ddir}/Dataset/batch_data/city_hotel_bookings_updated.csv'
+        hotel_booking_file = open(hotel_booking_dir)
 
         # Airbnb Dataset
-        airbnb_dir = f'{ddir}/Airbnb_Lisbon.csv'
-        airbnb_file = open(airbnb_dir).read()
+        airbnb_dir = f'{ddir}/Dataset/batch_data/Airbnb_Lisbon_raw.csv'
+        airbnb_file = open(airbnb_dir)
 
-        ti.xcom_push('hotel_booking_data', hotel_booking_file)
-        ti.xcom_push('airbnb_data', airbnb_file)
+        ti.xcom_push('hotel_booking_raw_data', hotel_booking_file)
+        ti.xcom_push('airbnb_raw_data', airbnb_file)
 
 
     def transform_hotel(**kwargs):
         ti = kwargs['ti']
-        hotel_booking_file = ti.xcom_pull(task_ids = 'extract', key = 'hotel_booking_data')
+        hotel_booking_file = ti.xcom_pull(task_ids = 'extract', key = 'hotel_booking_raw_data')
         hotel_booking_df = pd.read_csv(hotel_booking_file)
 
         # Cleaning, extract columns, merging
 
-        # Table 1 : Hotel Booking EDA (include most columns)
+        # Table 1 : Hotel Booking records (include all columns) (raw dataset for EDA)
         hotel_booking_eda = hotel_booking_df.copy()
+        
+        hotel_booking_eda = hotel_booking_eda
 
         ti.xcom_push('hotel_booking_eda', hotel_booking_eda.to_csv())
 
-        # Table 2 : Hotel Booking ML (include useful columns only)
-        hotel_booking_cancel = hotel_booking_df.copy()
+        # Table 2 : Hotel Booking ML Cancellation (include useful columns only)
+        hotel_booking_ml_cancel = hotel_booking_df.copy()
 
-        ti.xcom_push('hotel_booking_cancel', hotel_booking_cancel.to_csv())
+        ml_cancel_included_cols = ['Booking_ID', 'adults', 'children', 'stays_in_weekend_nights',
+       'stays_in_week_nights', 'meal', 'required_car_parking_spaces',
+       'reserved_room_type', 'lead_time', 'arrival_date_year',
+       'arrival_date_month', 'arrival_date_day_of_month','arrival_month', 'market_segment',
+       'is_repeated_guest', 'previous_cancellations',
+       'previous_bookings_not_canceled', 'adr', 'total_of_special_requests',
+       'is_canceled']
 
+        hotel_booking_ml_cancel = hotel_booking_ml_cancel[ml_included_cols]
+        hotel_booking_ml_cancel['predicted'] = pd.Series([0] * len(hotel_booking_ml_cancel))
+        
+        ti.xcom_push('hotel_booking_ml_cancel', hotel_booking_ml_cancel.to_csv())
+
+        # Table 3 : Hotel Booking ML Price Prediction (include useful columns only)
+        hotel_booking_ml_price = hotel_booking_df.copy()
+
+        ml_price_included_cols = ['Booking_ID','adults', 'children', 'stays_in_weekend_nights',
+       'stays_in_week_nights', 'meal', 'required_car_parking_spaces',
+       'reserved_room_type', 'lead_time', 'arrival_date_year',
+       'arrival_date_month', 'arrival_date_day_of_month','arrival_month', 'market_segment',
+       'is_repeated_guest', 'previous_cancellations',
+       'previous_bookings_not_canceled', 'adr', 'total_of_special_requests',
+       'is_canceled']
+
+        hotel_booking_ml_price = hotel_booking_ml_price[ml_price_included_cols]
+
+        #KM add preprocessing here
+        
+        hotel_booking_ml_price['predicted'] = pd.Series([0] * len(hotel_booking_ml_price))
+        
+        ti.xcom_push('hotel_booking_ml_price', hotel_booking_ml_price.to_csv())
 
     def transform_airbnb(**kwargs):
         ti = kwargs['ti']
@@ -94,29 +124,141 @@ with DAG(
     def load_hotel(**kwargs):
         ti = kwargs['ti']
 
+        hotel_booking_eda_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
+        hotel_booking_ml_cancel_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_ml_cancel')
+        hotel_booking_ml_price_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_ml_price')
+
+        hotel_booking_eda_csv_bytes = bytes(hotel_booking_eda_csv, 'utf-8')
+        hotel_booking_eda_csv_stream = io.BytesIO(hotel_booking_eda_csv_bytes)
+
+        hotel_booking_ml_cancel_csv_bytes = bytes(hotel_booking_ml_cancel_csv, 'utf-8')
+        hotel_booking_ml_cancel_csv_stream = io.BytesIO(hotel_booking_ml_cancel_csv_bytes)
+
+        hotel_booking_ml_price_csv_bytes = bytes(hotel_booking_ml_price_csv, 'utf-8')
+        hotel_booking_ml_price_csv_stream = io.BytesIO(hotel_booking_ml_price_csv_bytes)
+
         # Create a client object
         client = bigquery.Client()
 
-        hotel_booking_eda_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
-        hotel_booking_cancel_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
+        # Set Table ID
+        table_id_h_eda = 'is3107-g2-381308.hotel_booking.hotel_booking_eda'
+        table_id_h_ml_cancel = 'is3107-g2-381308.hotel_booking.hotel_booking_ml_cancel'
+        table_id_h_ml_price = 'is3107-g2-381308.hotel_booking.hotel_booking_ml_price'
 
-        table_id_h_eda = 'is3107-g2-381308.hotel_bookings.booking_city'
-        table_id_h_cancel = 'is3107-g2-381308.hotel_bookings.booking_city'
-
-        new_schema = [
-            bigquery.SchemaField('is_canceled', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('lead_time', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('arrival_date_year', 'STRING', mode='NULLABLE')
+        # Define Table Schema
+        eda_schema = [
+            bigquery.SchemaField('Booking_ID', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('is_canceled', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('lead_time', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_year', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_month', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_week_number', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_day_of_month', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('stays_in_weekend_nights', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('stays_in_week_nights', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('adults', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('children', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('babies', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('meal', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('country', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('distribution_channel', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('is_repeated_guest', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('previous_cancellations', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('previous_bookings_not_canceled', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type ', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('assigned_room_type ', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('booking_changes', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('agent', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('company', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('days_in_waiting_list', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('customer_type', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('adr', 'FLOAT64', mode='NULLABLE'),
+            bigquery.SchemaField('required_car_parking_spaces', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('total_of_special_requests', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('reservation_status', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('reservation_status_date', 'STRING', mode='NULLABLE'),
         ]
 
-        table = client.get_table(table_id)
-        
-        original_schema = table.schema
-        new_schema = original_schema[:] 
-        new_schema.extend(new_schema)
-        table.schema = new_schema
+        ml_cancel_schema = [
+            bigquery.SchemaField('Booking_ID', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('adults', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('children', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('stays_in_weekend_nights', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('stays_in_week_nights', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('meal', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('required_car_parking_spaces', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type ', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('lead_time', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_year', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_month', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_day_of_month', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('is_repeated_guest', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('previous_cancellations', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('previous_bookings_not_canceled', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('adr', 'FLOAT64', mode='NULLABLE'),
+            bigquery.SchemaField('total_of_special_requests', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('is_canceled', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('predicted', 'INT64', mode='NULLABLE'),
+        ]
 
-        table = client.update_table(table, ['schema'])
+        ml_price_schema = [
+            bigquery.SchemaField('Booking_ID', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('adults', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('children', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('stays_in_weekend_nights', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('stays_in_week_nights', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('meal_BB', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('meal_HB', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('meal_SC', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('required_car_parking_spaces', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type_A', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type_B', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type_C', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type_D', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type_E', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type_F', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('reserved_room_type_G', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('lead_time', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_year', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_January', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_February', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_March', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_April', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_May', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_June', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_July', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_August', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_September', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_October', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_month_December', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_day_of_month', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Complementary', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Corporate', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Direct', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Groups', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Offline TA/TO', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Online TA', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('is_repeated_guest', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('previous_cancellations', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('previous_bookings_not_canceled', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('total_of_special_requests', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('adr', 'FLOAT64', mode='NULLABLE'),
+            bigquery.SchemaField('predicted', 'INT64', mode='NULLABLE'),
+        ]
+
+        # Create Table Object
+        table_eda = bigquery.Table(table_id_h_eda, schema=eda_schema)
+        table_ml_cancel = bigquery.Table(table_id_h_ml_cancel, schema=ml_cancel_schema)
+        table_ml_price = bigquery.Table(table_id_h_ml_price, schema=ml_price_schema)
+
+        # Create Table in BigQuery
+        table_eda_created = client.create_table(table_eda)
+        table_ml_cancel_created = client.create_table(table_ml_cancel)
+        table_ml_price_created = client.create_table(table_ml_price)
 
         job_config = bigquery.LoadJobConfig(
             source_format=bigquery.SourceFormat.CSV, 
@@ -125,8 +267,14 @@ with DAG(
             write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
         )
 
-        job = client.load_table_from_dataframe(hotel_city_df, table_id, job_config=job_config)
-        job.result()
+        # Load Batch Data to BigQuery
+        job1 = client.load_table_from_file(hotel_booking_eda_csv_stream, table_id_h_eda, job_config=job_config)
+        job2 = client.load_table_from_file(hotel_booking_ml_cancel_csv_stream, table_id_h_ml_cancel, job_config=job_config)
+        job3 = client.load_table_from_file(hotel_booking_ml_price_csv_stream, table_id_h_ml_price, job_config=job_config)
+
+        job1.result()
+        job2.result()
+        job3.result()
 
 
     def load_airbnb(**kwargs):
@@ -136,10 +284,14 @@ with DAG(
         client = bigquery.Client()
         
         airbnb_lisbon_eda_csv = ti.xcom_pull(task_ids = 'transform_airbnb', key = 'airbnb_lisbon_eda')
+        airbnb_lisbon_eda_csv_bytes = bytes(airbnb_lisbon_eda_csv, 'utf-8')
+        airbnb_lisbon_eda_csv_stream = io.BytesIO(airbnb_lisbon_eda_csv_bytes)
 
+        # Set Table ID
         table_id_a_eda = 'is3107-g2-381308.airbnb.airbnb_lisbon'
 
-        updated_schema = [
+        # Define Table Schema
+        eda_schema = [
             bigquery.SchemaField('room_id', 'INTEGER', mode='NULLABLE'),
             bigquery.SchemaField('host_id', 'INTEGER', mode='NULLABLE'),
             bigquery.SchemaField('room_type', 'STRING', mode='NULLABLE'),
@@ -152,14 +304,11 @@ with DAG(
             bigquery.SchemaField('longitude', 'FLOAT', mode='NULLABLE'),
         ]
 
-        table = client.get_table(table_id_a_eda)
-        
-        # original_schema = table.schema
-        # new_schema = original_schema[:] 
-        # new_schema.extend(new_schema)
-        table.schema = updated_schema
+        # Create Table Object
+        table_eda = bigquery.Table(table_id_a_eda, schema=eda_schema)
 
-        table = client.update_table(table, ['schema'])
+        # Create Table in BigQuery
+        table = client.create_table(table_eda)
 
         job_config = bigquery.LoadJobConfig(
             source_format=bigquery.SourceFormat.CSV, 
@@ -168,7 +317,7 @@ with DAG(
             write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
         )
 
-        job = client.load_table_from_dataframe(airbnb_lisbon_eda_csv, table_id_a_eda, job_config=job_config)
+        job = client.load_table_from_file(airbnb_lisbon_eda_csv_stream, table_id_a_eda, job_config=job_config)
         job.result()
 
 
