@@ -66,7 +66,7 @@ with DAG(
        'previous_bookings_not_canceled', 'adr', 'total_of_special_requests',
        'is_canceled']
 
-        hotel_booking_ml_cancel = hotel_booking_ml_cancel[ml_included_cols]
+        hotel_booking_ml_cancel = hotel_booking_ml_cancel[ml_cancel_included_cols]
         hotel_booking_ml_cancel['predicted'] = pd.Series([0] * len(hotel_booking_ml_cancel))
         
         ti.xcom_push('hotel_booking_ml_cancel', hotel_booking_ml_cancel.to_csv())
@@ -75,16 +75,55 @@ with DAG(
         hotel_booking_ml_price = hotel_booking_df.copy()
 
         ml_price_included_cols = ['Booking_ID','adults', 'children', 'stays_in_weekend_nights',
-       'stays_in_week_nights', 'meal', 'required_car_parking_spaces',
-       'reserved_room_type', 'lead_time', 'arrival_date_year',
-       'arrival_date_month', 'arrival_date_day_of_month','arrival_month', 'market_segment',
-       'is_repeated_guest', 'previous_cancellations',
-       'previous_bookings_not_canceled', 'adr', 'total_of_special_requests',
-       'is_canceled']
+                                  'stays_in_week_nights', 'meal', 'required_car_parking_spaces',
+                                  'reserved_room_type', 'lead_time', 'arrival_date_year',
+                                  'arrival_date_month', 'arrival_date_day_of_month', 
+                                  'market_segment', 'is_repeated_guest', 'previous_cancellations',
+                                  'previous_bookings_not_canceled', 'adr', 'total_of_special_requests']
 
         hotel_booking_ml_price = hotel_booking_ml_price[ml_price_included_cols]
 
-        #KM add preprocessing here
+        ## Pre-Processing
+
+        # Filling Missing Data for Children
+        hotel_booking_ml_price.children.fillna(0, inplace = True)
+        hotel_booking_ml_price['children'] = hotel_booking_ml_price['children'].astype('int') 
+
+        ## Adjust to suit Streaming Data - Hotel Reservation
+        hotel_booking_ml_price.loc[(hotel_booking_ml_price['meal'] == 'Undefined'), 'meal']= 'SC'
+        hotel_booking_ml_price.loc[(hotel_booking_ml_price['required_car_parking_spaces'] > 1), 'required_car_parking_spaces']= 1
+
+        # Cleaning Data for adr
+        hotel_booking_ml_price.drop(index = [row for row in hotel_booking_ml_price.index 
+                                            if 400 < hotel_booking_ml_price.loc[row, 'adr']], 
+                                    inplace = True)
+        hotel_booking_ml_price.drop(index = [row for row in hotel_booking_ml_price.index 
+                                            if 0 >= hotel_booking_ml_price.loc[row, 'adr']], 
+                                    inplace = True)
+        hotel_booking_ml_price.adr = hotel_booking_ml_price.adr.round()
+        hotel_booking_ml_price.adr = hotel_booking_ml_price.adr.astype('int')
+
+        ## One-Hot Encoding
+        # For market_segment Column
+        market_segment_one_hot = pd.get_dummies(hotel_booking_ml_price['market_segment'], prefix='market_segment')
+        hotel_booking_ml_price = pd.concat([hotel_booking_ml_price, market_segment_one_hot], axis=1)
+        hotel_booking_ml_price.drop('market_segment', axis=1, inplace=True)
+
+        # For arrival_date_month Column
+        arrival_date_month_one_hot = pd.get_dummies(hotel_booking_ml_price['arrival_date_month'], prefix='arrival_date_month')
+        hotel_booking_ml_price = pd.concat([hotel_booking_ml_price, arrival_date_month_one_hot], axis=1)
+        hotel_booking_ml_price.drop('arrival_date_month', axis=1, inplace=True)
+
+        # For meal Column
+        meal_one_hot = pd.get_dummies(hotel_booking_ml_price['meal'], prefix='meal')
+        hotel_booking_ml_price = pd.concat([hotel_booking_ml_price, meal_one_hot], axis=1)
+        hotel_booking_ml_price.drop('meal', axis=1, inplace=True)
+
+        # For reserved_room_type Column
+        reserved_room_type_one_hot = pd.get_dummies(hotel_booking_ml_price['reserved_room_type'], prefix='reserved_room_type')
+        hotel_booking_ml_price = pd.concat([hotel_booking_ml_price, reserved_room_type_one_hot], axis=1)
+        hotel_booking_ml_price.drop('reserved_room_type', axis=1, inplace=True)
+
         
         hotel_booking_ml_price['predicted'] = pd.Series([0] * len(hotel_booking_ml_price))
         
