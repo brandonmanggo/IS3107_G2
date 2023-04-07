@@ -59,12 +59,12 @@ with DAG(
         hotel_booking_ml_cancel = hotel_booking_df.copy()
 
         ml_cancel_included_cols = ['Booking_ID', 'adults', 'children', 'stays_in_weekend_nights',
-       'stays_in_week_nights', 'meal', 'required_car_parking_spaces',
-       'reserved_room_type', 'lead_time', 'arrival_date_year',
-       'arrival_date_month', 'arrival_date_day_of_month','arrival_month', 'market_segment',
-       'is_repeated_guest', 'previous_cancellations',
-       'previous_bookings_not_canceled', 'adr', 'total_of_special_requests',
-       'is_canceled']
+                                    'stays_in_week_nights', 'meal', 'required_car_parking_spaces',
+                                    'reserved_room_type', 'lead_time', 'arrival_date_year',
+                                    'arrival_date_month', 'arrival_date_day_of_month', 'market_segment',
+                                    'is_repeated_guest', 'previous_cancellations',
+                                    'previous_bookings_not_canceled', 'adr', 'total_of_special_requests',
+                                    'is_canceled']
 
         hotel_booking_ml_cancel = hotel_booking_ml_cancel[ml_cancel_included_cols]
         hotel_booking_ml_cancel['predicted'] = pd.Series([0] * len(hotel_booking_ml_cancel))
@@ -222,7 +222,6 @@ with DAG(
             bigquery.SchemaField('lead_time', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('arrival_date_year', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('arrival_date_month', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('arrival_month', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('arrival_date_day_of_month', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('market_segment', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('is_repeated_guest', 'INT64', mode='NULLABLE'),
@@ -269,8 +268,8 @@ with DAG(
             bigquery.SchemaField('market_segment_Corporate', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('market_segment_Direct', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('market_segment_Groups', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('market_segment_Offline TA/TO', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('market_segment_Online TA', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Offline_TA_TO', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Online_TA', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('is_repeated_guest', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('previous_cancellations', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('previous_bookings_not_canceled', 'INT64', mode='NULLABLE'),
