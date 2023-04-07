@@ -34,7 +34,7 @@ with DAG(
         hotel_booking_file = open(hotel_booking_dir)
 
         # Airbnb Dataset
-        airbnb_dir = f'{ddir}/Dataset/batch_data/Airbnb_Lisbon_raw.csv'
+        airbnb_dir = f'{ddir}/Dataset/batch_data/data_airbnb_raw.csv'
         airbnb_file = open(airbnb_dir)
 
         ti.xcom_push('hotel_booking_raw_data', hotel_booking_file)
@@ -124,40 +124,30 @@ with DAG(
         hotel_booking_ml_price = pd.concat([hotel_booking_ml_price, reserved_room_type_one_hot], axis=1)
         hotel_booking_ml_price.drop('reserved_room_type', axis=1, inplace=True)
 
-        
         hotel_booking_ml_price['predicted'] = pd.Series([0] * len(hotel_booking_ml_price))
         
         ti.xcom_push('hotel_booking_ml_price', hotel_booking_ml_price.to_csv())
 
+
     def transform_airbnb(**kwargs):
         ti = kwargs['ti']
-        airbnb_file = ti.xcom_pull(task_ids = 'extract', key = 'airbnb_data')
-        airbnb_lisbon_df = pd.read_csv(airbnb_file)
+        airbnb_file = ti.xcom_pull(task_ids = 'extract', key = 'airbnb_raw_data')
+        airbnb_df = pd.read_csv(airbnb_file)
 
         ## Cleaning, Extract columns, Merging
-        # Table
-        airbnb_lisbon_eda = airbnb_lisbon_df.copy()
-
-        # Cleaning Data
-        airbnb_lisbon_eda.drop(['borough', 'neighborhood', 'reviews', 'last_modified'], axis = 1, inplace = True)
-        airbnb_lisbon_eda['room_type'] = airbnb_lisbon_eda['room_type'].astype('str') 
-        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 0 >= airbnb_lisbon_eda.loc[row, 'accommodates']], inplace = True)
-        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 0 >= airbnb_lisbon_eda.loc[row, 'price']], inplace = True)
-        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 0 >= airbnb_lisbon_eda.loc[row, 'minstay']], inplace = True)
+        # Dataframe
+        airbnb_eda = airbnb_df.copy()
 
         # Further Cleaning Data for Accommodates
-        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 10 < airbnb_lisbon_eda.loc[row, 'accommodates']], inplace = True)
+        airbnb_eda.drop(index = [row for row in airbnb_eda.index if 10 < airbnb_eda.loc[row, 'accommodates']], inplace = True)
 
         # Further Cleaning Data for Bedrooms
-        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 5 < airbnb_lisbon_eda.loc[row, 'bedrooms']], inplace = True)
+        airbnb_eda.drop(index = [row for row in airbnb_eda.index if 5 < airbnb_eda.loc[row, 'bedrooms']], inplace = True)
 
         # Further Cleaning Data for Minstay
-        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 9 < airbnb_lisbon_eda.loc[row, 'minstay']], inplace = True)
+        airbnb_eda.drop(index = [row for row in airbnb_eda.index if 5 < airbnb_eda.loc[row, 'minstay']], inplace = True)
 
-        # Further Cleaning Data for Minstay
-        airbnb_lisbon_eda.drop(index = [row for row in airbnb_lisbon_eda.index if 2000 < airbnb_lisbon_eda.loc[row, 'price']], inplace = True)
-
-        ti.xcom_push('airbnb_lisbon_eda', airbnb_lisbon_eda.to_csv())
+        ti.xcom_push('airbnb_eda', airbnb_eda.to_csv())
 
 
     def load_hotel(**kwargs):
@@ -322,25 +312,27 @@ with DAG(
         # Create a client object
         client = bigquery.Client()
         
-        airbnb_lisbon_eda_csv = ti.xcom_pull(task_ids = 'transform_airbnb', key = 'airbnb_lisbon_eda')
-        airbnb_lisbon_eda_csv_bytes = bytes(airbnb_lisbon_eda_csv, 'utf-8')
-        airbnb_lisbon_eda_csv_stream = io.BytesIO(airbnb_lisbon_eda_csv_bytes)
+        airbnb_eda_csv = ti.xcom_pull(task_ids = 'transform_airbnb', key = 'airbnb_eda')
+        airbnb_eda_csv_bytes = bytes(airbnb_eda_csv, 'utf-8')
+        airbnb_eda_csv_stream = io.BytesIO(airbnb_eda_csv_bytes)
 
         # Set Table ID
-        table_id_a_eda = 'is3107-g2-381308.airbnb.airbnb_lisbon'
+        table_id_a_eda = 'is3107-g2-381308.airbnb.airbnb_eda'
 
         # Define Table Schema
         eda_schema = [
-            bigquery.SchemaField('room_id', 'INTEGER', mode='NULLABLE'),
             bigquery.SchemaField('host_id', 'INTEGER', mode='NULLABLE'),
             bigquery.SchemaField('room_type', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('neighbourhood', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('reviews', 'INTEGER', mode='NULLABLE'),
             bigquery.SchemaField('overall_satisfaction', 'FLOAT', mode='NULLABLE'),
-            bigquery.SchemaField('accommodates', 'FLOAT', mode='NULLABLE'),
-            bigquery.SchemaField('bedrooms', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('accommodates', 'INTEGER', mode='NULLABLE'),
+            bigquery.SchemaField('bedrooms', 'INTEGER', mode='NULLABLE'),
             bigquery.SchemaField('price', 'FLOAT', mode='NULLABLE'),
-            bigquery.SchemaField('minstay', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('minstay', 'INTEGER', mode='NULLABLE'),
             bigquery.SchemaField('latitude', 'FLOAT', mode='NULLABLE'),
             bigquery.SchemaField('longitude', 'FLOAT', mode='NULLABLE'),
+            bigquery.SchemaField('date', 'DATE', mode='NULLABLE')
         ]
 
         # Create Table Object
@@ -356,7 +348,7 @@ with DAG(
             write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
         )
 
-        job = client.load_table_from_file(airbnb_lisbon_eda_csv_stream, table_id_a_eda, job_config=job_config)
+        job = client.load_table_from_file(airbnb_eda_csv_stream, table_id_a_eda, job_config=job_config)
         job.result()
 
 
