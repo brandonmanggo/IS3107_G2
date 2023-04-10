@@ -5,6 +5,7 @@ from google.cloud import bigquery
 import pandas as pd
 import numpy as np
 import pickle
+from sklearn.preprocessing import StandardScaler
 
 
 # Set the path to your service account key file
@@ -83,7 +84,48 @@ def transform(**kwargs):
     
 
     # Data Preprocessing for Cancellation Prediction
-    #JY
+    
+    hotel_booking_cancel_df = df.copy()
+
+    #Data cleaning to make 2015-2016 dataset match the incoming streaming data
+    hotel_booking_cancel_df.loc[(hotel_booking_cancel_df['meal'] == 'Undefined'), 'meal']= 'SC'
+    hotel_booking_cancel_df.loc[ (hotel_booking_cancel_df['required_car_parking_spaces'] > 1), 'required_car_parking_spaces']= 1
+
+    #Filling in NA Values for Children column
+    hotel_booking_cancel_df.children.fillna(0, inplace = True)
+
+    #Dropping the arrival date variables (excludind month) which are not useful/relevant to the cancellation
+    hotel_booking_cancel_df.drop(['arrival_date_year', 'arrival_date_day_of_month'], axis = 1, inplace = True)
+    
+    #Encoding categorical variables
+    # For market_segment Column
+    market_segment_one_hot = pd.get_dummies(hotel_booking_cancel_df['market_segment'], prefix='market_segment')
+    hotel_booking_cancel_df = pd.concat([hotel_booking_cancel_df, market_segment_one_hot], axis=1)
+    hotel_booking_cancel_df.drop('market_segment', axis=1, inplace=True)
+
+    # For arrival_date_month Column
+    arrival_date_month_one_hot = pd.get_dummies(hotel_booking_cancel_df['arrival_date_month'], prefix='arrival_date_month')
+    hotel_booking_cancel_df = pd.concat([hotel_booking_cancel_df, arrival_date_month_one_hot], axis=1)
+    hotel_booking_cancel_df.drop('arrival_date_month', axis=1, inplace=True)
+
+    # For meal Column
+    meal_one_hot = pd.get_dummies(hotel_booking_cancel_df['meal'], prefix='meal')
+    hotel_booking_cancel_df = pd.concat([hotel_booking_cancel_df, meal_one_hot], axis=1)
+    hotel_booking_cancel_df.drop('meal', axis=1, inplace=True)
+
+    # For reserved_room_type Column
+    reserved_room_type_one_hot = pd.get_dummies(hotel_booking_cancel_df['reserved_room_type'], prefix='reserved_room_type')
+    hotel_booking_cancel_df = pd.concat([hotel_booking_cancel_df, reserved_room_type_one_hot], axis=1)
+    hotel_booking_cancel_df.drop('reserved_room_type', axis=1, inplace=True)
+
+    #Scaling of Numerical Variables
+    categorical_cols = ['arrival_date_month', 'market_segment', 'meal', 'reserved_room_type', 'is_canceled']
+    categorical_var = hotel_booking_cancel_df[categorical_cols]
+    numerical_var = hotel_booking_cancel_df.drop(columns=categorical_cols, axis=1)
+    scaler = StandardScaler()
+    numerical_var_scaled = pd.DataFrame(scaler.fit_transform(numerical_var), columns=numerical_var.columns)
+    hotel_booking_cancel_df = pd.concat([categorical_var, numerical_var_scaled], axis = 1)
+
     ti.xcom_push('hotel_booking_cancel_df', hotel_booking_cancel_df)
 
     
