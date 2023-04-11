@@ -373,12 +373,40 @@ reserved_room_type_one_hot = pd.get_dummies(processed_booking_price_df['reserved
 processed_booking_price_df = pd.concat([processed_booking_price_df, reserved_room_type_one_hot], axis=1)
 processed_booking_price_df.drop('reserved_room_type', axis=1, inplace=True)
 
+## Added Preprocessing (Items)
+processed_booking_price_df.drop('Booking_ID', axis=1, inplace=True)
+processed_booking_price_df.drop('is_canceled', axis=1, inplace=True)
+processed_booking_price_df.drop('adr', axis=1, inplace=True)
+# processed_booking_price_df.adults = processed_booking_price_df.adults.astype('float')
+
 ## Load Pretrained price_model using pickle (EOFError: Ran out of input)
 with open(price_model_dir, 'rb') as f:
     price_model = pickle.load(f)
 
 # variables
-predictors = processed_booking_price_df.iloc[:,:-1]
+# predictors = processed_booking_price_df.iloc[:,:-1]
+predictors_cols = ['adults', 'children', 'stays_in_weekend_nights',
+                   'stays_in_week_nights', 'required_car_parking_spaces', 
+                   'lead_time', 'arrival_date_year', 'arrival_date_day_of_month', 
+                   'is_repeated_guest', 'previous_cancellations', 
+                   'previous_bookings_not_canceled', 'total_of_special_requests', 
+                   'market_segment_Aviation', 'market_segment_Complementary', 
+                   'market_segment_Corporate', 'market_segment_Direct', 
+                   'market_segment_Groups', 'market_segment_Offline TA/TO', 
+                   'market_segment_Online TA', 'market_segment_Undefined', 
+                   'meal_BB', 'meal_FB' 'meal_HB', 'meal_SC', 'reserved_room_type_A', 
+                   'reserved_room_type_B', 'reserved_room_type_C', 
+                   'reserved_room_type_D', 'reserved_room_type_E', 
+                   'reserved_room_type_F', 'reserved_room_type_G',
+                   'arrival_date_month_January', 'arrival_date_month_February', 
+                   'arrival_date_month_March', 'arrival_date_month_April', 
+                   'arrival_date_month_May', 'arrival_date_month_June', 
+                   'arrival_date_month_July', 'arrival_date_month_August', 
+                   'arrival_date_month_September', 'arrival_date_month_October', 
+                   'arrival_date_month_November', 'arrival_date_month_December']
+
+# predictors = processed_booking_price_df[predictors_cols]
+predictors = predictors_cols
 
 # Predict the price for the customer
 predicted_price = price_model.predict(predictors)
