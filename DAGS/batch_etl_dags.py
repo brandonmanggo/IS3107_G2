@@ -320,6 +320,7 @@ with DAG(
 
         # Define Table Schema
         eda_schema = [
+            bigquery.SchemaField('listing_id', 'INTEGER', mode='REQUIRED'),
             bigquery.SchemaField('host_id', 'INTEGER', mode='NULLABLE'),
             bigquery.SchemaField('room_type', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('neighbourhood', 'STRING', mode='NULLABLE'),
