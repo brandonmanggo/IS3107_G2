@@ -13,8 +13,8 @@ from sklearn.preprocessing import StandardScaler
 ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
-price_model_dir = ddir + 'models/price_model.pkl'
-cancel_model_dir = ddir + 'models/cancel_model.pkl'
+price_model_dir = ddir + '/Dashboard/Models/price_model.pkl'
+cancel_model_dir = ddir + '/Dashboard/Models/cancel_model.pkl'
 
 default_args = {
     'owner': 'airflow',
@@ -36,49 +36,105 @@ def transform(**kwargs):
     
     # Data Preprocessing for Price Prediction
     
-    processed_booking_price_df = df.copy()
+    preprocessed_booking_price_df = df.copy()
     
     ## Pre-Processing
 
     # Filling Missing Data for Children
-    processed_booking_price_df.children.fillna(0, inplace = True)
-    processed_booking_price_df['children'] = processed_booking_price_df['children'].astype('int') 
-
-    ## Adjust to suit Streaming Data - Hotel Reservation
-    # processed_booking_price_df.loc[(processed_booking_price_df['meal'] == 'Undefined'), 'meal']= 'SC'
-    # processed_booking_price_df.loc[(processed_booking_price_df['required_car_parking_spaces'] > 1), 'required_car_parking_spaces']= 1
+    preprocessed_booking_price_df.children.fillna(0, inplace = True)
+    preprocessed_booking_price_df['children'] = preprocessed_booking_price_df['children'].astype('int') 
 
     # Cleaning Data for adr
-    processed_booking_price_df.drop(index = [row for row in processed_booking_price_df.index 
-                                            if 400 < processed_booking_price_df.loc[row, 'adr']], 
-                                    inplace = True)
-    processed_booking_price_df.drop(index = [row for row in processed_booking_price_df.index 
-                                            if 0 >= processed_booking_price_df.loc[row, 'adr']], 
-                                    inplace = True)
-    processed_booking_price_df.adr = processed_booking_price_df.adr.round()
-    processed_booking_price_df.adr = processed_booking_price_df.adr.astype('int')
+    preprocessed_booking_price_df.drop(index = [row for row in preprocessed_booking_price_df.index 
+                                                if 400 < preprocessed_booking_price_df.loc[row, 'adr']], 
+                                        inplace = True)
+    preprocessed_booking_price_df.drop(index = [row for row in preprocessed_booking_price_df.index 
+                                                if 0 >= preprocessed_booking_price_df.loc[row, 'adr']], 
+                                        inplace = True)
+    preprocessed_booking_price_df.adr = preprocessed_booking_price_df.adr.round()
+    preprocessed_booking_price_df.adr = preprocessed_booking_price_df.adr.astype('int')
 
     ## One-Hot Encoding
     # For market_segment Column
-    market_segment_one_hot = pd.get_dummies(processed_booking_price_df['market_segment'], prefix='market_segment')
-    processed_booking_price_df = pd.concat([processed_booking_price_df, market_segment_one_hot], axis=1)
-    processed_booking_price_df.drop('market_segment', axis=1, inplace=True)
+    market_segment_one_hot = pd.get_dummies(preprocessed_booking_price_df['market_segment'], prefix='market_segment')
+    preprocessed_booking_price_df = pd.concat([preprocessed_booking_price_df, market_segment_one_hot], axis=1)
+    preprocessed_booking_price_df.drop('market_segment', axis=1, inplace=True)
 
     # For arrival_date_month Column
-    arrival_date_month_one_hot = pd.get_dummies(processed_booking_price_df['arrival_date_month'], prefix='arrival_date_month')
-    processed_booking_price_df = pd.concat([processed_booking_price_df, arrival_date_month_one_hot], axis=1)
-    processed_booking_price_df.drop('arrival_date_month', axis=1, inplace=True)
+    arrival_date_month_one_hot = pd.get_dummies(preprocessed_booking_price_df['arrival_date_month'], prefix='arrival_date_month')
+    preprocessed_booking_price_df = pd.concat([preprocessed_booking_price_df, arrival_date_month_one_hot], axis=1)
+    preprocessed_booking_price_df.drop('arrival_date_month', axis=1, inplace=True)
 
     # For meal Column
-    meal_one_hot = pd.get_dummies(processed_booking_price_df['meal'], prefix='meal')
-    processed_booking_price_df = pd.concat([processed_booking_price_df, meal_one_hot], axis=1)
-    processed_booking_price_df.drop('meal', axis=1, inplace=True)
+    meal_one_hot = pd.get_dummies(preprocessed_booking_price_df['meal'], prefix='meal')
+    preprocessed_booking_price_df = pd.concat([preprocessed_booking_price_df, meal_one_hot], axis=1)
+    preprocessed_booking_price_df.drop('meal', axis=1, inplace=True)
 
     # For reserved_room_type Column
-    reserved_room_type_one_hot = pd.get_dummies(processed_booking_price_df['reserved_room_type'], prefix='reserved_room_type')
-    processed_booking_price_df = pd.concat([processed_booking_price_df, reserved_room_type_one_hot], axis=1)
-    processed_booking_price_df.drop('reserved_room_type', axis=1, inplace=True)
+    reserved_room_type_one_hot = pd.get_dummies(preprocessed_booking_price_df['reserved_room_type'], prefix='reserved_room_type')
+    preprocessed_booking_price_df = pd.concat([preprocessed_booking_price_df, reserved_room_type_one_hot], axis=1)
+    preprocessed_booking_price_df.drop('reserved_room_type', axis=1, inplace=True)
 
+    # Variables
+    cols = ['lead_time', 'arrival_date_year', 'arrival_date_day_of_month',
+            'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
+            'children', 'is_repeated_guest', 'previous_cancellations', 
+            'previous_bookings_not_canceled', 'required_car_parking_spaces', 
+            'total_of_special_requests', 'market_segment_Aviation', 
+            'market_segment_Complementary', 'market_segment_Corporate', 
+            'market_segment_Direct', 'market_segment_Groups', 
+            'market_segment_Offline TA/TO', 'market_segment_Online TA', 
+            'market_segment_Undefined', 'arrival_date_month_April',
+            'arrival_date_month_August', 'arrival_date_month_December',
+            'arrival_date_month_February', 'arrival_date_month_January',
+            'arrival_date_month_July', 'arrival_date_month_June',
+            'arrival_date_month_March', 'arrival_date_month_May',
+            'arrival_date_month_November', 'arrival_date_month_October', 
+            'arrival_date_month_September', 'meal_BB', 'meal_FB', 'meal_HB', 
+            'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B', 
+            'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 
+            'reserved_room_type_F', 'reserved_room_type_G', 'Booking_ID',
+            'is_canceled', 'adr' 
+          ]
+    
+    ## Setting Data
+    processed_booking_price_df = pd.DataFrame(columns=cols)
+    processed_booking_price_df = pd.concat([processed_booking_price_df, preprocessed_booking_price_df])
+    processed_booking_price_df.fillna(0, inplace = True)
+    processed_booking_price_df.drop('is_canceled', axis=1, inplace=True)
+    processed_booking_price_df['Booking_ID'] = processed_booking_price_df['Booking_ID'].str[3:]
+    processed_booking_price_df['Booking_ID'] = processed_booking_price_df['Booking_ID'].astype('int') 
+    processed_booking_price_df['market_segment_Aviation'] = processed_booking_price_df['market_segment_Aviation'].astype('int') 
+    processed_booking_price_df['market_segment_Complementary'] = processed_booking_price_df['market_segment_Complementary'].astype('int') 
+    processed_booking_price_df['market_segment_Corporate'] = processed_booking_price_df['market_segment_Corporate'].astype('int')
+    processed_booking_price_df['market_segment_Direct'] = processed_booking_price_df['market_segment_Direct'].astype('int')
+    processed_booking_price_df['market_segment_Groups'] = processed_booking_price_df['market_segment_Groups'].astype('int')
+    processed_booking_price_df['market_segment_Offline TA/TO'] = processed_booking_price_df['market_segment_Offline TA/TO'].astype('int')
+    processed_booking_price_df['market_segment_Online TA'] = processed_booking_price_df['market_segment_Online TA'].astype('int')
+    processed_booking_price_df['market_segment_Undefined'] = processed_booking_price_df['market_segment_Undefined'].astype('int')
+    processed_booking_price_df['arrival_date_month_April'] = processed_booking_price_df['arrival_date_month_April'].astype('int')
+    processed_booking_price_df['arrival_date_month_August'] = processed_booking_price_df['arrival_date_month_August'].astype('int')
+    processed_booking_price_df['arrival_date_month_December'] = processed_booking_price_df['arrival_date_month_December'].astype('int')
+    processed_booking_price_df['arrival_date_month_February'] = processed_booking_price_df['arrival_date_month_February'].astype('int')
+    processed_booking_price_df['arrival_date_month_January'] = processed_booking_price_df['arrival_date_month_January'].astype('int')
+    processed_booking_price_df['arrival_date_month_July'] = processed_booking_price_df['arrival_date_month_July'].astype('int')
+    processed_booking_price_df['arrival_date_month_June'] = processed_booking_price_df['arrival_date_month_June'].astype('int')
+    processed_booking_price_df['arrival_date_month_March'] = processed_booking_price_df['arrival_date_month_March'].astype('int')
+    processed_booking_price_df['arrival_date_month_May'] = processed_booking_price_df['arrival_date_month_May'].astype('int')
+    processed_booking_price_df['arrival_date_month_November'] = processed_booking_price_df['arrival_date_month_November'].astype('int')
+    processed_booking_price_df['arrival_date_month_October'] = processed_booking_price_df['arrival_date_month_October'].astype('int')
+    processed_booking_price_df['arrival_date_month_September'] = processed_booking_price_df['arrival_date_month_September'].astype('int')
+    processed_booking_price_df['meal_BB'] = processed_booking_price_df['meal_BB'].astype('int')
+    processed_booking_price_df['meal_FB'] = processed_booking_price_df['meal_FB'].astype('int')
+    processed_booking_price_df['meal_HB'] = processed_booking_price_df['meal_HB'].astype('int')
+    processed_booking_price_df['meal_SC'] = processed_booking_price_df['meal_SC'].astype('int')
+    processed_booking_price_df['reserved_room_type_A'] = processed_booking_price_df['reserved_room_type_A'].astype('int')
+    processed_booking_price_df['reserved_room_type_B'] = processed_booking_price_df['reserved_room_type_B'].astype('int')
+    processed_booking_price_df['reserved_room_type_C'] = processed_booking_price_df['reserved_room_type_C'].astype('int')
+    processed_booking_price_df['reserved_room_type_D'] = processed_booking_price_df['reserved_room_type_D'].astype('int')
+    processed_booking_price_df['reserved_room_type_E'] = processed_booking_price_df['reserved_room_type_E'].astype('int')
+    processed_booking_price_df['reserved_room_type_F'] = processed_booking_price_df['reserved_room_type_F'].astype('int')
+    processed_booking_price_df['reserved_room_type_G'] = processed_booking_price_df['reserved_room_type_G'].astype('int')
 
     ti.xcom_push('hotel_booking_price_df', processed_booking_price_df)
     
@@ -137,24 +193,41 @@ def predict_price(**kwargs):
     ti = kwargs['ti']
 
     booking_price_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_price_df')
-    hotel_booking_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_df')
 
     ## Load Pretrained price_model using pickle
-    with open(price_model_dir, 'wb') as f:
+    with open(price_model_dir, 'rb') as f:
         price_model = pickle.load(f)
-    # price_model = pickle.load(open('model_price.pkl', 'rb'))
 
-    # variables
-    predictors = booking_price_df.iloc[:,:-1]
-
-    # predict the price for the customer according to lead time, type of room, 
-    # and additional booking details
+    # Predict the price for the customer
+    predictors_cols = ['lead_time', 'arrival_date_year', 'arrival_date_day_of_month',
+                        'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
+                        'children', 'is_repeated_guest', 'previous_cancellations', 
+                        'previous_bookings_not_canceled', 'required_car_parking_spaces', 
+                        'total_of_special_requests', 'market_segment_Aviation', 
+                        'market_segment_Complementary', 'market_segment_Corporate', 
+                        'market_segment_Direct', 'market_segment_Groups', 
+                        'market_segment_Offline TA/TO', 'market_segment_Online TA', 
+                        'market_segment_Undefined', 'arrival_date_month_April',
+                        'arrival_date_month_August', 'arrival_date_month_December',
+                        'arrival_date_month_February', 'arrival_date_month_January',
+                        'arrival_date_month_July', 'arrival_date_month_June',
+                        'arrival_date_month_March', 'arrival_date_month_May',
+                        'arrival_date_month_November', 'arrival_date_month_October', 
+                        'arrival_date_month_September', 'meal_BB', 'meal_FB', 'meal_HB', 
+                        'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B', 
+                        'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 
+                        'reserved_room_type_F', 'reserved_room_type_G'
+                      ]  
+    predictors = booking_price_df[predictors_cols]
     predicted_price = price_model.predict(predictors)
 
     # Append the predicted price back to original df
-    hotel_booking_df['predicted'] = predicted_price
+    booking_price_df['predicted'] = predicted_price
+    booking_price_df.rename(columns={'market_segment_Offline TA/TO': 'market_segment_Offline_TA_TO', 
+                                     'market_segment_Online TA': 'market_segment_Online_TA'}, 
+                            inplace=True)
 
-    ti.xcom_push('hotel_booking_price_csv', hotel_booking_df.to_csv())
+    ti.xcom_push('hotel_booking_price_csv', booking_price_df.to_csv(index = False))
 
 
 
@@ -178,7 +251,7 @@ def predict_cancel(**kwargs):
     # Append the predicted price back to original df
     hotel_booking_df['predicted'] = predicted_cancel
 
-    ti.xcom_push('hotel_booking_cancel_csv', hotel_booking_df.to_csv())
+    ti.xcom_push('hotel_booking_cancel_csv', hotel_booking_df.to_csv(index = False))
     
 
 
