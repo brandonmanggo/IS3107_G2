@@ -6,14 +6,18 @@ import os
 from google.cloud import bigquery
 import pandas as pd
 import numpy as np
-
+import io
+import csv
+from io import StringIO
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
-ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/IS3107_G2'
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
+ddir = '/Users/nevanng/IS3107/IS3107_G2/'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/BigQuery/is3107-g2-381308-b948b933d07a.json'
 
 default_args = {
-    'owner': 'airflow', 
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2023, 3, 26),
 }
 
 with DAG(
@@ -30,13 +34,21 @@ with DAG(
         ti = kwargs['ti']
 
         # Hotel Booking Dataset
-        hotel_booking_dir = f'{ddir}/Dataset/batch_data/city_hotel_bookings_updated.csv'
-        hotel_booking_file = open(hotel_booking_dir)
+        hotel_booking_file = pd.read_csv(f'{ddir}/Dataset/batch_data/city_hotel_bookings_updated.csv')
+        hotel_booking_file = hotel_booking_file.to_csv(index=False)
+       # hotel_booking_dir = f'{ddir}/Dataset/batch_data/city_hotel_bookings_updated.csv'
+       # hotel_booking_file = open(hotel_booking_dir)
+       # hotel_booking_file = csv.reader(hotel_booking_file)
+        
 
         # Airbnb Dataset
-        airbnb_dir = f'{ddir}/Dataset/batch_data/data_airbnb_raw.csv'
-        airbnb_file = open(airbnb_dir)
+        airbnb_file = pd.read_csv(f'{ddir}/Dataset/batch_data/data_airbnb_raw.csv') 
+        airbnb_file = airbnb_file.to_csv(index=False)
+        #airbnb_dir = f'{ddir}/Dataset/batch_data/data_airbnb_raw.csv'
+        #airbnb_file = open(airbnb_dir)
+        #airbnb_file = csv.reader(airbnb_file)
 
+        #print(airbnb_file)
         ti.xcom_push('hotel_booking_raw_data', hotel_booking_file)
         ti.xcom_push('airbnb_raw_data', airbnb_file)
 
@@ -44,7 +56,8 @@ with DAG(
     def transform_hotel(**kwargs):
         ti = kwargs['ti']
         hotel_booking_file = ti.xcom_pull(task_ids = 'extract', key = 'hotel_booking_raw_data')
-        hotel_booking_df = pd.read_csv(hotel_booking_file)
+        hotel_booking_df = pd.read_csv(StringIO(hotel_booking_file))
+        
 
         # Cleaning, extract columns, merging
 
@@ -53,7 +66,7 @@ with DAG(
         
         hotel_booking_eda = hotel_booking_eda
 
-        ti.xcom_push('hotel_booking_eda', hotel_booking_eda.to_csv())
+        ti.xcom_push('hotel_booking_eda', hotel_booking_eda.to_csv(index=False))
 
         # Table 2 : Hotel Booking ML Cancellation (include useful columns only)
         hotel_booking_ml_cancel = hotel_booking_df.copy()
@@ -69,7 +82,7 @@ with DAG(
         hotel_booking_ml_cancel = hotel_booking_ml_cancel[ml_cancel_included_cols]
         hotel_booking_ml_cancel['predicted'] = pd.Series([0] * len(hotel_booking_ml_cancel))
         
-        ti.xcom_push('hotel_booking_ml_cancel', hotel_booking_ml_cancel.to_csv())
+        ti.xcom_push('hotel_booking_ml_cancel', hotel_booking_ml_cancel.to_csv(index=False))
 
         # Table 3 : Hotel Booking ML Price Prediction (include useful columns only)
         hotel_booking_ml_price = hotel_booking_df.copy()
@@ -126,13 +139,13 @@ with DAG(
 
         hotel_booking_ml_price['predicted'] = pd.Series([0] * len(hotel_booking_ml_price))
         
-        ti.xcom_push('hotel_booking_ml_price', hotel_booking_ml_price.to_csv())
+        ti.xcom_push('hotel_booking_ml_price', hotel_booking_ml_price.to_csv(index=False))
 
 
     def transform_airbnb(**kwargs):
         ti = kwargs['ti']
         airbnb_file = ti.xcom_pull(task_ids = 'extract', key = 'airbnb_raw_data')
-        airbnb_df = pd.read_csv(airbnb_file)
+        airbnb_df = pd.read_csv(StringIO(airbnb_file))
 
         ## Cleaning, Extract columns, Merging
         # Dataframe
@@ -167,6 +180,8 @@ with DAG(
         hotel_booking_ml_price_csv_stream = io.BytesIO(hotel_booking_ml_price_csv_bytes)
 
         # Create a client object
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/BigQuery/is3107-g2-381308-b948b933d07a.json'
+        
         client = bigquery.Client()
 
         # Set Table ID
@@ -311,6 +326,7 @@ with DAG(
 
     def load_airbnb(**kwargs):
         ti = kwargs['ti']
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/BigQuery/is3107-g2-381308-b948b933d07a.json'
 
         # Create a client object
         client = bigquery.Client()
@@ -387,4 +403,6 @@ with DAG(
     )
 
 
-    extract >> [ transform_hotel, transform_airbnb ] >> [ load_hotel, load_airbnb]
+extract >> [ transform_hotel, transform_airbnb ] 
+transform_hotel >> load_hotel
+transform_airbnb >> load_airbnb

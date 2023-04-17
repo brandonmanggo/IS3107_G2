@@ -16,7 +16,7 @@ import catboost as cb
 
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
-ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
+ddir = '/IS3107/IS3107_G2'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
 default_args = {

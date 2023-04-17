@@ -5,11 +5,14 @@ from google.cloud import bigquery
 import pandas as pd
 import numpy as np
 import pickle
-
+from datetime import datetime
+from io import StringIO 
+from io import BytesIO 
+import io
 
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
-ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
+ddir = '/IS3107/IS3107_G2'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
 price_model_dir = ddir + '/Dashboard/Models/price_model.pkl'
@@ -29,13 +32,19 @@ dag = DAG(
 )
 
 def transform(**kwargs):
+    print("testtest")
     ti = kwargs['ti']
-    data = kwargs.get('data')
-    df = pd.read_csv(data)
+    data = kwargs['dag_run'].conf['data']
+    #data = ti.xcom_pull(key='data')
+    #data = kwargs.get('data')
+    #data = pd.read_csv("/Users/nevanng/IS3107/IS3107_G2/Dataset/hotel_streaming/2017-7.csv")
+    #data = data.to_csv(index=False)
+    print(data)
+    hotel_booking_df = pd.read_csv(StringIO(data))
     
     # Data Preprocessing for Price Prediction
     
-    preprocessed_booking_price_df = df.copy()
+    preprocessed_booking_price_df = hotel_booking_df.copy()
     
     ## Pre-Processing
 
@@ -135,15 +144,15 @@ def transform(**kwargs):
     processed_booking_price_df['reserved_room_type_F'] = processed_booking_price_df['reserved_room_type_F'].astype('int')
     processed_booking_price_df['reserved_room_type_G'] = processed_booking_price_df['reserved_room_type_G'].astype('int')
 
-    ti.xcom_push('hotel_booking_price_df', processed_booking_price_df)
+    ti.xcom_push('hotel_booking_price_df', processed_booking_price_df.to_csv(index=False))
     
 
     # Data Preprocessing for Cancellation Prediction
     #JY
-    ti.xcom_push('hotel_booking_cancel_df', hotel_booking_cancel_df)
+    #ti.xcom_push('hotel_booking_cancel_df', hotel_booking_cancel_df.to_csv())
 
     
-    ti.xcom_push('hotel_booking_df', hotel_booking_df)
+    ti.xcom_push('hotel_booking_df', hotel_booking_df.to_csv(index=False))
 
 
 
@@ -151,8 +160,11 @@ def predict_price(**kwargs):
     ti = kwargs['ti']
 
     booking_price_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_price_df')
+    booking_price_df = pd.read_csv(StringIO(booking_price_df))
 
     ## Load Pretrained price_model using pickle
+    price_model_dir = '/Users/nevanng/IS3107/IS3107_G2/Dashboard/Models/price_model.pkl'
+    
     with open(price_model_dir, 'rb') as f:
         price_model = pickle.load(f)
 
@@ -176,7 +188,10 @@ def predict_price(**kwargs):
                         'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 
                         'reserved_room_type_F', 'reserved_room_type_G'
                       ]  
+    
+    print(booking_price_df)
     predictors = booking_price_df[predictors_cols]
+
     predicted_price = price_model.predict(predictors)
 
     # Append the predicted price back to original df
@@ -193,11 +208,16 @@ def predict_cancel(**kwargs):
     ti = kwargs['ti']
 
     booking_cancel_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_cancel_df')
+    booking_cancel_df = pd.read_csv(StringIO(booking_cancel_df))
+
     hotel_booking_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_df')
+    hotel_booking_df = pd.read_csv(StringIO(hotel_booking_df))
 
     # Load Pretrained price_model using pickle
-    with open(cancel_model_dir, 'wb') as f:
+    cancel_model_dir = "/Users/nevanng/IS3107/IS3107_G2/Dashboard/Models/cancellation_model.pkl"    
+    with open(cancel_model_dir, 'rb') as f:
         cancel_model = pickle.load(f)
+    #cancel_model = pd.read_pickle(cancel_model_dir)
 
     # variables
     predictors = booking_cancel_df.iloc[:,:-1]
@@ -216,11 +236,13 @@ def predict_cancel(**kwargs):
 def load_price(**kwargs):
     ti = kwargs['ti']
     hotel_booking_price_csv = ti.xcom_pull(task_ids = 'predict_price', key = 'hotel_booking_price_csv')
+    print(hotel_booking_price_csv)
 
     hotel_booking_price_csv_bytes = bytes(hotel_booking_price_csv, 'utf-8')
     hotel_booking_price_csv_stream = io.BytesIO(hotel_booking_price_csv_bytes)
 
-    # Set up BigQuery client 
+    # Set up BigQuery client
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'/Users/nevanng/IS3107/IS3107_G2/bigquery/is3107-g2-381308-b948b933d07a.json'
     client = bigquery.Client()
 
     # Table ID
@@ -228,7 +250,7 @@ def load_price(**kwargs):
 
     # Table Ref
     table = client.get_table(table_id)
-
+    
     job_config = bigquery.LoadJobConfig(
         skip_leading_rows = 1,
         source_format = bigquery.SourceFormat().CSV,
@@ -284,11 +306,11 @@ predict_price = PythonOperator(
     dag=dag,
 )
 
-predict_cancel = PythonOperator(
-    task_id='predict_cancel',
-    python_callable=predict_cancel,
-    dag=dag,
-)
+#predict_cancel = PythonOperator(
+#    task_id='predict_cancel',
+#    python_callable=predict_cancel,
+#    dag=dag,
+#)
 
 load_price = PythonOperator(
     task_id='load_price',
@@ -296,10 +318,12 @@ load_price = PythonOperator(
     dag=dag,
 )
 
-load_cancel = PythonOperator(
-    task_id='load_cancel',
-    python_callable=load_cancel,
-    dag=dag,
-)
+#load_cancel = PythonOperator(
+#    task_id='load_cancel',
+#    python_callable=load_cancel,
+#    dag=dag,
+#)
 
-transform >> [predict_price, predict_cancel] >> [load_price, load_cancel]
+transform >> [predict_price]
+predict_price >> load_price
+#predict_cancel >> load_cancel
