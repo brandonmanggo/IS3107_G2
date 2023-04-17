@@ -5,6 +5,8 @@ from google.cloud import bigquery
 import pandas as pd
 import numpy as np
 import pickle
+import db_dtypes
+from io import StringIO
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
@@ -21,8 +23,6 @@ import catboost as cb
 
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
-ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
 default_args = {
     'owner': 'airflow',
@@ -49,6 +49,9 @@ def extract(**kwargs):
         4: ['October', 'November', 'December']
     }
 
+    ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
+
     # Set up BigQuery client 
     client = bigquery.Client()
 
@@ -60,8 +63,10 @@ def extract(**kwargs):
     query_price = f"""
     SELECT *
     FROM `{table_id_price}`
-    WHERE arrival_date_month IN ({','.join(['"' + str(val) + '"' for val in month_dict[quarter]])})
-    AND arrival_date_year = `{year}`
+    WHERE arrival_date_month_`{month_dict[quarter][0]}` = 1
+    AND arrival_date_month_`{month_dict[quarter][1]}` = 1
+    AND arrival_date_month_`{month_dict[quarter][2]}` = 1
+    AND arrival_date_year = 2017
     """
 
     query_cancel = f"""
@@ -90,17 +95,8 @@ def extract(**kwargs):
     result_price = query_job_price.result()
     result_cancel = query_job_cancel.result()
 
-    with open(output_dir_price, 'w', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow([field.name for field in results.schema])
-        for row in result_price:
-            writer.writerow(row)
-    
-    with open(output_dir_cancel, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([field.name for field in results.schema])
-        for row in result_cancel:
-            writer.writerow(row)
+    quarterly_price_df = result_price.to_dataframe()
+    quarterly_cancel_df = result_cancel.to_dataframe()
     
     query_job_price_all = client.query(query_price_all)
     query_job_cancel_all = client.query(query_cancel_all)
@@ -111,16 +107,16 @@ def extract(**kwargs):
     booking_price_df = result_price_all.to_dataframe()
     booking_cancel_df = result_cancel_all.to_dataframe()
 
-    ti.xcom_push('booking_price_df', booking_price_df)
-    ti.xcom_push('booking_cancel_df', booking_cancel_df)
+    ti.xcom_push('booking_price_df', booking_price_df.to_csv(index=False))
+    ti.xcom_push('booking_cancel_df', booking_cancel_df.to_csv(index=False))
 
 def update_price_model(**kwargs):
     ti = kwargs['ti']
 
-    hotel_price_df = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
-
+    hotel_price_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
+    hotel_price_df = pd.read_csv(StringIO(hotel_price_csv))
     # Splitting Data (80:20) Regression
-    x = hotel_price_df.drop(columns = 'adr')
+    x = hotel_price_df.drop(columns = ['adr', 'predicted'])
     y = hotel_price_df.adr 
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
 
@@ -169,8 +165,10 @@ def update_price_model(**kwargs):
         new_r2 = cbr_r2
         new_price_model = cbr_model
 
+    ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
+
     # Save Updated Model
-    price_model_dir = f'{ddir}/models/price_model.pkl'
+    price_model_dir = f'{ddir}/Dashboard/Models/price_model.pkl'
     with open(price_model_dir, "wb") as f:
         pickle.dump(new_price_model, f)
 
