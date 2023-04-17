@@ -264,8 +264,6 @@ with DAG(
         ml_price_schema = [
             bigquery.SchemaField('Booking_ID', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('lead_time', 'INT64', mode='NULLABLE'),
-            bigquery.SchemaField('arrival_date_year', 'INT64', mode='NULLABLE'),
-            bigquery.SchemaField('arrival_date_day_of_month', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('stays_in_weekend_nights', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('stays_in_week_nights', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('adults', 'INT64', mode='NULLABLE'),
