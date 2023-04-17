@@ -335,7 +335,6 @@ with DAG(
             bigquery.SchemaField('reserved_room_type_G', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('reserved_room_type_H', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('reserved_room_type_L', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('reserved_room_type_P', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('lead_time', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('arrival_date_month_April', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('arrival_date_month_August', 'STRING', mode='NULLABLE'),
