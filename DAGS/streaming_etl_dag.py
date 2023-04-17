@@ -242,8 +242,13 @@ def predict_cancel(**kwargs):
         cancel_model = pickle.load(f)
 
     # variables
-    predictors = booking_cancel_df.iloc[:,:-1]
-
+    predictor_cols = ['arrival_date_month', 'meal', 'reserved_room_type', 'market_segment', 'lead_time', 
+                      'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 'children', 'is_repeated_guest', 
+                      'previous_cancellations', 'previous_bookings_not_canceled', 'adr', 'required_car_parking_spaces', 
+                      'total_of_special_requests']
+    
+    predictors = booking_cancel_df[predictor_cols]
+    predicted_cancel = cancel_model.predict(predictors)
     # predict the price for the customer according to lead time, type of room, 
     # and additional booking details
     predicted_cancel = cancel_model.predict(predictors)
