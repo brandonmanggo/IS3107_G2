@@ -276,7 +276,7 @@ def predict_cancel(**kwargs):
                       'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
                       'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
                       'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
-                      'reserved_room_type_G', 'reserved_room_type_H', 'reserved_room_type_L', 'reserved_room_type_P',
+                      'reserved_room_type_G', 'reserved_room_type_H', 'reserved_room_type_L',
                       'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
                       'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA', 'market_segment_Undefined',
                       'is_repeated_guest', 'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
