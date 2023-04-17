@@ -85,8 +85,7 @@ def transform(**kwargs):
     preprocessed_booking_price_df.drop('reserved_room_type', axis=1, inplace=True)
 
     # Variables
-    cols = ['lead_time', 'arrival_date_year', 'arrival_date_day_of_month',
-            'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
+    cols = ['lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
             'children', 'is_repeated_guest', 'previous_cancellations', 
             'previous_bookings_not_canceled', 'required_car_parking_spaces', 
             'total_of_special_requests', 'market_segment_Aviation', 
@@ -219,7 +218,7 @@ def predict_price(**kwargs):
         price_model = pickle.load(f)
 
     # Predict the price for the customer
-    predictors_cols = ['lead_time', 'arrival_date_year', 'arrival_date_day_of_month',
+    predictors_cols = ['lead_time',
                         'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
                         'children', 'is_repeated_guest', 'previous_cancellations', 
                         'previous_bookings_not_canceled', 'required_car_parking_spaces', 
@@ -280,7 +279,7 @@ def predict_cancel(**kwargs):
                       'reserved_room_type_G', 'reserved_room_type_H', 'reserved_room_type_L', 'reserved_room_type_P',
                       'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
                       'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA', 'market_segment_Undefined',
-                      'is_repeated_guest_0', 'is_repeated_guest_1', 'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
+                      'is_repeated_guest', 'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
                       'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces',
                       'total_of_special_requests'
                       ]
