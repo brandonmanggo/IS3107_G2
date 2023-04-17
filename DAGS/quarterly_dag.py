@@ -10,6 +10,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.ensemble import AdaBoostClassifier
+
 import lightgbm as ltb
 import xgboost as xgb
 import catboost as cb
@@ -177,11 +182,56 @@ def update_cancel_model(**kwargs):
 
     # train model 
     #JY
+    # Splitting Data (80:20) Regression
+    x = hotel_cancel_df.drop(columns = 'is_canceled')
+    y = hotel_cancel_df['is_canceled'] 
+    x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
+    
+    #Train Models
+    #Random Forest Classifier
+    rfr = RandomForestRegressor()
+    rfr_model = rfr.fit(x_train, y_train)
+    rfr_y_pred = rfr_model.predict(x_test)
+    rfr_r2 = r2_score(y_test, rfr_y_pred)
 
+    new_cancel_model = rfr_model
+    new_r2 = rfr_r2
+
+    #Cat Boost Classifier
+    cbr = cb.CatBoostClassifier(iterations = 100)
+    cbr_model = cbr.fit(x_train, y_train)
+    cbr_y_pred = cbr_model.predict(x_test)
+    cbr_r2 = r2_score(y_test, cbr_y_pred)
+
+    if (cbr_r2 > new_r2): 
+        new_r2 = cbr_r2
+        new_cancel_model = cbr_model
+
+    #K Nearest Neighbours Classifier
+    knn = KNeighborsClassifier()
+    knn_model = knn.fit(x_train, y_train)
+    knn_y_pred = knn_model.predict(x_test)
+    knn_r2 = r2_score(y_test, knn_y_pred)
+
+    if (knn_r2 > new_r2):
+        new_r2 = knn
+        new_cancel_model = knn_model
+
+    #Gradient Bosst Classifier
+    gb = GradientBoostingClassifier()
+    gb_model = gb.fit(x_train, y_train)
+    gb_y_pred = gb_model.predict(x_test)
+    gb_r2 = r2_score(y_test, gb_y_pred)
+
+    if(gb_r2 > new_r2): 
+        new_r2 = gb_r2
+        new_cancel_model = gb_model
+    
+    
     # Save updated model
     cancel_model_dir = f'{ddir}/models/cancel_model.pkl'
     with open(cancel_model_dir, "wb") as f:
-        pickle.dump(model, f)
+        pickle.dump(new_cancel_model, f)
 
 extract = PythonOperator(
     task_id='extract',
