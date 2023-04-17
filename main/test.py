@@ -16,5 +16,4 @@ streaming_data_dir = ddir + '/Dataset/hotel_streaming/2017-10.csv'
 
 cur_month_data = pd.read_csv("/Users/nevanng/IS3107/IS3107_G2/Dataset/hotel_streaming/2017-7.csv")
 reader = cur_month_data.to_csv(index=False)
-print(reader)
 client.trigger_dag('streaming_etl', run_id=None, conf={'data' : reader})
