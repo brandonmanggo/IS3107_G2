@@ -149,42 +149,45 @@ def transform(**kwargs):
 
     #Filling in NA Values for Children column
     hotel_booking_cancel_df.children.fillna(0, inplace = True)
+    
 
     #Dropping the arrival date variables (excludind month) which are not useful/relevant to the cancellation
     hotel_booking_cancel_df.drop(['arrival_date_year', 'arrival_date_day_of_month'], axis = 1, inplace = True)
-    
+    categorical_cols = ['arrival_date_month', 'meal', 'reserved_room_type', 'market_segment', 'is_repeated_guest']
+    numerical_cols = ['lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled',
+                  'adr', 'required_car_parking_spaces', 'total_of_special_requests']
+    numerical_df = hotel_booking_cancel_df.drop(categorical_cols, axis = 1)
+    numerical_df.drop(['is_canceled'], axis = 1, inplace=True)
+    categorical_df = hotel_booking_cancel_df.drop(numerical_cols, axis = 1)
+
     #Encoding categorical variables
     # For market_segment Column
-    market_segment_one_hot = pd.get_dummies(hotel_booking_cancel_df['market_segment'], prefix='market_segment')
-    hotel_booking_cancel_df = pd.concat([hotel_booking_cancel_df, market_segment_one_hot], axis=1)
-    hotel_booking_cancel_df.drop('market_segment', axis=1, inplace=True)
+    market_segment_one_hot = pd.get_dummies(categorical_df['market_segment'], prefix='market_segment')
+    categorical_df = pd.concat([categorical_df, market_segment_one_hot], axis=1)
+    categorical_df.drop('market_segment', axis=1, inplace=True)
 
     # For arrival_date_month Column
-    arrival_date_month_one_hot = pd.get_dummies(hotel_booking_cancel_df['arrival_date_month'], prefix='arrival_date_month')
-    hotel_booking_cancel_df = pd.concat([hotel_booking_cancel_df, arrival_date_month_one_hot], axis=1)
-    hotel_booking_cancel_df.drop('arrival_date_month', axis=1, inplace=True)
+    arrival_date_month_one_hot = pd.get_dummies(categorical_df['arrival_date_month'], prefix='arrival_date_month')
+    categorical_df = pd.concat([categorical_df, arrival_date_month_one_hot], axis=1)
+    categorical_df.drop('arrival_date_month', axis=1, inplace=True)
 
     # For meal Column
-    meal_one_hot = pd.get_dummies(hotel_booking_cancel_df['meal'], prefix='meal')
-    hotel_booking_cancel_df = pd.concat([hotel_booking_cancel_df, meal_one_hot], axis=1)
-    hotel_booking_cancel_df.drop('meal', axis=1, inplace=True)
+    meal_one_hot = pd.get_dummies(categorical_df['meal'], prefix='meal')
+    categorical_df = pd.concat([categorical_df, meal_one_hot], axis=1)
+    categorical_df.drop('meal', axis=1, inplace=True)
 
     # For reserved_room_type Column
-    reserved_room_type_one_hot = pd.get_dummies(hotel_booking_cancel_df['reserved_room_type'], prefix='reserved_room_type')
-    hotel_booking_cancel_df = pd.concat([hotel_booking_cancel_df, reserved_room_type_one_hot], axis=1)
-    hotel_booking_cancel_df.drop('reserved_room_type', axis=1, inplace=True)
+    reserved_room_type_one_hot = pd.get_dummies(categorical_df['reserved_room_type'], prefix='reserved_room_type')
+    categorical_df = pd.concat([categorical_df, reserved_room_type_one_hot], axis=1)
+    categorical_df.drop('reserved_room_type', axis=1, inplace=True)
 
     #Scaling of Numerical Variables
-    categorical_cols = ['arrival_date_month', 'market_segment', 'meal', 'reserved_room_type', 'is_canceled']
     categorical_var = hotel_booking_cancel_df[categorical_cols]
-    numerical_var = hotel_booking_cancel_df.drop(columns=categorical_cols, axis=1)
     scaler = StandardScaler()
-    numerical_var_scaled = pd.DataFrame(scaler.fit_transform(numerical_var), columns=numerical_var.columns)
-    hotel_booking_cancel_df = pd.concat([categorical_var, numerical_var_scaled], axis = 1)
+    numerical_var_scaled = pd.DataFrame(scaler.fit_transform(numerical_df), columns=numerical_var.columns)
+    hotel_booking_cancel_df = pd.concat([categorical_var, numerical_var_scaled, y], axis = 1)
 
     ti.xcom_push('hotel_booking_cancel_df', hotel_booking_cancel_df)
-
-    
     ti.xcom_push('hotel_booking_df', hotel_booking_df)
 
 
@@ -242,15 +245,22 @@ def predict_cancel(**kwargs):
         cancel_model = pickle.load(f)
 
     # variables
-    predictor_cols = ['arrival_date_month', 'meal', 'reserved_room_type', 'market_segment', 'lead_time', 
-                      'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 'children', 'is_repeated_guest', 
-                      'previous_cancellations', 'previous_bookings_not_canceled', 'adr', 'required_car_parking_spaces', 
-                      'total_of_special_requests']
+    predictor_cols = ['arrival_date_month_April', 'arrival_date_month_August', 'arrival_date_month_December', 
+                      'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
+                      'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
+                      'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
+                      'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
+                      'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
+                      'reserved_room_type_G', 'reserved_room_type_H', 'reserved_room_type_L', 'reserved_room_type_P',
+                      'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
+                      'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA', 'market_segment_Undefined',
+                      'is_repeated_guest_0', 'is_repeated_guest_1', 'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
+                      'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces',
+                      'total_of_special_requests'
+                      ]
     
     predictors = booking_cancel_df[predictor_cols]
-    predicted_cancel = cancel_model.predict(predictors)
-    # predict the price for the customer according to lead time, type of room, 
-    # and additional booking details
+    # predict the cancellation of the booking based on the above variables
     predicted_cancel = cancel_model.predict(predictors)
 
     # Append the predicted price back to original df
