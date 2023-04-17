@@ -185,10 +185,10 @@ def transform(**kwargs):
     categorical_var = hotel_booking_cancel_df[categorical_cols]
     scaler = StandardScaler()
     numerical_var_scaled = pd.DataFrame(scaler.fit_transform(numerical_df), columns=numerical_var.columns)
-    hotel_booking_cancel_df = pd.concat([categorical_var, numerical_var_scaled, y], axis = 1)
+    hotel_booking_cancel_df = pd.concat([categorical_var, numerical_var_scaled], axis = 1)
 
     ti.xcom_push('hotel_booking_cancel_df', hotel_booking_cancel_df)
-    ti.xcom_push('hotel_booking_df', hotel_booking_df)
+
 
 
 
