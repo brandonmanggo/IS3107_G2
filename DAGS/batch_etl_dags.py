@@ -6,14 +6,18 @@ import os
 from google.cloud import bigquery
 import pandas as pd
 import numpy as np
-
+import io
+import csv
+from io import StringIO
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
-ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/IS3107_G2'
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
+ddir = '/Users/nevanng/IS3107/IS3107_G2/'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/BigQuery/is3107-g2-381308-b948b933d07a.json'
 
 default_args = {
-    'owner': 'airflow', 
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2023, 3, 26),
 }
 
 with DAG(
@@ -30,12 +34,13 @@ with DAG(
         ti = kwargs['ti']
 
         # Hotel Booking Dataset
-        hotel_booking_dir = f'{ddir}/Dataset/batch_data/city_hotel_bookings_updated.csv'
-        hotel_booking_file = open(hotel_booking_dir)
+        hotel_booking_file = pd.read_csv(f'{ddir}/Dataset/batch_data/city_hotel_bookings_updated.csv')
+        hotel_booking_file = hotel_booking_file.to_csv(index=False)
+        
 
         # Airbnb Dataset
-        airbnb_dir = f'{ddir}/Dataset/batch_data/data_airbnb_raw.csv'
-        airbnb_file = open(airbnb_dir)
+        airbnb_file = pd.read_csv(f'{ddir}/Dataset/batch_data/data_airbnb_raw.csv') 
+        airbnb_file = airbnb_file.to_csv(index=False)
 
         ti.xcom_push('hotel_booking_raw_data', hotel_booking_file)
         ti.xcom_push('airbnb_raw_data', airbnb_file)
@@ -44,7 +49,8 @@ with DAG(
     def transform_hotel(**kwargs):
         ti = kwargs['ti']
         hotel_booking_file = ti.xcom_pull(task_ids = 'extract', key = 'hotel_booking_raw_data')
-        hotel_booking_df = pd.read_csv(hotel_booking_file)
+        hotel_booking_df = pd.read_csv(StringIO(hotel_booking_file))
+        
 
         # Cleaning, extract columns, merging
 
@@ -53,23 +59,94 @@ with DAG(
         
         hotel_booking_eda = hotel_booking_eda
 
-        ti.xcom_push('hotel_booking_eda', hotel_booking_eda.to_csv())
+        ti.xcom_push('hotel_booking_eda', hotel_booking_eda.to_csv(index=False))
 
         # Table 2 : Hotel Booking ML Cancellation (include useful columns only)
         hotel_booking_ml_cancel = hotel_booking_df.copy()
 
         ml_cancel_included_cols = ['Booking_ID', 'adults', 'children', 'stays_in_weekend_nights',
                                     'stays_in_week_nights', 'meal', 'required_car_parking_spaces',
-                                    'reserved_room_type', 'lead_time', 'arrival_date_year',
-                                    'arrival_date_month', 'arrival_date_day_of_month', 'market_segment',
-                                    'is_repeated_guest', 'previous_cancellations',
-                                    'previous_bookings_not_canceled', 'adr', 'total_of_special_requests',
+                                    'reserved_room_type', 'lead_time',  'arrival_date_month', 
+                                    'market_segment', 'is_repeated_guest', 'previous_cancellations', 'previous_bookings_not_canceled',  'adr', 'total_of_special_requests', 
                                     'is_canceled']
 
         hotel_booking_ml_cancel = hotel_booking_ml_cancel[ml_cancel_included_cols]
-        hotel_booking_ml_cancel['predicted'] = pd.Series([0] * len(hotel_booking_ml_cancel))
+
+        ## One-Hot Encoding
+        # For market_segment Column
+        market_segment_one_hot = pd.get_dummies(hotel_booking_ml_cancel['market_segment'], prefix='market_segment')
+        hotel_booking_ml_cancel = pd.concat([hotel_booking_ml_cancel, market_segment_one_hot], axis=1)
+        hotel_booking_ml_cancel.drop('market_segment', axis=1, inplace=True)
+
+        # For arrival_date_month Column
+        arrival_date_month_one_hot = pd.get_dummies(hotel_booking_ml_cancel['arrival_date_month'], prefix='arrival_date_month')
+        hotel_booking_ml_cancel = pd.concat([hotel_booking_ml_cancel, arrival_date_month_one_hot], axis=1)
+        hotel_booking_ml_cancel.drop('arrival_date_month', axis=1, inplace=True)
+
+        # For meal Column
+        meal_one_hot = pd.get_dummies(hotel_booking_ml_cancel['meal'], prefix='meal')
+        hotel_booking_ml_cancel = pd.concat([hotel_booking_ml_cancel, meal_one_hot], axis=1)
+        hotel_booking_ml_cancel.drop('meal', axis=1, inplace=True)
+
+        # For reserved_room_type Column
+        reserved_room_type_one_hot = pd.get_dummies(hotel_booking_ml_cancel['reserved_room_type'], prefix='reserved_room_type')
+        hotel_booking_ml_cancel = pd.concat([hotel_booking_ml_cancel, reserved_room_type_one_hot], axis=1)
+        hotel_booking_ml_cancel.drop('reserved_room_type', axis=1, inplace=True)
+
+        # Variables 
+        cols = ['arrival_date_month_April', 'arrival_date_month_August', 'arrival_date_month_December', 
+                'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
+                'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
+                'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
+                'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
+                'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
+                'reserved_room_type_G',  
+                'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
+                'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA',
+                'is_repeated_guest', 'lead_time', 'arrival_date_year', 'stays_in_weekend_nights', 'stays_in_week_nights',
+                'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces', 'total_of_special_requests', 'is_canceled'
+               ]
+
+        processed_booking_ml_cancel_df = pd.DataFrame(columns=cols)
+        processed_booking_ml_cancel_df = pd.concat([processed_booking_ml_cancel_df, hotel_booking_ml_cancel])
+        processed_booking_ml_cancel_df.fillna(0, inplace=True)
         
-        ti.xcom_push('hotel_booking_ml_cancel', hotel_booking_ml_cancel.to_csv())
+        processed_booking_ml_cancel_df['predicted'] = pd.Series([0] * len(processed_booking_ml_cancel_df))
+
+        #processed_booking_ml_cancel_df['Booking_ID'] = processed_booking_ml_cancel_df['Booking_ID'].str[3:]
+        #processed_booking_ml_cancel_df['Booking_ID'] = processed_booking_ml_cancel_df['Booking_ID'].astype('int') 
+        processed_booking_ml_cancel_df['market_segment_Aviation'] = processed_booking_ml_cancel_df['market_segment_Aviation'].astype('int') 
+        processed_booking_ml_cancel_df['market_segment_Complementary'] = processed_booking_ml_cancel_df['market_segment_Complementary'].astype('int') 
+        processed_booking_ml_cancel_df['market_segment_Corporate'] = processed_booking_ml_cancel_df['market_segment_Corporate'].astype('int')
+        processed_booking_ml_cancel_df['market_segment_Direct'] = processed_booking_ml_cancel_df['market_segment_Direct'].astype('int')
+        processed_booking_ml_cancel_df['market_segment_Groups'] = processed_booking_ml_cancel_df['market_segment_Groups'].astype('int')
+        processed_booking_ml_cancel_df['market_segment_Offline TA/TO'] = processed_booking_ml_cancel_df['market_segment_Offline TA/TO'].astype('int')
+        processed_booking_ml_cancel_df['market_segment_Online TA'] = processed_booking_ml_cancel_df['market_segment_Online TA'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_April'] = processed_booking_ml_cancel_df['arrival_date_month_April'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_August'] = processed_booking_ml_cancel_df['arrival_date_month_August'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_December'] = processed_booking_ml_cancel_df['arrival_date_month_December'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_February'] = processed_booking_ml_cancel_df['arrival_date_month_February'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_January'] = processed_booking_ml_cancel_df['arrival_date_month_January'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_July'] = processed_booking_ml_cancel_df['arrival_date_month_July'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_June'] = processed_booking_ml_cancel_df['arrival_date_month_June'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_March'] = processed_booking_ml_cancel_df['arrival_date_month_March'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_May'] = processed_booking_ml_cancel_df['arrival_date_month_May'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_November'] = processed_booking_ml_cancel_df['arrival_date_month_November'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_October'] = processed_booking_ml_cancel_df['arrival_date_month_October'].astype('int')
+        processed_booking_ml_cancel_df['arrival_date_month_September'] = processed_booking_ml_cancel_df['arrival_date_month_September'].astype('int')
+        processed_booking_ml_cancel_df['meal_BB'] = processed_booking_ml_cancel_df['meal_BB'].astype('int')
+        processed_booking_ml_cancel_df['meal_FB'] = processed_booking_ml_cancel_df['meal_FB'].astype('int')
+        processed_booking_ml_cancel_df['meal_HB'] = processed_booking_ml_cancel_df['meal_HB'].astype('int')
+        processed_booking_ml_cancel_df['meal_SC'] = processed_booking_ml_cancel_df['meal_SC'].astype('int')
+        processed_booking_ml_cancel_df['reserved_room_type_A'] = processed_booking_ml_cancel_df['reserved_room_type_A'].astype('int')
+        processed_booking_ml_cancel_df['reserved_room_type_B'] = processed_booking_ml_cancel_df['reserved_room_type_B'].astype('int')
+        processed_booking_ml_cancel_df['reserved_room_type_C'] = processed_booking_ml_cancel_df['reserved_room_type_C'].astype('int')
+        processed_booking_ml_cancel_df['reserved_room_type_D'] = processed_booking_ml_cancel_df['reserved_room_type_D'].astype('int')
+        processed_booking_ml_cancel_df['reserved_room_type_E'] = processed_booking_ml_cancel_df['reserved_room_type_E'].astype('int')
+        processed_booking_ml_cancel_df['reserved_room_type_F'] = processed_booking_ml_cancel_df['reserved_room_type_F'].astype('int')
+        processed_booking_ml_cancel_df['reserved_room_type_G'] = processed_booking_ml_cancel_df['reserved_room_type_G'].astype('int')
+        
+        ti.xcom_push('processed_booking_ml_cancel_df', processed_booking_ml_cancel_df.to_csv(index=False))
 
         # Table 3 : Hotel Booking ML Price Prediction (include useful columns only)
         hotel_booking_ml_price = hotel_booking_df.copy()
@@ -77,9 +154,9 @@ with DAG(
         ml_price_included_cols = ['Booking_ID','adults', 'children', 'stays_in_weekend_nights',
                                   'stays_in_week_nights', 'meal', 'required_car_parking_spaces',
                                   'reserved_room_type', 'lead_time', 'arrival_date_year',
-                                  'arrival_date_month', 'arrival_date_day_of_month', 
-                                  'market_segment', 'is_repeated_guest', 'previous_cancellations',
-                                  'previous_bookings_not_canceled', 'adr', 'total_of_special_requests']
+                                  'arrival_date_month', 'market_segment', 'is_repeated_guest', 
+                                  'previous_cancellations', 'previous_bookings_not_canceled', 
+                                  'adr', 'total_of_special_requests']
 
         hotel_booking_ml_price = hotel_booking_ml_price[ml_price_included_cols]
 
@@ -98,7 +175,7 @@ with DAG(
                                             if 400 < hotel_booking_ml_price.loc[row, 'adr']], 
                                     inplace = True)
         hotel_booking_ml_price.drop(index = [row for row in hotel_booking_ml_price.index 
-                                            if 0 >= hotel_booking_ml_price.loc[row, 'adr']], 
+                                            if 50 >= hotel_booking_ml_price.loc[row, 'adr']], 
                                     inplace = True)
         hotel_booking_ml_price.adr = hotel_booking_ml_price.adr.round()
         hotel_booking_ml_price.adr = hotel_booking_ml_price.adr.astype('int')
@@ -124,15 +201,65 @@ with DAG(
         hotel_booking_ml_price = pd.concat([hotel_booking_ml_price, reserved_room_type_one_hot], axis=1)
         hotel_booking_ml_price.drop('reserved_room_type', axis=1, inplace=True)
 
-        hotel_booking_ml_price['predicted'] = pd.Series([0] * len(hotel_booking_ml_price))
+        # Variables 
+        cols = ['arrival_date_month_April', 'arrival_date_month_August', 'arrival_date_month_December', 
+                'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
+                'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
+                'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
+                'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
+                'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
+                'reserved_room_type_G',  
+                'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
+                'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA',
+                'is_repeated_guest', 'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
+                'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces', 'total_of_special_requests', 'arrival_date_year'
+               ]
+
+        processed_booking_ml_price_df = pd.DataFrame(columns=cols)
+        processed_booking_ml_price_df = pd.concat([processed_booking_ml_price_df, hotel_booking_ml_price])
+        processed_booking_ml_price_df.fillna(0, inplace=True)
+        processed_booking_ml_price_df['predicted'] = pd.Series([0] * len(processed_booking_ml_price_df))
         
-        ti.xcom_push('hotel_booking_ml_price', hotel_booking_ml_price.to_csv())
+        #processed_booking_ml_price_df['Booking_ID'] = processed_booking_ml_price_df['Booking_ID'].str[3:]
+        #processed_booking_ml_price_df['Booking_ID'] = processed_booking_ml_price_df['Booking_ID'].astype('int') 
+        processed_booking_ml_price_df['market_segment_Aviation'] = processed_booking_ml_price_df['market_segment_Aviation'].astype('int') 
+        processed_booking_ml_price_df['market_segment_Complementary'] = processed_booking_ml_price_df['market_segment_Complementary'].astype('int') 
+        processed_booking_ml_price_df['market_segment_Corporate'] = processed_booking_ml_price_df['market_segment_Corporate'].astype('int')
+        processed_booking_ml_price_df['market_segment_Direct'] = processed_booking_ml_price_df['market_segment_Direct'].astype('int')
+        processed_booking_ml_price_df['market_segment_Groups'] = processed_booking_ml_price_df['market_segment_Groups'].astype('int')
+        processed_booking_ml_price_df['market_segment_Offline TA/TO'] = processed_booking_ml_price_df['market_segment_Offline TA/TO'].astype('int')
+        processed_booking_ml_price_df['market_segment_Online TA'] = processed_booking_ml_price_df['market_segment_Online TA'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_April'] = processed_booking_ml_price_df['arrival_date_month_April'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_August'] = processed_booking_ml_price_df['arrival_date_month_August'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_December'] = processed_booking_ml_price_df['arrival_date_month_December'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_February'] = processed_booking_ml_price_df['arrival_date_month_February'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_January'] = processed_booking_ml_price_df['arrival_date_month_January'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_July'] = processed_booking_ml_price_df['arrival_date_month_July'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_June'] = processed_booking_ml_price_df['arrival_date_month_June'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_March'] = processed_booking_ml_price_df['arrival_date_month_March'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_May'] = processed_booking_ml_price_df['arrival_date_month_May'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_November'] = processed_booking_ml_price_df['arrival_date_month_November'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_October'] = processed_booking_ml_price_df['arrival_date_month_October'].astype('int')
+        processed_booking_ml_price_df['arrival_date_month_September'] = processed_booking_ml_price_df['arrival_date_month_September'].astype('int')
+        processed_booking_ml_price_df['meal_BB'] = processed_booking_ml_price_df['meal_BB'].astype('int')
+        processed_booking_ml_price_df['meal_FB'] = processed_booking_ml_price_df['meal_FB'].astype('int')
+        processed_booking_ml_price_df['meal_HB'] = processed_booking_ml_price_df['meal_HB'].astype('int')
+        processed_booking_ml_price_df['meal_SC'] = processed_booking_ml_price_df['meal_SC'].astype('int')
+        processed_booking_ml_price_df['reserved_room_type_A'] = processed_booking_ml_price_df['reserved_room_type_A'].astype('int')
+        processed_booking_ml_price_df['reserved_room_type_B'] = processed_booking_ml_price_df['reserved_room_type_B'].astype('int')
+        processed_booking_ml_price_df['reserved_room_type_C'] = processed_booking_ml_price_df['reserved_room_type_C'].astype('int')
+        processed_booking_ml_price_df['reserved_room_type_D'] = processed_booking_ml_price_df['reserved_room_type_D'].astype('int')
+        processed_booking_ml_price_df['reserved_room_type_E'] = processed_booking_ml_price_df['reserved_room_type_E'].astype('int')
+        processed_booking_ml_price_df['reserved_room_type_F'] = processed_booking_ml_price_df['reserved_room_type_F'].astype('int')
+        processed_booking_ml_price_df['reserved_room_type_G'] = processed_booking_ml_price_df['reserved_room_type_G'].astype('int')
+
+        ti.xcom_push('processed_booking_ml_price_df', processed_booking_ml_price_df.to_csv(index=False))
 
 
     def transform_airbnb(**kwargs):
         ti = kwargs['ti']
         airbnb_file = ti.xcom_pull(task_ids = 'extract', key = 'airbnb_raw_data')
-        airbnb_df = pd.read_csv(airbnb_file)
+        airbnb_df = pd.read_csv(StringIO(airbnb_file))
 
         ## Cleaning, Extract columns, Merging
         # Dataframe
@@ -154,8 +281,8 @@ with DAG(
         ti = kwargs['ti']
 
         hotel_booking_eda_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
-        hotel_booking_ml_cancel_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_ml_cancel')
-        hotel_booking_ml_price_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_ml_price')
+        hotel_booking_ml_cancel_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'processed_booking_ml_cancel_df')
+        hotel_booking_ml_price_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'processed_booking_ml_price_df')
 
         hotel_booking_eda_csv_bytes = bytes(hotel_booking_eda_csv, 'utf-8')
         hotel_booking_eda_csv_stream = io.BytesIO(hotel_booking_eda_csv_bytes)
@@ -167,6 +294,8 @@ with DAG(
         hotel_booking_ml_price_csv_stream = io.BytesIO(hotel_booking_ml_price_csv_bytes)
 
         # Create a client object
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/BigQuery/is3107-g2-381308-b948b933d07a.json'
+        
         client = bigquery.Client()
 
         # Set Table ID
@@ -228,10 +357,8 @@ with DAG(
             bigquery.SchemaField('reserved_room_type_E', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('reserved_room_type_F', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('reserved_room_type_G', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('reserved_room_type_H', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('reserved_room_type_L', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('reserved_room_type_P', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('lead_time', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_year', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('arrival_date_month_April', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('arrival_date_month_August', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('arrival_date_month_December', 'STRING', mode='NULLABLE'),
@@ -250,9 +377,8 @@ with DAG(
             bigquery.SchemaField('market_segment_Corporate', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('market_segment_Direct', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('market_segment_Groups', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('market_segment_Offline TA/TO', 'STRING', mode='NULLABLE'),
+            bigquery.SchemaField('market_segment_Offline TA_TO', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('market_segment_Online TA', 'STRING', mode='NULLABLE'),
-            bigquery.SchemaField('market_segment_Undefined', 'STRING', mode='NULLABLE'),
             bigquery.SchemaField('is_repeated_guest', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('previous_cancellations', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('previous_bookings_not_canceled', 'INT64', mode='NULLABLE'),
@@ -264,6 +390,7 @@ with DAG(
         ml_price_schema = [
             bigquery.SchemaField('Booking_ID', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('lead_time', 'INT64', mode='NULLABLE'),
+            bigquery.SchemaField('arrival_date_year', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('stays_in_weekend_nights', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('stays_in_week_nights', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('adults', 'INT64', mode='NULLABLE'),
@@ -280,7 +407,6 @@ with DAG(
             bigquery.SchemaField('market_segment_Groups', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('market_segment_Offline_TA_TO', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('market_segment_Online_TA', 'INT64', mode='NULLABLE'),
-            bigquery.SchemaField('market_segment_Undefined', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('arrival_month_April', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('arrival_month_August', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('arrival_month_December', 'INT64', mode='NULLABLE'),
@@ -307,6 +433,8 @@ with DAG(
             bigquery.SchemaField('adr', 'FLOAT64', mode='NULLABLE'),
             bigquery.SchemaField('predicted', 'FLOAT64', mode='NULLABLE')
         ]
+
+
 
         # Create Table Object
         table_eda = bigquery.Table(table_id_h_eda, schema=eda_schema)
@@ -337,6 +465,7 @@ with DAG(
 
     def load_airbnb(**kwargs):
         ti = kwargs['ti']
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/BigQuery/is3107-g2-381308-b948b933d07a.json'
 
         # Create a client object
         client = bigquery.Client()
@@ -413,4 +542,6 @@ with DAG(
     )
 
 
-    extract >> [ transform_hotel, transform_airbnb ] >> [ load_hotel, load_airbnb]
+extract >> [ transform_hotel, transform_airbnb ] 
+transform_hotel >> load_hotel
+transform_airbnb >> load_airbnb

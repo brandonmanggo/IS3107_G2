@@ -1,5 +1,6 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from datetime import datetime
 import os
 from google.cloud import bigquery
 import pandas as pd
@@ -23,6 +24,8 @@ import catboost as cb
 
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
+ddir = '/Users/nevanng/IS3107/IS3107_G2'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
 default_args = {
     'owner': 'airflow',
@@ -39,9 +42,11 @@ dag = DAG(
 
 def extract(**kwargs):
     ti = kwargs['ti']
-    year = kwargs.get('year')
-    quarter = kwargs.get('quarter')
-
+    #year = kwargs.get('year')
+    #quarter = kwargs.get('quarter')
+    year = '2017' 
+    quarter = 3
+    
     month_dict = {
         1: ['January', 'February', 'March'],
         2: ['April', 'May', 'June'],
@@ -49,7 +54,7 @@ def extract(**kwargs):
         4: ['October', 'November', 'December']
     }
 
-    ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
+    ddir = '/Users/nevanng/IS3107/IS3107_G2'
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
     # Set up BigQuery client 
@@ -62,18 +67,21 @@ def extract(**kwargs):
     # Query quarterly data 
     query_price = f"""
     SELECT *
-    FROM `{table_id_price}`
-    WHERE arrival_date_month_`{month_dict[quarter][0]}` = 1
-    AND arrival_date_month_`{month_dict[quarter][1]}` = 1
-    AND arrival_date_month_`{month_dict[quarter][2]}` = 1
+    FROM {table_id_price}
+    WHERE arrival_date_month_{month_dict[quarter][0]} = 1
+    OR arrival_date_month_{month_dict[quarter][1]} = 1
+    OR arrival_date_month_{month_dict[quarter][2]} = 1
     AND arrival_date_year = 2017
     """
+    print(query_price)
 
     query_cancel = f"""
     SELECT *
-    FROM `{table_id_cancel}`
-    WHERE arrival_date_month IN ({','.join(['"' + str(val) + '"' for val in month_dict[quarter]])})
-    AND arrival_date_year = `{year}`
+    FROM {table_id_cancel}
+    WHERE arrival_date_month_{month_dict[quarter][0]} = 1
+    OR arrival_date_month_{month_dict[quarter][1]} = 1
+    OR arrival_date_month_{month_dict[quarter][2]} = 1
+    AND arrival_date_year = 2017
     """
 
     query_price_all = f"""
@@ -107,6 +115,19 @@ def extract(**kwargs):
     booking_price_df = result_price_all.to_dataframe()
     booking_cancel_df = result_cancel_all.to_dataframe()
 
+    booking_price_df.drop('Booking_ID', axis=1, inplace=True)
+    booking_cancel_df.drop('Booking_ID', axis=1, inplace=True)
+
+    booking_price_df.rename(columns={'market_segment_Offline TA/TO': 'market_segment_Offline_TA_TO', 
+                                     'market_segment_Online TA': 'market_segment_Online_TA'}, 
+                            inplace=True)
+    booking_cancel_df.rename(columns={'market_segment_Offline TA/TO': 'market_segment_Offline_TA_TO', 
+                                     'market_segment_Online TA': 'market_segment_Online_TA'}, 
+                            inplace=True)
+
+    booking_price_df.to_csv(output_dir_price, index=False)
+    booking_cancel_df.to_csv(output_dir_cancel, index=False)
+
     ti.xcom_push('booking_price_df', booking_price_df.to_csv(index=False))
     ti.xcom_push('booking_cancel_df', booking_cancel_df.to_csv(index=False))
 
@@ -114,7 +135,15 @@ def update_price_model(**kwargs):
     ti = kwargs['ti']
 
     hotel_price_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
-    hotel_price_df = pd.read_csv(StringIO(hotel_price_csv))
+    # ddir = '/Users/nevanng/IS3107/IS3107_G2'
+    # year = '2017' 
+    # quarter = 3
+
+    # output_dir_price = f'{ddir}/output/{year}-Q{quarter}-price.csv' 
+    # hotel_price_csv = pd.read_csv(output_dir_price)
+    # #hotel_price_csv = hotel_price_csv.to_csv(index=False)
+    
+    hotel_price_df = hotel_price_csv
     # Splitting Data (80:20) Regression
     x = hotel_price_df.drop(columns = ['adr', 'predicted'])
     y = hotel_price_df.adr 
@@ -165,7 +194,7 @@ def update_price_model(**kwargs):
         new_r2 = cbr_r2
         new_price_model = cbr_model
 
-    ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project'
+    ddir = '/Users/nevanng/IS3107/IS3107_G2'
 
     # Save Updated Model
     price_model_dir = f'{ddir}/Dashboard/Models/price_model.pkl'
@@ -176,58 +205,69 @@ def update_price_model(**kwargs):
 def update_cancel_model(**kwargs):
     ti = kwargs['ti']
 
-    hotel_cancel_df = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
+    hotel_cancel_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
 
+    # ddir = '/Users/nevanng/IS3107/IS3107_G2'
+    # year = '2017' 
+    # quarter = 3
+
+    # output_dir_cancel = f'{ddir}/output/{year}-Q{quarter}-cancel.csv' 
+    # hotel_cancel_csv = pd.read_csv(output_dir_cancel)
+    # #hotel_cancel_csv = hotel_cancel_csv.to_csv(index=False)
+    # hotel_cancel_df = hotel_cancel_csv
     # train model 
     #JY
     # Splitting Data (80:20) Regression
-    x = hotel_cancel_df.drop(columns = 'is_canceled')
+    x = hotel_cancel_df.drop(columns = ['is_canceled', 'predicted'])
     y = hotel_cancel_df['is_canceled'] 
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
     
-    #Train Models
+    #Train Models (Commented Models due to memory limitations)
     #Random Forest Classifier
-    rfr = RandomForestRegressor()
-    rfr_model = rfr.fit(x_train, y_train)
-    rfr_y_pred = rfr_model.predict(x_test)
-    rfr_r2 = r2_score(y_test, rfr_y_pred)
+    # rfr = RandomForestClassifier()
+    # rfr_model = rfr.fit(x_train, y_train)
+    # rfr_y_pred = rfr_model.predict(x_test)
+    # rfr_r2 = r2_score(y_test, rfr_y_pred)
 
-    new_cancel_model = rfr_model
-    new_r2 = rfr_r2
+    # new_cancel_model = rfr_model
+    # new_r2 = rfr_r2
 
     #Cat Boost Classifier
-    cbr = cb.CatBoostClassifier(iterations = 100)
-    cbr_model = cbr.fit(x_train, y_train)
-    cbr_y_pred = cbr_model.predict(x_test)
-    cbr_r2 = r2_score(y_test, cbr_y_pred)
+    # cbr = cb.CatBoostClassifier(iterations = 100)
+    # cbr_model = cbr.fit(x_train, y_train)
+    # cbr_y_pred = cbr_model.predict(x_test)
+    # cbr_r2 = r2_score(y_test, cbr_y_pred)
 
-    if (cbr_r2 > new_r2): 
-        new_r2 = cbr_r2
-        new_cancel_model = cbr_model
+    # if (cbr_r2 > new_r2): 
+    #     new_r2 = cbr_r2
+    #     new_cancel_model = cbr_model
 
-    #K Nearest Neighbours Classifier
+    # #K Nearest Neighbours Classifier
     knn = KNeighborsClassifier()
     knn_model = knn.fit(x_train, y_train)
     knn_y_pred = knn_model.predict(x_test)
     knn_r2 = r2_score(y_test, knn_y_pred)
 
-    if (knn_r2 > new_r2):
-        new_r2 = knn
-        new_cancel_model = knn_model
+    # if (knn_r2 > new_r2):
+    #     new_r2 = knn
+    #     new_cancel_model = knn_model
+    new_r2 = knn_r2
+    new_cancel_model = knn_model
+   
+    # #Gradient Bosst Classifier
+    # gb = GradientBoostingClassifier()
+    # gb_model = gb.fit(x_train, y_train)
+    # gb_y_pred = gb_model.predict(x_test)
+    # gb_r2 = r2_score(y_test, gb_y_pred)
 
-    #Gradient Bosst Classifier
-    gb = GradientBoostingClassifier()
-    gb_model = gb.fit(x_train, y_train)
-    gb_y_pred = gb_model.predict(x_test)
-    gb_r2 = r2_score(y_test, gb_y_pred)
-
-    if(gb_r2 > new_r2): 
-        new_r2 = gb_r2
-        new_cancel_model = gb_model
+    # if(gb_r2 > new_r2): 
+    #     new_r2 = gb_r2
+    #     new_cancel_model = gb_model
+    
     
     
     # Save updated model
-    cancel_model_dir = f'{ddir}/models/cancel_model.pkl'
+    cancel_model_dir = f'{ddir}/Dashboard/Models/cancellation_model.pkl'
     with open(cancel_model_dir, "wb") as f:
         pickle.dump(new_cancel_model, f)
 
@@ -251,7 +291,3 @@ update_cancel_model = PythonOperator(
 )
     
 extract >> [update_price_model, update_cancel_model]
-
-
-
-

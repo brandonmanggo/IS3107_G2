@@ -16,7 +16,7 @@ import xgboost as xgb
 # import catboost as cb
 
 # Set the path to your service account key file
-ddir = 'C:\\Users\\KMwong\\Desktop\\IS3107\\Projects\\IS3107_G2'
+ddir = '/IS3107/IS3107_G2'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}\\BigQuery\\is3107-g2-381308-b948b933d07a.json'
 
 #### Run Job By Job To Test (Else rename job with job+number)

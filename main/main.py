@@ -11,7 +11,7 @@ from airflow.api.client.local_client import Client
 client = Client(None, None)
 
 # current working directorty
-ddir = '/Users/mellitaangga/Desktop/BZA/Y2S2/IS3107/Project/IS3107_G2'
+ddir = '/IS3107/IS3107_G2'
 streaming_data_dir = ddir + '/Dataset/hotel_streaming'
 
 # The simulated date when this python script is run 
