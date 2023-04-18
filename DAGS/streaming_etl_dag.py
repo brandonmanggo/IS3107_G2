@@ -38,7 +38,6 @@ def transform(**kwargs):
     #data = kwargs['dag_run'].conf['data']
     data = pd.read_csv("/Users/nevanng/IS3107/IS3107_G2/Dataset/hotel_streaming/2017-9.csv")
     data = data.to_csv(index=False)
-    print(data)
     hotel_booking_df = pd.read_csv(StringIO(data))
     
     # Data Preprocessing for Price Prediction
@@ -251,16 +250,14 @@ def transform(**kwargs):
 
 def predict_price(**kwargs):
     ti = kwargs['ti']
-    print("price here")
     booking_price_df = ti.xcom_pull(task_ids = 'transform', key = 'hotel_booking_price_df')
     booking_price_df = pd.read_csv(StringIO(booking_price_df))
-
     ## Load Pretrained price_model using pickle
     price_model_dir = '/Users/nevanng/IS3107/IS3107_G2/Dashboard/Models/price_model.pkl'
     
     with open(price_model_dir, 'rb') as f:
         price_model = pickle.load(f)
-    print("after model")
+    
     # Predict the price for the customer
     predictors_cols = ['lead_time', 'arrival_date_year',
                         'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
@@ -284,9 +281,8 @@ def predict_price(**kwargs):
     
     
     predictors = booking_price_df[predictors_cols]
-    print(predictors.info())
     predicted_price = price_model.predict(predictors)
-
+    
     # Append the predicted price back to original df
     booking_price_df['predicted'] = predicted_price
     booking_price_df.rename(columns={'market_segment_Offline TA/TO': 'market_segment_Offline_TA_TO', 
@@ -312,7 +308,6 @@ def predict_cancel(**kwargs):
         cancel_model = pickle.load(f)
     #cancel_model = pd.read_pickle(cancel_model_dir)
 
-    print("cancel running")
     # variables
     predictor_cols = ['is_repeated_guest', 'arrival_date_month_April',      'arrival_date_month_August', 'arrival_date_month_December', 
                       'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
@@ -329,7 +324,6 @@ def predict_cancel(**kwargs):
     hotel_temp_df = hotel_booking_df.copy() 
     predictors = hotel_booking_df[predictor_cols]
     # predict the cancellation of the booking based on the above variables
-    print(predictors.info())
     predicted_cancel = cancel_model.predict(predictors)
 
     # Append the predicted price back to original df
@@ -347,7 +341,6 @@ def predict_cancel(**kwargs):
 def load_price(**kwargs):
     ti = kwargs['ti']
     hotel_booking_price_csv = ti.xcom_pull(task_ids = 'predict_price', key = 'hotel_booking_price_csv')
-    print(hotel_booking_price_csv)
 
     hotel_booking_price_csv_bytes = bytes(hotel_booking_price_csv, 'utf-8')
     hotel_booking_price_csv_stream = io.BytesIO(hotel_booking_price_csv_bytes)
