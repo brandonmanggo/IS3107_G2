@@ -118,11 +118,11 @@ def extract(**kwargs):
     booking_price_df.drop('Booking_ID', axis=1, inplace=True)
     booking_cancel_df.drop('Booking_ID', axis=1, inplace=True)
 
-    booking_price_df.rename(columns={'market_segment_Offline TA/TO': 'market_segment_Offline_TA_TO', 
-                                     'market_segment_Online TA': 'market_segment_Online_TA'}, 
+    booking_price_df.rename(columns={'market_segment_Offline_TA_TO': 'market_segment_Offline TA/TO', 
+                                     'market_segment_Online_TA': 'market_segment_Online TA'}, 
                             inplace=True)
-    booking_cancel_df.rename(columns={'market_segment_Offline TA/TO': 'market_segment_Offline_TA_TO', 
-                                     'market_segment_Online TA': 'market_segment_Online_TA'}, 
+    booking_cancel_df.rename(columns={'market_segment_Offline_TA_TO': 'market_segment_Offline TA/TO', 
+                                     'market_segment_Online_TA': 'market_segment_Online TA'}, 
                             inplace=True)
 
     booking_price_df.to_csv(output_dir_price, index=False)
@@ -133,19 +133,43 @@ def extract(**kwargs):
 
 def update_price_model(**kwargs):
     ti = kwargs['ti']
-
-    hotel_price_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
     # ddir = '/Users/nevanng/IS3107/IS3107_G2'
     # year = '2017' 
     # quarter = 3
 
     # output_dir_price = f'{ddir}/output/{year}-Q{quarter}-price.csv' 
     # hotel_price_csv = pd.read_csv(output_dir_price)
-    # #hotel_price_csv = hotel_price_csv.to_csv(index=False)
+    # hotel_price_df = hotel_price_csv
+
+    hotel_price_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
+    hotel_price_df = pd.read_csv(StringIO(hotel_price_csv))
+
+    predictors_cols = ['lead_time', 'arrival_date_year',
+                        'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
+                        'children', 'is_repeated_guest', 'previous_cancellations', 
+                        'previous_bookings_not_canceled', 'required_car_parking_spaces', 
+                        'total_of_special_requests', 'market_segment_Aviation', 
+                        'market_segment_Complementary', 'market_segment_Corporate', 
+                        'market_segment_Direct', 'market_segment_Groups', 
+                        'market_segment_Offline TA/TO', 'market_segment_Online TA', 
+                         'arrival_date_month_April',
+                        'arrival_date_month_August', 'arrival_date_month_December',
+                        'arrival_date_month_February', 'arrival_date_month_January',
+                        'arrival_date_month_July', 'arrival_date_month_June',
+                        'arrival_date_month_March', 'arrival_date_month_May',
+                        'arrival_date_month_November', 'arrival_date_month_October', 
+                        'arrival_date_month_September', 'meal_BB', 'meal_FB', 'meal_HB', 
+                        'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B', 
+                        'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 
+                        'reserved_room_type_F', 'reserved_room_type_G'
+                      ]  
     
-    hotel_price_df = hotel_price_csv
+    hotel_price_df_ordered = hotel_price_df[predictors_cols]
+
+
     # Splitting Data (80:20) Regression
-    x = hotel_price_df.drop(columns = ['adr', 'predicted'])
+    # x = hotel_price_df.drop(columns = ['adr', 'predicted'])
+    x = hotel_price_df_ordered
     y = hotel_price_df.adr 
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
 
@@ -195,7 +219,6 @@ def update_price_model(**kwargs):
         new_price_model = cbr_model
 
     ddir = '/Users/nevanng/IS3107/IS3107_G2'
-
     # Save Updated Model
     price_model_dir = f'{ddir}/Dashboard/Models/price_model.pkl'
     with open(price_model_dir, "wb") as f:
@@ -205,7 +228,7 @@ def update_price_model(**kwargs):
 def update_cancel_model(**kwargs):
     ti = kwargs['ti']
 
-    hotel_cancel_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
+    #hotel_cancel_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
 
     # ddir = '/Users/nevanng/IS3107/IS3107_G2'
     # year = '2017' 
@@ -213,12 +236,30 @@ def update_cancel_model(**kwargs):
 
     # output_dir_cancel = f'{ddir}/output/{year}-Q{quarter}-cancel.csv' 
     # hotel_cancel_csv = pd.read_csv(output_dir_cancel)
-    # #hotel_cancel_csv = hotel_cancel_csv.to_csv(index=False)
     # hotel_cancel_df = hotel_cancel_csv
+    
+    hotel_cancel_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
+    hotel_cancel_df = pd.read_csv(StringIO(hotel_cancel_csv))
+    
+    predictor_cols = ['is_repeated_guest', 'arrival_date_month_April',      'arrival_date_month_August', 'arrival_date_month_December', 
+                      'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
+                      'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
+                      'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
+                      'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
+                      'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
+                      'reserved_room_type_G', 'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
+                      'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA',
+                       'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
+                      'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces',
+                      'total_of_special_requests'
+                      ]
+    hotel_cancel_df_ordered = hotel_cancel_df[predictor_cols] 
+
+
     # train model 
     #JY
     # Splitting Data (80:20) Regression
-    x = hotel_cancel_df.drop(columns = ['is_canceled', 'predicted'])
+    x = hotel_cancel_df_ordered
     y = hotel_cancel_df['is_canceled'] 
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
     
