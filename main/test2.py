@@ -28,7 +28,7 @@ configuration = airflow_client.client.Configuration(
 
 # Configure HTTP basic authorization: Basic
 configuration = airflow_client.client.Configuration(
-    host = "http://localhost:8080/api/v1",
+    host = "http://localhost:8008/api/v1",
     username = 'admin',
     password = '94rMesU8ZXhkY7GB'
 )
@@ -45,20 +45,28 @@ with airflow_client.client.ApiClient(configuration) as api_client:
     try:
         # Trigger a new DAG run
         #api_response = api_instance.post_dag_run(dag_id, dag_run)
-        # api_response = api_instance.post_dag_run(
-        #     "streaming_etl", dag_run_api.DAGRun(
-        #                                         dag_run_id=(datetime.datetime.now().strftime( "%m/%d/%Y, %H:%M:%S")), 
-        #                                         logical_date=parse((datetime.datetime.now() - datetime.timedelta(hours=8)).strftime( "%m/%d/%Y, %H:%M:%S" )+ 'Z'),
-        #                                         conf={'data' : reader}, 
-        #                                         )
-        # )
+        api_response = api_instance.post_dag_run(
+            "streaming_etl", dag_run_api.DAGRun(
+                                                dag_run_id=(datetime.datetime.now().strftime( "%m/%d/%Y, %H:%M:%S")), 
+                                                logical_date=parse((datetime.datetime.now() - datetime.timedelta(hours=8)).strftime( "%m/%d/%Y, %H:%M:%S" )+ 'Z'),
+                                                conf={'data' : reader}, 
+                                                )
+        )
         api_response = api_instance.post_dag_run(
             "quarterly_etl", dag_run_api.DAGRun(
                                                 dag_run_id=(datetime.datetime.now().strftime( "%m/%d/%Y, %H:%M:%S")), 
                                                 logical_date=parse((datetime.datetime.now() - datetime.timedelta(hours=8)).strftime( "%m/%d/%Y, %H:%M:%S" )+ 'Z'),
-                                                conf={}, 
+                                                conf={'quarter' : int(3), 'year' : int(2017)}, 
                                                 )
-        ) 
+        )
+        # api_response2 = api_instance.post_dag_run(
+        #     "ether", dag_run_api.DAGRun(
+        #                                         dag_run_id=(datetime.datetime.now().strftime( "%m/%d/%Y, %H:%M:%S")), 
+        #                                         logical_date=parse((datetime.datetime.now() - datetime.timedelta(hours=8)).strftime( "%m/%d/%Y, %H:%M:%S" )+ 'Z'),
+        #                                         conf={}, 
+        #                                         )
+        # )
+         
         pprint(api_response)
     except airflow_client.client.ApiException as e:
         print("Exception when calling DAGRunApi->post_dag_run: %s\n" % e)
