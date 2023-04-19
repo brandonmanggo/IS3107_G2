@@ -36,12 +36,19 @@ with DAG(
         # Hotel Booking Dataset
         hotel_booking_file = pd.read_csv(f'{ddir}/Dataset/batch_data/city_hotel_bookings_updated.csv')
         hotel_booking_file = hotel_booking_file.to_csv(index=False)
+       # hotel_booking_dir = f'{ddir}/Dataset/batch_data/city_hotel_bookings_updated.csv'
+       # hotel_booking_file = open(hotel_booking_dir)
+       # hotel_booking_file = csv.reader(hotel_booking_file)
         
 
         # Airbnb Dataset
         airbnb_file = pd.read_csv(f'{ddir}/Dataset/batch_data/data_airbnb_raw.csv') 
         airbnb_file = airbnb_file.to_csv(index=False)
+        #airbnb_dir = f'{ddir}/Dataset/batch_data/data_airbnb_raw.csv'
+        #airbnb_file = open(airbnb_dir)
+        #airbnb_file = csv.reader(airbnb_file)
 
+        #print(airbnb_file)
         ti.xcom_push('hotel_booking_raw_data', hotel_booking_file)
         ti.xcom_push('airbnb_raw_data', airbnb_file)
 
@@ -93,19 +100,40 @@ with DAG(
         hotel_booking_ml_cancel = pd.concat([hotel_booking_ml_cancel, reserved_room_type_one_hot], axis=1)
         hotel_booking_ml_cancel.drop('reserved_room_type', axis=1, inplace=True)
 
-        # Variables 
-        cols = ['arrival_date_month_April', 'arrival_date_month_August', 'arrival_date_month_December', 
-                'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
-                'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
-                'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
-                'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
-                'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
-                'reserved_room_type_G',  
-                'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
-                'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA',
-                'is_repeated_guest', 'lead_time', 'arrival_date_year', 'stays_in_weekend_nights', 'stays_in_week_nights',
-                'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces', 'total_of_special_requests', 'is_canceled'
-               ]
+        # # Variables 
+        # cols = ['arrival_date_month_April', 'arrival_date_month_August', 'arrival_date_month_December', 
+        #         'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
+        #         'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
+        #         'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
+        #         'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
+        #         'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
+        #         'reserved_room_type_G',  
+        #         'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
+        #         'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA',
+        #         'is_repeated_guest', 'lead_time', 'arrival_date_year', 'stays_in_weekend_nights', 'stays_in_week_nights',
+        #         'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces', 'total_of_special_requests', 'is_canceled'
+        #        ]
+
+        # Variables
+        cols = ['lead_time', 'adr', 'arrival_date_year',
+            'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
+            'children', 'is_repeated_guest', 'previous_cancellations', 
+            'previous_bookings_not_canceled', 'required_car_parking_spaces', 
+            'total_of_special_requests', 'market_segment_Aviation', 
+            'market_segment_Complementary', 'market_segment_Corporate', 
+            'market_segment_Direct', 'market_segment_Groups', 
+            'market_segment_Offline TA/TO', 'market_segment_Online TA', 
+             'arrival_date_month_April',
+            'arrival_date_month_August', 'arrival_date_month_December',
+            'arrival_date_month_February', 'arrival_date_month_January',
+            'arrival_date_month_July', 'arrival_date_month_June',
+            'arrival_date_month_March', 'arrival_date_month_May',
+            'arrival_date_month_November', 'arrival_date_month_October', 
+            'arrival_date_month_September', 'meal_BB', 'meal_FB', 'meal_HB', 
+            'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B', 
+            'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 
+            'reserved_room_type_F', 'reserved_room_type_G', 'Booking_ID'
+          ]
 
         processed_booking_ml_cancel_df = pd.DataFrame(columns=cols)
         processed_booking_ml_cancel_df = pd.concat([processed_booking_ml_cancel_df, hotel_booking_ml_cancel])
@@ -201,19 +229,41 @@ with DAG(
         hotel_booking_ml_price = pd.concat([hotel_booking_ml_price, reserved_room_type_one_hot], axis=1)
         hotel_booking_ml_price.drop('reserved_room_type', axis=1, inplace=True)
 
-        # Variables 
-        cols = ['arrival_date_month_April', 'arrival_date_month_August', 'arrival_date_month_December', 
-                'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
-                'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
-                'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
-                'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
-                'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
-                'reserved_room_type_G',  
-                'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
-                'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA',
-                'is_repeated_guest', 'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
-                'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces', 'total_of_special_requests', 'arrival_date_year'
-               ]
+        # # Variables 
+        # cols = ['arrival_date_month_April', 'arrival_date_month_August', 'arrival_date_month_December', 
+        #         'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
+        #         'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
+        #         'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
+        #         'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
+        #         'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
+        #         'reserved_room_type_G',  
+        #         'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
+        #         'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA',
+        #         'is_repeated_guest', 'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
+        #         'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces', 'total_of_special_requests', 'arrival_date_year'
+        #        ]
+
+        # Variables
+        cols = ['lead_time', 'adr', 'arrival_date_year',
+            'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
+            'children', 'is_repeated_guest', 'previous_cancellations', 
+            'previous_bookings_not_canceled', 'required_car_parking_spaces', 
+            'total_of_special_requests', 'market_segment_Aviation', 
+            'market_segment_Complementary', 'market_segment_Corporate', 
+            'market_segment_Direct', 'market_segment_Groups', 
+            'market_segment_Offline TA/TO', 'market_segment_Online TA', 
+             'arrival_date_month_April',
+            'arrival_date_month_August', 'arrival_date_month_December',
+            'arrival_date_month_February', 'arrival_date_month_January',
+            'arrival_date_month_July', 'arrival_date_month_June',
+            'arrival_date_month_March', 'arrival_date_month_May',
+            'arrival_date_month_November', 'arrival_date_month_October', 
+            'arrival_date_month_September', 'meal_BB', 'meal_FB', 'meal_HB', 
+            'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B', 
+            'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 
+            'reserved_room_type_F', 'reserved_room_type_G', 'Booking_ID'
+          ]
+
 
         processed_booking_ml_price_df = pd.DataFrame(columns=cols)
         processed_booking_ml_price_df = pd.concat([processed_booking_ml_price_df, hotel_booking_ml_price])
@@ -279,7 +329,6 @@ with DAG(
 
     def load_hotel(**kwargs):
         ti = kwargs['ti']
-
         hotel_booking_eda_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'hotel_booking_eda')
         hotel_booking_ml_cancel_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'processed_booking_ml_cancel_df')
         hotel_booking_ml_price_csv = ti.xcom_pull(task_ids = 'transform_hotel', key = 'processed_booking_ml_price_df')
@@ -385,6 +434,7 @@ with DAG(
             bigquery.SchemaField('adr', 'FLOAT64', mode='NULLABLE'),
             bigquery.SchemaField('total_of_special_requests', 'INT64', mode='NULLABLE'),
             bigquery.SchemaField('is_canceled', 'INT64', mode='NULLABLE')
+            
         ]
 
         ml_price_schema = [

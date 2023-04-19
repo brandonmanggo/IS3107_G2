@@ -17,6 +17,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.metrics import accuracy_score
+
 
 import lightgbm as ltb
 import xgboost as xgb
@@ -42,10 +44,11 @@ dag = DAG(
 
 def extract(**kwargs):
     ti = kwargs['ti']
-    #year = kwargs.get('year')
-    #quarter = kwargs.get('quarter')
-    year = '2017' 
-    quarter = 3
+
+    year = kwargs['dag_run'].conf['year']
+    quarter = kwargs['dag_run'].conf['quarter']
+    # year = '2017' 
+    # quarter = 3
     
     month_dict = {
         1: ['January', 'February', 'March'],
@@ -96,25 +99,30 @@ def extract(**kwargs):
 
     output_dir_price = f'{ddir}/output/{year}-Q{quarter}-price.csv' 
     output_dir_cancel = f'{ddir}/output/{year}-Q{quarter}-cancel.csv' 
-        
+
+    print("querying price")    
     query_job_price = client.query(query_price)
     query_job_cancel = client.query(query_cancel)
 
+    print("after query")
     result_price = query_job_price.result()
     result_cancel = query_job_cancel.result()
 
     quarterly_price_df = result_price.to_dataframe()
     quarterly_cancel_df = result_cancel.to_dataframe()
-    
+    print("query all")
     query_job_price_all = client.query(query_price_all)
     query_job_cancel_all = client.query(query_cancel_all)
 
+    print("qfter query all")
     result_price_all = query_job_price_all.result()
     result_cancel_all = query_job_cancel_all.result()
 
+    print("to dfl")
     booking_price_df = result_price_all.to_dataframe()
     booking_cancel_df = result_cancel_all.to_dataframe()
 
+    
     booking_price_df.drop('Booking_ID', axis=1, inplace=True)
     booking_cancel_df.drop('Booking_ID', axis=1, inplace=True)
 
@@ -128,21 +136,26 @@ def extract(**kwargs):
     booking_price_df.to_csv(output_dir_price, index=False)
     booking_cancel_df.to_csv(output_dir_cancel, index=False)
 
-    ti.xcom_push('booking_price_df', booking_price_df.to_csv(index=False))
-    ti.xcom_push('booking_cancel_df', booking_cancel_df.to_csv(index=False))
+    print("before push")
+    # ti.xcom_push('booking_price_df', booking_price_df.to_csv(index=False))
+    # ti.xcom_push('booking_cancel_df', booking_cancel_df.to_csv(index=False))
+    ti.xcom_push('ddir', ddir)
+    ti.xcom_push('year', year)
+    ti.xcom_push('quarter', quarter)
+
 
 def update_price_model(**kwargs):
     ti = kwargs['ti']
-    # ddir = '/Users/nevanng/IS3107/IS3107_G2'
-    # year = '2017' 
-    # quarter = 3
+    ddir = ti.xcom_pull(task_ids= 'extract', key= 'ddir')
+    year = ti.xcom_pull(task_ids= 'extract', key= 'year')
+    quarter = ti.xcom_pull(task_ids= 'extract', key= 'quarter')
 
-    # output_dir_price = f'{ddir}/output/{year}-Q{quarter}-price.csv' 
-    # hotel_price_csv = pd.read_csv(output_dir_price)
-    # hotel_price_df = hotel_price_csv
+    output_dir_price = f'{ddir}/output/{year}-Q{quarter}-price.csv' 
+    hotel_price_csv = pd.read_csv(output_dir_price)
+    hotel_price_df = hotel_price_csv
 
-    hotel_price_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
-    hotel_price_df = pd.read_csv(StringIO(hotel_price_csv))
+    # hotel_price_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
+    # hotel_price_df = pd.read_csv(StringIO(hotel_price_csv))
 
     predictors_cols = ['lead_time', 'arrival_date_year',
                         'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
@@ -228,18 +241,17 @@ def update_price_model(**kwargs):
 def update_cancel_model(**kwargs):
     ti = kwargs['ti']
 
-    #hotel_cancel_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
+    ddir = ti.xcom_pull(task_ids= 'extract', key= 'ddir')
+    year = ti.xcom_pull(task_ids= 'extract', key= 'year')
+    quarter = ti.xcom_pull(task_ids= 'extract', key= 'quarter')
 
-    # ddir = '/Users/nevanng/IS3107/IS3107_G2'
-    # year = '2017' 
-    # quarter = 3
+    output_dir_cancel = f'{ddir}/output/{year}-Q{quarter}-cancel.csv' 
+    hotel_cancel_csv = pd.read_csv(output_dir_cancel)
+    hotel_cancel_df = hotel_cancel_csv
 
-    # output_dir_cancel = f'{ddir}/output/{year}-Q{quarter}-cancel.csv' 
-    # hotel_cancel_csv = pd.read_csv(output_dir_cancel)
-    # hotel_cancel_df = hotel_cancel_csv
-    
-    hotel_cancel_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
-    hotel_cancel_df = pd.read_csv(StringIO(hotel_cancel_csv))
+
+    # hotel_cancel_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
+    # hotel_cancel_df = pd.read_csv(StringIO(hotel_cancel_csv))
     
     predictor_cols = ['is_repeated_guest', 'arrival_date_month_April',      'arrival_date_month_August', 'arrival_date_month_December', 
                       'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
@@ -263,47 +275,48 @@ def update_cancel_model(**kwargs):
     y = hotel_cancel_df['is_canceled'] 
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
     
-    #Train Models (Commented Models due to memory limitations)
-    #Random Forest Classifier
-    # rfr = RandomForestClassifier()
-    # rfr_model = rfr.fit(x_train, y_train)
-    # rfr_y_pred = rfr_model.predict(x_test)
-    # rfr_r2 = r2_score(y_test, rfr_y_pred)
+    #Train Models
+    # Random Forest Classifier
+    rfc = RandomForestClassifier()
+    rfc_model = rfc.fit(x_train, y_train)
+    rfc_y_pred = rfc_model.predict(x_test)
+    rfc_acc = accuracy_score(y_test, rfc_y_pred)
 
-    # new_cancel_model = rfr_model
-    # new_r2 = rfr_r2
+    new_cancel_model = rfc_model
+    new_acc = rfc_acc
 
     #Cat Boost Classifier
-    # cbr = cb.CatBoostClassifier(iterations = 100)
-    # cbr_model = cbr.fit(x_train, y_train)
-    # cbr_y_pred = cbr_model.predict(x_test)
-    # cbr_r2 = r2_score(y_test, cbr_y_pred)
+    cbc = cb.CatBoostClassifier(iterations = 100)
+    cbc_model = cbc.fit(x_train, y_train)
+    cbc_y_pred = cbc_model.predict(x_test)
+    cbc_acc = accuracy_score(y_test, cbc_y_pred)
 
-    # if (cbr_r2 > new_r2): 
-    #     new_r2 = cbr_r2
-    #     new_cancel_model = cbr_model
+    if (cbc_acc > new_acc): 
+        new_acc = cbc_acc
+        new_cancel_model = cbc_model
 
-    # #K Nearest Neighbours Classifier
+    # K Nearest Neighbours Classifier
     knn = KNeighborsClassifier()
     knn_model = knn.fit(x_train, y_train)
     knn_y_pred = knn_model.predict(x_test)
-    knn_r2 = r2_score(y_test, knn_y_pred)
+    knn_acc = accuracy_score(y_test, knn_y_pred)
 
-    # if (knn_r2 > new_r2):
-    #     new_r2 = knn
-    #     new_cancel_model = knn_model
-    new_r2 = knn_r2
-    new_cancel_model = knn_model
-   
-    # #Gradient Bosst Classifier
-    # gb = GradientBoostingClassifier()
-    # gb_model = gb.fit(x_train, y_train)
-    # gb_y_pred = gb_model.predict(x_test)
-    # gb_r2 = r2_score(y_test, gb_y_pred)
+    if (knn_acc > new_acc): 
+        new_acc = knn_acc
+        new_cancel_model = knn_model
 
-    # if(gb_r2 > new_r2): 
-    #     new_r2 = gb_r2
-    #     new_cancel_model = gb_model
+    # Gradient Bosst Classifier
+    gbc = GradientBoostingClassifier()
+    gbc_model = gbc.fit(x_train, y_train)
+    gbc_y_pred = gbc_model.predict(x_test)
+    gbc_acc = accuracy_score(y_test, gbc_y_pred)
+
+    if (gbc_acc > new_acc): 
+        new_acc = gbc_acc
+        new_cancel_model = gbc_model
+
+    print(new_acc)
+    print(new_cancel_model)
     
     
     
