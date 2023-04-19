@@ -17,6 +17,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.metrics import accuracy_score
+
 
 import lightgbm as ltb
 import xgboost as xgb
@@ -263,47 +265,48 @@ def update_cancel_model(**kwargs):
     y = hotel_cancel_df['is_canceled'] 
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
     
-    #Train Models (Commented Models due to memory limitations)
-    #Random Forest Classifier
-    # rfr = RandomForestClassifier()
-    # rfr_model = rfr.fit(x_train, y_train)
-    # rfr_y_pred = rfr_model.predict(x_test)
-    # rfr_r2 = r2_score(y_test, rfr_y_pred)
+    #Train Models
+    # Random Forest Classifier
+    rfc = RandomForestClassifier()
+    rfc_model = rfc.fit(x_train, y_train)
+    rfc_y_pred = rfc_model.predict(x_test)
+    rfc_acc = accuracy_score(y_test, rfc_y_pred)
 
-    # new_cancel_model = rfr_model
-    # new_r2 = rfr_r2
+    new_cancel_model = rfc_model
+    new_acc = rfc_acc
 
     #Cat Boost Classifier
-    # cbr = cb.CatBoostClassifier(iterations = 100)
-    # cbr_model = cbr.fit(x_train, y_train)
-    # cbr_y_pred = cbr_model.predict(x_test)
-    # cbr_r2 = r2_score(y_test, cbr_y_pred)
+    cbc = cb.CatBoostClassifier(iterations = 100)
+    cbc_model = cbc.fit(x_train, y_train)
+    cbc_y_pred = cbc_model.predict(x_test)
+    cbc_acc = accuracy_score(y_test, cbc_y_pred)
 
-    # if (cbr_r2 > new_r2): 
-    #     new_r2 = cbr_r2
-    #     new_cancel_model = cbr_model
+    if (cbc_acc > new_acc): 
+        new_acc = cbc_acc
+        new_cancel_model = cbc_model
 
-    # #K Nearest Neighbours Classifier
+    # K Nearest Neighbours Classifier
     knn = KNeighborsClassifier()
     knn_model = knn.fit(x_train, y_train)
     knn_y_pred = knn_model.predict(x_test)
-    knn_r2 = r2_score(y_test, knn_y_pred)
+    knn_acc = accuracy_score(y_test, knn_y_pred)
 
-    # if (knn_r2 > new_r2):
-    #     new_r2 = knn
-    #     new_cancel_model = knn_model
-    new_r2 = knn_r2
-    new_cancel_model = knn_model
-   
-    # #Gradient Bosst Classifier
-    # gb = GradientBoostingClassifier()
-    # gb_model = gb.fit(x_train, y_train)
-    # gb_y_pred = gb_model.predict(x_test)
-    # gb_r2 = r2_score(y_test, gb_y_pred)
+    if (knn_acc > new_acc): 
+        new_acc = knn_acc
+        new_cancel_model = knn_model
 
-    # if(gb_r2 > new_r2): 
-    #     new_r2 = gb_r2
-    #     new_cancel_model = gb_model
+    # Gradient Bosst Classifier
+    gbc = GradientBoostingClassifier()
+    gbc_model = gbc.fit(x_train, y_train)
+    gbc_y_pred = gbc_model.predict(x_test)
+    gbc_acc = accuracy_score(y_test, gbc_y_pred)
+
+    if (gbc_acc > new_acc): 
+        new_acc = gbc_acc
+        new_cancel_model = gbc_model
+
+    print(new_acc)
+    print(new_cancel_model)
     
     
     

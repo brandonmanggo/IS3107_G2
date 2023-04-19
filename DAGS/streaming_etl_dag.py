@@ -14,7 +14,7 @@ from sklearn.preprocessing import StandardScaler
 
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
-ddir = '/IS3107/IS3107_G2'
+ddir = '/Users/nevanng/IS3107/IS3107_G2'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
 price_model_dir = ddir + '/Dashboard/Models/price_model.pkl'
@@ -376,7 +376,8 @@ def load_cancel(**kwargs):
     hotel_booking_cancel_csv_bytes = bytes(hotel_booking_cancel_csv, 'utf-8')
     hotel_booking_cancel_csv_stream = io.BytesIO(hotel_booking_cancel_csv_bytes)
 
-    # Set up BigQuery client 
+    # Set up BigQuery client
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'/Users/nevanng/IS3107/IS3107_G2/bigquery/is3107-g2-381308-b948b933d07a.json' 
     client = bigquery.Client()
 
     # Table ID
