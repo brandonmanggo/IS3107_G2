@@ -46,7 +46,7 @@
 
 ### Google BigQuery
 
-#### Set the OS Environment and Credentials.
+#### Set up the OS Environment and Credentials.
 
 <br />
 
@@ -74,7 +74,7 @@ Run the following in `kafka_2.13-3.4.0` directory.
 #### Open another terminal and start the Broker Service.
 `bin/kafka-server-start.sh config/server.properties`
 
-#### Create a topic to store events.
+#### Open another terminal and create a topic to store events.
 `bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`
 
 <br />
@@ -86,5 +86,5 @@ Run the following commands in the "main" directory
 #### Open a terminal and run Consumer.
 `python3 consumer.py`.
 
-##### Open another terminal and run main.
-`python main.py`.
+##### Open another terminal and run Main.
+`python3 main.py`.
