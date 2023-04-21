@@ -4,7 +4,7 @@ import csv
 import threading
 
 # kafka
-from kafka import KafkaProducer
+# from kafka import KafkaProducer
 
 # airflow
 import datetime
@@ -28,12 +28,12 @@ configuration = airflow_client.client.Configuration(
 
 # Configure HTTP basic authorization: Basic
 configuration = airflow_client.client.Configuration(
-    host = "http://localhost:8008/api/v1",
-    username = 'admin',
-    password = '94rMesU8ZXhkY7GB'
+    host = "http://localhost:8080/api/v1",
+    username = 'kmwong',
+    password = 'Password'
 )
 
-reader = pd.read_csv("/Users/nevanng/IS3107/IS3107_G2/Dataset/hotel_streaming/2017-7.csv")
+reader = pd.read_csv("../Dataset/hotel_streaming/2017-7.csv")
 reader = reader.to_csv(index=False)
 # Enter a context with an instance of the API client
 with airflow_client.client.ApiClient(configuration) as api_client:
