@@ -44,6 +44,15 @@
 
 ## Instructions to Run
 
+### Directories
+Change the relevant `ddir` in the following files to your own current working directory.
+- `main.py`
+- `batch_etl_dags.py`
+- `streaming_etl_dag.py`
+- `quarterly_dag.py`
+
+<br />
+
 ### Packages
 Install the relevant packages when prompted.
 
