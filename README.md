@@ -66,12 +66,12 @@ Install the relevant packages when prompted.
 
 ### Apache Airflow
 
-Put the DAGS into Airflow DAGS Folder
+Put the DAGS into Airflow DAGS Folder.
 - `batch_etl_dags.py`
 - `streaming_etl_dag.py`
 - `quarterly_dag.py`
 
-Run this command in the virtual environment 
+Run this command in the virtual environment.
 
 #### Start the airflow webserver.
 `airflow standalone`
@@ -95,7 +95,7 @@ Run the following in `kafka_2.13-3.4.0` directory.
 
 ### Python Scripts
 
-Run the following commands in the "main" directory 
+Run the following commands in the "main" directory.
 
 #### Open a terminal and run Consumer.
 `python3 consumer.py`.
