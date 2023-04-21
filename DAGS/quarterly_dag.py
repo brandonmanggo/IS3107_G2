@@ -1,24 +1,23 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from datetime import datetime
-import os
 from google.cloud import bigquery
+from datetime import datetime
+from io import StringIO
+import os
 import pandas as pd
 import numpy as np
 import pickle
 import db_dtypes
-from io import StringIO
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
+from sklearn.metrics import accuracy_score
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import AdaBoostClassifier
-from sklearn.metrics import accuracy_score
-
 
 import lightgbm as ltb
 import xgboost as xgb
@@ -26,7 +25,7 @@ import catboost as cb
 
 # Set the path to your service account key file
 # Change the dir according to the location of the service account credential (is3107-g2-381308-b948b933d07a.json)
-ddir = '/Users/nevanng/IS3107/IS3107_G2'
+ddir = '/mnt/c/Users/KMwong/Desktop/IS3107/Projects/IS3107_G2'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
 default_args = {
@@ -47,8 +46,6 @@ def extract(**kwargs):
 
     year = kwargs['dag_run'].conf['year']
     quarter = kwargs['dag_run'].conf['quarter']
-    # year = '2017' 
-    # quarter = 3
     
     month_dict = {
         1: ['January', 'February', 'March'],
@@ -57,7 +54,7 @@ def extract(**kwargs):
         4: ['October', 'November', 'December']
     }
 
-    ddir = '/Users/nevanng/IS3107/IS3107_G2'
+    ddir = '/mnt/c/Users/KMwong/Desktop/IS3107/Projects/IS3107_G2'
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f'{ddir}/bigquery/is3107-g2-381308-b948b933d07a.json'
 
     # Set up BigQuery client 
@@ -137,8 +134,6 @@ def extract(**kwargs):
     booking_cancel_df.to_csv(output_dir_cancel, index=False)
 
     print("before push")
-    # ti.xcom_push('booking_price_df', booking_price_df.to_csv(index=False))
-    # ti.xcom_push('booking_cancel_df', booking_cancel_df.to_csv(index=False))
     ti.xcom_push('ddir', ddir)
     ti.xcom_push('year', year)
     ti.xcom_push('quarter', quarter)
@@ -154,34 +149,29 @@ def update_price_model(**kwargs):
     hotel_price_csv = pd.read_csv(output_dir_price)
     hotel_price_df = hotel_price_csv
 
-    # hotel_price_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_price_df')
-    # hotel_price_df = pd.read_csv(StringIO(hotel_price_csv))
-
-    predictors_cols = ['lead_time', 'arrival_date_year',
-                        'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 
-                        'children', 'is_repeated_guest', 'previous_cancellations', 
-                        'previous_bookings_not_canceled', 'required_car_parking_spaces', 
-                        'total_of_special_requests', 'market_segment_Aviation', 
-                        'market_segment_Complementary', 'market_segment_Corporate', 
-                        'market_segment_Direct', 'market_segment_Groups', 
-                        'market_segment_Offline TA/TO', 'market_segment_Online TA', 
-                         'arrival_date_month_April',
-                        'arrival_date_month_August', 'arrival_date_month_December',
-                        'arrival_date_month_February', 'arrival_date_month_January',
-                        'arrival_date_month_July', 'arrival_date_month_June',
-                        'arrival_date_month_March', 'arrival_date_month_May',
-                        'arrival_date_month_November', 'arrival_date_month_October', 
-                        'arrival_date_month_September', 'meal_BB', 'meal_FB', 'meal_HB', 
-                        'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B', 
-                        'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 
-                        'reserved_room_type_F', 'reserved_room_type_G'
+    predictors_cols = ['lead_time', 'arrival_date_year', 'stays_in_weekend_nights', 
+                       'stays_in_week_nights', 'adults', 'children', 
+                       'is_repeated_guest', 'previous_cancellations', 
+                       'previous_bookings_not_canceled', 'required_car_parking_spaces', 
+                       'total_of_special_requests', 'market_segment_Aviation', 
+                       'market_segment_Complementary', 'market_segment_Corporate', 
+                       'market_segment_Direct', 'market_segment_Groups', 
+                       'market_segment_Offline TA/TO', 'market_segment_Online TA', 
+                       'arrival_date_month_April', 'arrival_date_month_August', 
+                       'arrival_date_month_December', 'arrival_date_month_February', 
+                       'arrival_date_month_January', 'arrival_date_month_July', 
+                       'arrival_date_month_June', 'arrival_date_month_March', 
+                       'arrival_date_month_May', 'arrival_date_month_November', 
+                       'arrival_date_month_October', 'arrival_date_month_September', 
+                       'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 
+                       'reserved_room_type_B', 'reserved_room_type_C', 'reserved_room_type_D', 
+                       'reserved_room_type_E', 'reserved_room_type_F', 'reserved_room_type_G'
                       ]  
     
     hotel_price_df_ordered = hotel_price_df[predictors_cols]
 
 
     # Splitting Data (80:20) Regression
-    # x = hotel_price_df.drop(columns = ['adr', 'predicted'])
     x = hotel_price_df_ordered
     y = hotel_price_df.adr 
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
@@ -231,7 +221,7 @@ def update_price_model(**kwargs):
         new_r2 = cbr_r2
         new_price_model = cbr_model
 
-    ddir = '/Users/nevanng/IS3107/IS3107_G2'
+    ddir = '/mnt/c/Users/KMwong/Desktop/IS3107/Projects/IS3107_G2'
     # Save Updated Model
     price_model_dir = f'{ddir}/Dashboard/Models/price_model.pkl'
     with open(price_model_dir, "wb") as f:
@@ -248,34 +238,36 @@ def update_cancel_model(**kwargs):
     output_dir_cancel = f'{ddir}/output/{year}-Q{quarter}-cancel.csv' 
     hotel_cancel_csv = pd.read_csv(output_dir_cancel)
     hotel_cancel_df = hotel_cancel_csv
-
-
-    # hotel_cancel_csv = ti.xcom_pull(task_ids= 'extract', key= 'booking_cancel_df')
-    # hotel_cancel_df = pd.read_csv(StringIO(hotel_cancel_csv))
     
-    predictor_cols = ['is_repeated_guest', 'arrival_date_month_April',      'arrival_date_month_August', 'arrival_date_month_December', 
-                      'arrival_date_month_February', 'arrival_date_month_January', 'arrival_date_month_July',
-                      'arrival_date_month_June', 'arrival_date_month_March', 'arrival_date_month_May',
-                      'arrival_date_month_November', 'arrival_date_month_October', 'arrival_date_month_September',
-                      'meal_BB', 'meal_FB', 'meal_HB', 'meal_SC', 'reserved_room_type_A', 'reserved_room_type_B',
-                      'reserved_room_type_C', 'reserved_room_type_D', 'reserved_room_type_E', 'reserved_room_type_F',
-                      'reserved_room_type_G', 'market_segment_Aviation', 'market_segment_Complementary', 'market_segment_Corporate', 'market_segment_Direct',
-                      'market_segment_Groups', 'market_segment_Offline TA/TO', 'market_segment_Online TA',
-                       'lead_time', 'stays_in_weekend_nights', 'stays_in_week_nights',
-                      'adults', 'children', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr','required_car_parking_spaces',
-                      'total_of_special_requests'
-                      ]
+    predictor_cols = ['is_repeated_guest', 'arrival_date_month_April', 
+                      'arrival_date_month_August', 'arrival_date_month_December', 
+                      'arrival_date_month_February', 'arrival_date_month_January', 
+                      'arrival_date_month_July', 'arrival_date_month_June', 
+                      'arrival_date_month_March', 'arrival_date_month_May',
+                      'arrival_date_month_November', 'arrival_date_month_October', 
+                      'arrival_date_month_September', 'meal_BB', 'meal_FB', 
+                      'meal_HB', 'meal_SC', 'reserved_room_type_A', 
+                      'reserved_room_type_B', 'reserved_room_type_C', 
+                      'reserved_room_type_D', 'reserved_room_type_E', 
+                      'reserved_room_type_F', 'reserved_room_type_G', 
+                      'market_segment_Aviation', 'market_segment_Complementary', 
+                      'market_segment_Corporate', 'market_segment_Direct',
+                      'market_segment_Groups', 'market_segment_Offline TA/TO', 
+                      'market_segment_Online TA', 'lead_time', 'stays_in_weekend_nights', 
+                      'stays_in_week_nights', 'adults', 'children', 
+                      'previous_cancellations', 'previous_bookings_not_canceled', 
+                      'adr','required_car_parking_spaces', 'total_of_special_requests'
+                     ]
+    
     hotel_cancel_df_ordered = hotel_cancel_df[predictor_cols] 
 
 
-    # train model 
-    #JY
-    # Splitting Data (80:20) Regression
+    # Splitting Data (80:20) Classification
     x = hotel_cancel_df_ordered
     y = hotel_cancel_df['is_canceled'] 
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
     
-    #Train Models
+    # Train Models
     # Random Forest Classifier
     rfc = RandomForestClassifier()
     rfc_model = rfc.fit(x_train, y_train)
@@ -285,7 +277,7 @@ def update_cancel_model(**kwargs):
     new_cancel_model = rfc_model
     new_acc = rfc_acc
 
-    #Cat Boost Classifier
+    #CatBoost Classifier
     cbc = cb.CatBoostClassifier(iterations = 100)
     cbc_model = cbc.fit(x_train, y_train)
     cbc_y_pred = cbc_model.predict(x_test)
@@ -314,11 +306,6 @@ def update_cancel_model(**kwargs):
     if (gbc_acc > new_acc): 
         new_acc = gbc_acc
         new_cancel_model = gbc_model
-
-    print(new_acc)
-    print(new_cancel_model)
-    
-    
     
     # Save updated model
     cancel_model_dir = f'{ddir}/Dashboard/Models/cancellation_model.pkl'
