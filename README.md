@@ -60,7 +60,6 @@ Put the DAGS into Airflow DAGS Folder
 Run this command in the virtual environment 
 
 #### Start the airflow webserver.
-`source venv/bin/activate`
 `airflow standalone`
 
 <br />
