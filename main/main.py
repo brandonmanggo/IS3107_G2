@@ -88,20 +88,20 @@ def sendData(period):
 
     # 'START' message to indicate new month data
     try:
-        producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
+        # producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
         producer.send('quickstart-events', value='START'.encode('utf-8'))
-        producer.close()
+        # producer.close()
 
-        producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
+        # producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
         for row in reader:
             message = ','.join(row).encode('utf-8')
             producer.send('quickstart-events', value=message)
-        producer.close()
+        # producer.close()
 
         # 'END' message to indicate the end of the current month data
-        producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
+        # producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
         producer.send('quickstart-events', 'END'.encode('utf-8'))
-        producer.close()
+        # producer.close()
     except:
         with airflow_client.client.ApiClient(configuration) as api_client:
             # Create an instance of the API class
