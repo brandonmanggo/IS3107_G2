@@ -33,10 +33,10 @@
 
 ### Built With
 
-- [Google BigQuery]
-- [Apache Airflow Version 2.5.1]
-- [Apache Kafka Version 3.4.0]
-- [Tableau]
+- [Google BigQuery](https://cloud.google.com/bigquery/)
+- [Apache Airflow Version 2.5.1](https://airflow.apache.org/)
+- [Apache Kafka Version 3.4.0](https://kafka.apache.org/)
+- [Tableau](https://www.tableau.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
