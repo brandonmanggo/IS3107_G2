@@ -44,6 +44,11 @@
 
 ## Instructions to Run
 
+### Packages
+Install the relevant packages when prompted.
+
+<br />
+
 ### Google BigQuery
 
 #### Set up the OS Environment and Credentials.
